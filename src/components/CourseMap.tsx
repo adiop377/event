@@ -1,0 +1,250 @@
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { MapPin, TrendingUp, Droplets, HeartPulse, Zap, Compass, Flag } from "lucide-react";
+import { ROUTES } from "@/data/marathon";
+
+export default function CourseMap() {
+  const [selectedCode, setSelectedCode] = useState<string>("21k");
+  const activeRoute = ROUTES.find((r) => r.code === selectedCode) || ROUTES[2];
+
+  // Elevation points calculation for SVG graph
+  const points = activeRoute.points;
+  const maxElevation = Math.max(...points.map((p) => p.elevationM), 65);
+  const minElevation = Math.min(...points.map((p) => p.elevationM), 48);
+  const elevationRange = maxElevation - minElevation || 1;
+
+  const svgWidth = 800;
+  const svgHeight = 220;
+  const paddingX = 40;
+  const paddingY = 30;
+
+  const getCoordinates = (p: { distanceKm: number; elevationM: number }) => {
+    const totalDist = activeRoute.points[activeRoute.points.length - 1].distanceKm || 1;
+    const x = paddingX + (p.distanceKm / totalDist) * (svgWidth - 2 * paddingX);
+    const normalizedY = (p.elevationM - minElevation) / elevationRange;
+    const y = svgHeight - paddingY - normalizedY * (svgHeight - 2 * paddingY);
+    return { x, y };
+  };
+
+  const pathD = points.reduce((acc, p, idx) => {
+    const { x, y } = getCoordinates(p);
+    return idx === 0 ? `M ${x},${y}` : `${acc} L ${x},${y}`;
+  }, "");
+
+  const firstPoint = getCoordinates(points[0]);
+  const lastPoint = getCoordinates(points[points.length - 1]);
+  const areaD = `${pathD} L ${lastPoint.x},${svgHeight - paddingY} L ${firstPoint.x},${svgHeight - paddingY} Z`;
+
+  return (
+    <section id="route" className="relative w-full py-28 md:py-36 bg-ink text-ivory overflow-hidden border-t border-line/40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div>
+            <div className="inline-flex items-center gap-2 mb-3">
+              <Compass className="w-4 h-4 text-champagne" />
+              <span className="label-subtle text-champagne">COURSE ARCHITECTURE</span>
+            </div>
+            <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl uppercase tracking-tight text-ivory">
+              THE PATNA <span className="font-accent lowercase text-champagne">course.</span>
+            </h2>
+          </div>
+
+          {/* Route distance selector tabs */}
+          <div className="inline-flex p-1.5 rounded-full bg-graphite border border-line self-start md:self-end">
+            {ROUTES.map((route) => (
+              <button
+                key={route.code}
+                onClick={() => setSelectedCode(route.code)}
+                className={`px-5 py-2 rounded-full text-xs font-numbers uppercase tracking-wider font-bold transition-all ${
+                  selectedCode === route.code
+                    ? "bg-champagne text-ink shadow-md"
+                    : "text-stone hover:text-ivory"
+                }`}
+              >
+                {route.code.toUpperCase()}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Route Card Container */}
+        <div className="luxury-card p-6 sm:p-10 bg-graphite/90 backdrop-blur-xl border-line">
+          {/* Top Title & Quick Metrics */}
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between pb-8 border-b border-line gap-6">
+            <div>
+              <span className="label-subtle text-champagne block mb-1">
+                COURSE ROUTE OVERVIEW
+              </span>
+              <h3 className="font-heading text-3xl sm:text-4xl text-ivory uppercase">
+                {activeRoute.title}
+              </h3>
+              <p className="font-body text-xs text-stone mt-1">
+                Patna Riverfront & Expressway Corridor • Flat, ultra-fast certified course
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+              <div className="bg-ink/80 rounded-xl p-3 border border-line">
+                <span className="label-subtle text-[9px] text-stone block mb-1">DISTANCE</span>
+                <span className="font-numbers text-xl font-bold text-champagne">
+                  {activeRoute.distance}
+                </span>
+              </div>
+              <div className="bg-ink/80 rounded-xl p-3 border border-line">
+                <span className="label-subtle text-[9px] text-stone block mb-1">ELEVATION GAIN</span>
+                <span className="font-numbers text-xl font-bold text-ivory">
+                  {activeRoute.elevationGain}
+                </span>
+              </div>
+              <div className="bg-ink/80 rounded-xl p-3 border border-line">
+                <span className="label-subtle text-[9px] text-stone block mb-1">WATER POINTS</span>
+                <span className="font-numbers text-xl font-bold text-ivory flex items-center justify-center gap-1">
+                  <Droplets className="w-3.5 h-3.5 text-sky-400" />
+                  {activeRoute.waterStations}
+                </span>
+              </div>
+              <div className="bg-ink/80 rounded-xl p-3 border border-line">
+                <span className="label-subtle text-[9px] text-stone block mb-1">MEDIC POSTS</span>
+                <span className="font-numbers text-xl font-bold text-ivory flex items-center justify-center gap-1">
+                  <HeartPulse className="w-3.5 h-3.5 text-rose-400" />
+                  {activeRoute.medicalPoints}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Elevation Profile Graph */}
+          <div className="my-8">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <TrendingUp className="w-4 h-4 text-champagne" />
+                <span className="label-subtle text-ivory text-xs">ELEVATION PROFILE</span>
+              </div>
+              <span className="label-subtle text-[10px] text-stone">
+                Sea Level Reference: ~52m AMSL • Peak: {activeRoute.peakElevation}
+              </span>
+            </div>
+
+            <div className="w-full overflow-x-auto">
+              <div className="min-w-[650px] relative bg-ink/70 rounded-2xl p-4 border border-line/60">
+                <svg
+                  viewBox={`0 0 ${svgWidth} ${svgHeight}`}
+                  className="w-full h-44 overflow-visible"
+                >
+                  <defs>
+                    <linearGradient id="elevationGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#DFB269" stopOpacity="0.4" />
+                      <stop offset="100%" stopColor="#DFB269" stopOpacity="0.0" />
+                    </linearGradient>
+                  </defs>
+
+                  {/* Horizontal grid lines */}
+                  <line
+                    x1={paddingX}
+                    y1={paddingY}
+                    x2={svgWidth - paddingX}
+                    y2={paddingY}
+                    stroke="rgba(255,255,255,0.06)"
+                    strokeDasharray="4 4"
+                  />
+                  <line
+                    x1={paddingX}
+                    y1={svgHeight / 2}
+                    x2={svgWidth - paddingX}
+                    y2={svgHeight / 2}
+                    stroke="rgba(255,255,255,0.06)"
+                    strokeDasharray="4 4"
+                  />
+                  <line
+                    x1={paddingX}
+                    y1={svgHeight - paddingY}
+                    x2={svgWidth - paddingX}
+                    y2={svgHeight - paddingY}
+                    stroke="rgba(255,255,255,0.12)"
+                  />
+
+                  {/* Shaded Area */}
+                  <path d={areaD} fill="url(#elevationGrad)" />
+
+                  {/* Polyline */}
+                  <path
+                    d={pathD}
+                    fill="none"
+                    stroke="#DFB269"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+
+                  {/* Points with Tooltip Labels */}
+                  {points.map((p, idx) => {
+                    const { x, y } = getCoordinates(p);
+                    return (
+                      <g key={idx}>
+                        <circle
+                          cx={x}
+                          cy={y}
+                          r={p.label ? "5" : "3.5"}
+                          fill="#07080A"
+                          stroke="#DFB269"
+                          strokeWidth="2.5"
+                        />
+                        {p.label && (
+                          <g>
+                            <text
+                              x={x}
+                              y={y - 12}
+                              textAnchor="middle"
+                              fill="#F8F5EE"
+                              fontSize="11"
+                              fontWeight="600"
+                              fontFamily="var(--font-inter)"
+                            >
+                              {p.label} ({p.elevationM}m)
+                            </text>
+                            <text
+                              x={x}
+                              y={svgHeight - paddingY + 18}
+                              textAnchor="middle"
+                              fill="#A8A398"
+                              fontSize="10"
+                              fontFamily="var(--font-barlow)"
+                            >
+                              {p.distanceKm} km
+                            </text>
+                          </g>
+                        )}
+                      </g>
+                    );
+                  })}
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Landmarks / Turns */}
+          <div className="pt-6 border-t border-line">
+            <span className="label-subtle text-stone block mb-3">KEY LANDMARKS & TURNS</span>
+            <div className="flex flex-wrap gap-2.5">
+              {activeRoute.landmarks.map((landmark, idx) => (
+                <div
+                  key={landmark}
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ink/90 border border-line text-xs text-ivory font-medium"
+                >
+                  <span className="w-5 h-5 rounded-full bg-champagne/15 text-champagne text-[10px] font-numbers flex items-center justify-center font-bold">
+                    {idx + 1}
+                  </span>
+                  <span>{landmark}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
