@@ -3,8 +3,10 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import MarqueeBanner from "@/components/MarqueeBanner";
 import Countdown from "@/components/Countdown";
 import WhyRun from "@/components/WhyRun";
+import PaceCalculator from "@/components/PaceCalculator";
 import CourseMap from "@/components/CourseMap";
 import Schedule from "@/components/Schedule";
 import RaceKit from "@/components/RaceKit";
@@ -30,8 +32,10 @@ export default function Home() {
     <main className="min-h-screen bg-ink text-ivory flex flex-col selection:bg-champagne selection:text-ink">
       <Navbar />
       <Hero />
+      <MarqueeBanner />
       <Countdown onSelectCategory={handleSelectCategory} />
       <WhyRun />
+      <PaceCalculator />
       <CourseMap />
       <Schedule />
       <RaceKit />
@@ -43,4 +47,3 @@ export default function Home() {
     </main>
   );
 }
-

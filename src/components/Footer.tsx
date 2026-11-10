@@ -1,11 +1,45 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Phone, MapPin, AlertCircle, Instagram, Facebook, Twitter, Youtube } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Instagram,
+  Facebook,
+  Twitter,
+  Youtube,
+  X,
+  FileText,
+  ShieldCheck,
+  Scale,
+} from "lucide-react";
 import { MARATHON_META, NAV_LINKS } from "@/data/marathon";
 
+type ModalType = "terms" | "privacy" | "rules" | null;
+
 export default function Footer() {
+  const [modalType, setModalType] = useState<ModalType>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setModalType(null);
+    };
+    if (modalType) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
+    };
+  }, [modalType]);
+
   return (
     <footer id="contact" className="relative w-full bg-[#050608] text-stone border-t border-line/60 pt-20 pb-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -172,19 +206,158 @@ export default function Footer() {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone">
           <p>© 2027 Pride Patna Marathon. All Rights Reserved.</p>
           <div className="flex items-center gap-6 text-[11px]">
-            <a href="#terms" className="hover:text-ivory transition-colors">
+            <button
+              type="button"
+              onClick={() => setModalType("terms")}
+              className="hover:text-champagne transition-colors underline-offset-4 hover:underline"
+            >
               Terms &amp; Conditions
-            </a>
-            <a href="#privacy" className="hover:text-ivory transition-colors">
+            </button>
+            <button
+              type="button"
+              onClick={() => setModalType("privacy")}
+              className="hover:text-champagne transition-colors underline-offset-4 hover:underline"
+            >
               Privacy Policy
-            </a>
-            <a href="#rules" className="hover:text-ivory transition-colors">
+            </button>
+            <button
+              type="button"
+              onClick={() => setModalType("rules")}
+              className="hover:text-champagne transition-colors underline-offset-4 hover:underline"
+            >
               Race Regulations
-            </a>
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Legal & Policy Modals */}
+      <AnimatePresence>
+        {modalType && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-ink/90 backdrop-blur-md"
+            role="dialog"
+            aria-modal="true"
+          >
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setModalType(null)}
+              className="absolute inset-0"
+            />
+            <motion.div
+              initial={{ scale: 0.94, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.94, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-2xl bg-graphite rounded-2xl border border-line overflow-hidden shadow-2xl z-10 p-6 sm:p-8 max-h-[85vh] flex flex-col"
+            >
+              <div className="flex items-center justify-between pb-4 border-b border-line mb-4">
+                <div className="flex items-center gap-2.5">
+                  {modalType === "terms" && <Scale className="w-5 h-5 text-champagne" />}
+                  {modalType === "privacy" && <ShieldCheck className="w-5 h-5 text-champagne" />}
+                  {modalType === "rules" && <FileText className="w-5 h-5 text-champagne" />}
+                  <h3 className="font-heading text-2xl uppercase tracking-wide text-ivory">
+                    {modalType === "terms" && "Terms & Conditions"}
+                    {modalType === "privacy" && "Privacy & Athlete Data Policy"}
+                    {modalType === "rules" && "Official Race Regulations"}
+                  </h3>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setModalType(null)}
+                  className="p-1.5 rounded-lg text-stone hover:text-ivory hover:bg-ink transition-colors"
+                  aria-label="Close modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="overflow-y-auto space-y-4 text-xs sm:text-sm text-stone leading-relaxed pr-2 font-body">
+                {modalType === "terms" && (
+                  <>
+                    <p className="text-ivory font-medium">
+                      1. Registration &amp; Transfer Policy:
+                    </p>
+                    <p>
+                      All registrations are strictly non-refundable and non-transferable to another individual under any circumstances, as chest bibs are encoded with participant medical info.
+                    </p>
+                    <p className="text-ivory font-medium">
+                      2. Medical Deferral:
+                    </p>
+                    <p>
+                      A one-time medical deferral to the 2028 edition is granted upon submission of a certified government medical practitioner certificate at least 10 calendar days prior to race day.
+                    </p>
+                    <p className="text-ivory font-medium">
+                      3. Force Majeure &amp; Route Alterations:
+                    </p>
+                    <p>
+                      The organizing committee reserves the right to adjust race routes, flag-off timings, or event logistics in response to adverse meteorological forecasts, civic guidelines, or public safety instructions.
+                    </p>
+                  </>
+                )}
+
+                {modalType === "privacy" && (
+                  <>
+                    <p className="text-ivory font-medium">
+                      1. Information Collection:
+                    </p>
+                    <p>
+                      We collect participant name, email, phone number, medical emergency contact, and timing data exclusively for the purpose of race verification, timing result publication, and emergency coordination.
+                    </p>
+                    <p className="text-ivory font-medium">
+                      2. Real-Time Tracking &amp; WhatsApp Alerts:
+                    </p>
+                    <p>
+                      Registered WhatsApp numbers will receive instant split timing notifications across 5 km checkpoints and downloadable finisher certificate links.
+                    </p>
+                    <p className="text-ivory font-medium">
+                      3. Media &amp; Photography:
+                    </p>
+                    <p>
+                      Event photographers document the route. By participating, you grant Pride Patna Marathon license to publish race imagery for non-commercial editorial archives.
+                    </p>
+                  </>
+                )}
+
+                {modalType === "rules" && (
+                  <>
+                    <p className="text-ivory font-medium">
+                      1. Official Chest Bib &amp; RFID Timing Chip:
+                    </p>
+                    <p>
+                      The official bib must remain clearly visible, pinned horizontally on the front chest of your running shirt throughout the race. Running with someone else&apos;s bib results in immediate disqualification.
+                    </p>
+                    <p className="text-ivory font-medium">
+                      2. Cut-off Timings &amp; Course Closure:
+                    </p>
+                    <p>
+                      Strict cut-off limits apply: Full Marathon (6 hrs 00 mins), Half Marathon (3 hrs 30 mins), 10K (2 hrs 00 mins), 5K (1 hr 15 mins). Runners behind the pace wagon will be transferred to course shuttles.
+                    </p>
+                    <p className="text-ivory font-medium">
+                      3. Medical Discretion:
+                    </p>
+                    <p>
+                      Apollo paramedical officers and race marshals possess absolute authority to withdraw any athlete displaying severe symptoms of heat exhaustion, cardiac fatigue, or distress.
+                    </p>
+                  </>
+                )}
+              </div>
+
+              <div className="pt-4 mt-4 border-t border-line/60 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => setModalType(null)}
+                  className="btn-champagne text-xs uppercase tracking-wider py-2.5 px-6"
+                >
+                  I Understand
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </footer>
   );
 }
-

@@ -119,6 +119,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/pride-patna-marathon-logo-cropped.png" />
+        <link rel="apple-touch-icon" href="/pride-patna-marathon-logo-cropped.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
