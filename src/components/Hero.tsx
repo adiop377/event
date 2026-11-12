@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, ArrowRight, ChevronDown, X, Zap, Trophy, ShieldCheck, MapPin, Flame } from "lucide-react";
+import { Play, ArrowRight, ChevronDown, X, Zap, Trophy, ShieldCheck, MapPin, Flame, Sparkles, Film } from "lucide-react";
 import { MARATHON_META } from "@/data/marathon";
 
 export default function Hero() {
@@ -290,14 +290,45 @@ export default function Hero() {
                   <X className="w-5 h-5" />
                 </button>
               </div>
-              <div className="relative aspect-video w-full rounded-md overflow-hidden bg-ink">
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0"
-                  title="Marathon promo video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+              <div className="relative aspect-video w-full rounded-md overflow-hidden bg-ink/95 border border-white/10 flex flex-col items-center justify-center text-center p-6 sm:p-10">
+                {/* Background ambient lighting */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-volt/15 via-ink to-transparent pointer-events-none" />
+
+                <div className="relative z-10 max-w-md mx-auto space-y-4">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-full bg-volt/10 border border-volt/30 flex items-center justify-center text-volt shadow-[0_0_30px_rgba(200,255,0,0.25)]">
+                    <Film className="w-7 h-7 text-volt" />
+                  </div>
+
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-volt/10 border border-volt/30 text-[10px] sm:text-xs font-mono uppercase tracking-wider text-volt font-bold">
+                    <span className="w-2 h-2 rounded-full bg-volt animate-ping" />
+                    Official Teaser Releasing Soon
+                  </div>
+
+                  <h3 className="font-heading text-lg sm:text-2xl text-ivory tracking-wide uppercase">
+                    Patna Runs Together
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-stone leading-relaxed">
+                    The official cinematic race promo for the 7 Feb 2027 edition at {MARATHON_META.venue} is currently in final production and will premiere shortly.
+                  </p>
+
+                  <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
+                    <a
+                      href="#routes"
+                      onClick={() => setVideoOpen(false)}
+                      className="btn-volt !py-2.5 !px-5 text-xs font-bold rounded"
+                    >
+                      EXPLORE RACE ROUTES
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => setVideoOpen(false)}
+                      className="px-4 py-2 text-xs font-semibold text-stone hover:text-ivory transition-colors"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>
