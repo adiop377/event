@@ -21,7 +21,7 @@ export default function WhyRun() {
               <Zap className="w-4 h-4 text-volt" />
               <span className="label-subtle text-volt font-bold">CHAMPIONSHIP STANDARDS</span>
             </div>
-            <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
+            <h2 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
               MORE THAN <span className="text-volt-gradient">A RACE.</span>
             </h2>
           </div>

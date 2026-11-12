@@ -321,13 +321,13 @@ ${activeRoute.landmarks.join(" -> ")}
               <span className="w-6 h-[2px] bg-volt inline-block" />
               <span className="label-subtle text-volt font-bold tracking-widest text-xs">COURSE ARCHITECTURE</span>
             </div>
-            <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
+            <h2 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
               THE PATNA <span className="text-volt-gradient">COURSE.</span>
             </h2>
           </div>
 
           {/* Route distance selector tabs */}
-          <div className="inline-flex p-1.5 rounded-md bg-[#0D1422] border border-white/10 self-start md:self-end shadow-lg">
+          <div className="inline-flex flex-wrap p-1.5 rounded-md bg-[#0D1422] border border-white/10 self-start md:self-end shadow-lg gap-1">
             {ROUTES.map((route) => (
               <button
                 key={route.code}
@@ -336,7 +336,7 @@ ${activeRoute.landmarks.join(" -> ")}
                   setSelectedCode(route.code);
                   setActiveWaypoint(null);
                 }}
-                className={`px-5 py-2 rounded text-xs font-heading uppercase tracking-wider font-extrabold transition-all ${
+                className={`px-3.5 sm:px-5 py-1.5 sm:py-2 rounded text-xs font-heading uppercase tracking-wider font-extrabold transition-all ${
                   selectedCode === route.code
                     ? "bg-volt text-black shadow-[0_0_15px_rgba(204,255,0,0.35)]"
                     : "text-stone hover:text-ivory"
@@ -349,15 +349,15 @@ ${activeRoute.landmarks.join(" -> ")}
         </div>
 
         {/* Route Card Container */}
-        <div className="luxury-card p-6 sm:p-10 lg:p-12 bg-graphite/95 backdrop-blur-xl border-volt/20 shadow-2xl rounded-lg">
+        <div className="luxury-card p-4 sm:p-8 lg:p-12 bg-graphite/95 backdrop-blur-xl border-volt/20 shadow-2xl rounded-lg">
           {/* Top Stats Bar - 4 High-Impact Stat Columns */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 pb-8 border-b border-white/[0.08]">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 pb-8 border-b border-white/[0.08]">
             {/* Distance */}
             <div>
-              <span className="label-subtle text-[10px] text-stone tracking-wider block mb-1 font-bold">
+              <span className="label-subtle text-[9px] sm:text-[10px] text-stone tracking-wider block mb-1 font-bold">
                 DISTANCE
               </span>
-              <div className="font-numbers text-3xl sm:text-4xl lg:text-5xl font-black text-ivory tracking-tight">
+              <div className="font-numbers text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-ivory tracking-tight">
                 {activeRoute.distance}
               </div>
               <p className="font-body text-xs text-stone mt-1 line-clamp-1">
@@ -369,11 +369,11 @@ ${activeRoute.landmarks.join(" -> ")}
             <div>
               <div className="flex items-center gap-1.5 mb-1">
                 <TrendingUp className="w-3.5 h-3.5 text-volt" />
-                <span className="label-subtle text-[10px] text-stone tracking-wider font-bold">
+                <span className="label-subtle text-[9px] sm:text-[10px] text-stone tracking-wider font-bold">
                   TOTAL GAIN
                 </span>
               </div>
-              <div className="font-numbers text-3xl sm:text-4xl lg:text-5xl font-black text-ivory tracking-tight">
+              <div className="font-numbers text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-ivory tracking-tight">
                 {activeRoute.elevationGain}
               </div>
               <p className="font-body text-xs text-stone mt-1">
@@ -385,11 +385,11 @@ ${activeRoute.landmarks.join(" -> ")}
             <div>
               <div className="flex items-center gap-1.5 mb-1">
                 <Mountain className="w-3.5 h-3.5 text-sky-400" />
-                <span className="label-subtle text-[10px] text-stone tracking-wider font-bold">
+                <span className="label-subtle text-[9px] sm:text-[10px] text-stone tracking-wider font-bold">
                   PEAK ELEVATION
                 </span>
               </div>
-              <div className="font-numbers text-3xl sm:text-4xl lg:text-5xl font-black text-ivory tracking-tight">
+              <div className="font-numbers text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-ivory tracking-tight">
                 {activeRoute.peakElevation}
               </div>
               <p className="font-body text-xs text-stone mt-1">
@@ -399,7 +399,7 @@ ${activeRoute.landmarks.join(" -> ")}
 
             {/* Support Stations */}
             <div>
-              <span className="label-subtle text-[10px] text-stone tracking-wider block mb-1 font-bold">
+              <span className="label-subtle text-[9px] sm:text-[10px] text-stone tracking-wider block mb-1 font-bold">
                 SUPPORT STATIONS
               </span>
               <div className="flex items-center gap-3 my-1">

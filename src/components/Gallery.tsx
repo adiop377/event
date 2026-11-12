@@ -53,7 +53,7 @@ export default function Gallery() {
               <Camera className="w-4 h-4 text-volt" />
               <span className="label-subtle text-volt font-bold">ARCHIVAL MEDIA GALLERY</span>
             </div>
-            <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
+            <h2 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
               RACE DAY <span className="text-volt-gradient">MOMENTS.</span>
             </h2>
           </div>
@@ -63,7 +63,7 @@ export default function Gallery() {
         </div>
 
         {/* Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 mb-10 pb-6 border-b border-line/60">
+        <div className="flex items-center gap-2 mb-10 pb-4 border-b border-line/60 overflow-x-auto scrollbar-none sm:flex-wrap">
           {categories.map((cat) => (
             <button
               key={cat}

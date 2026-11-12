@@ -216,7 +216,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
             <Zap className="w-4 h-4 text-volt" />
             <span className="label-subtle text-volt font-bold">OFFICIAL ATHLETE PORTAL</span>
           </div>
-          <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory leading-none font-black">
+          <h2 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory leading-none font-black">
             RESERVE YOUR <span className="text-volt-gradient">BIB.</span>
           </h2>
           <p className="font-body text-base text-stone mt-4 leading-relaxed max-w-lg mx-auto">
@@ -228,7 +228,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
         <div className="relative">
           <div className="absolute -inset-2 bg-volt/[0.05] rounded-xl blur-3xl pointer-events-none -z-10" />
 
-          <div className="luxury-card p-6 sm:p-10 lg:p-12 relative overflow-hidden bg-gradient-to-br from-[#111827] via-[#0A0F1A] to-[#111827] border border-white/[0.08] shadow-2xl">
+          <div className="luxury-card p-4 sm:p-8 lg:p-12 relative overflow-hidden bg-gradient-to-br from-[#111827] via-[#0A0F1A] to-[#111827] border border-white/[0.08] shadow-2xl">
             {confirmation ? (
               /* Success Confirmation Card */
               <motion.div
@@ -603,7 +603,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                             <span>Size Guide</span>
                           </button>
                         </div>
-                        <div className="grid grid-cols-6 gap-2">
+                        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                           {(["XS", "S", "M", "L", "XL", "XXL"] as const).map((size) => (
                             <button
                               key={size}

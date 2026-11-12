@@ -38,11 +38,11 @@ export default function Navbar() {
           : "bg-gradient-to-b from-[#090D14]/95 via-[#090D14]/50 to-transparent py-4 sm:py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo & Brand */}
-          <Link href="#hero" className="flex items-center gap-3 group">
-            <div className="relative w-11 h-11 rounded-full overflow-hidden border border-volt/50 p-1 bg-graphite flex items-center justify-center shadow-[0_0_18px_rgba(204,255,0,0.25)] group-hover:border-volt group-hover:shadow-[0_0_22px_rgba(204,255,0,0.4)] transition-all">
+          <Link href="#hero" className="flex items-center gap-2.5 sm:gap-3 group min-w-0">
+            <div className="relative w-9 h-9 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-volt/50 p-1 bg-graphite flex items-center justify-center shrink-0 shadow-[0_0_18px_rgba(204,255,0,0.25)] group-hover:border-volt group-hover:shadow-[0_0_22px_rgba(204,255,0,0.4)] transition-all">
               <Image
                 src="/pride-patna-marathon-logo-cropped.png"
                 alt="Pride Patna Marathon Logo"
@@ -52,13 +52,13 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <div className="flex flex-col">
-              <span className="font-heading text-lg sm:text-xl tracking-wider text-ivory group-hover:text-volt transition-colors">
+            <div className="flex flex-col min-w-0">
+              <span className="font-heading text-base sm:text-xl tracking-wider text-ivory group-hover:text-volt transition-colors truncate">
                 PRIDE PATNA MARATHON
               </span>
-              <span className="label-subtle text-[8.5px] sm:text-[9px] tracking-[0.22em] text-volt font-bold flex items-center gap-1.5">
+              <span className="label-subtle text-[7.5px] sm:text-[9px] tracking-[0.16em] sm:tracking-[0.22em] text-volt font-bold flex items-center gap-1 sm:gap-1.5 truncate">
                 <span>14 FEB 2027</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-blaze" />
+                <span className="w-1.5 h-1.5 rounded-full bg-blaze shrink-0" />
                 <span>GANDHI MAIDAN</span>
               </span>
             </div>

@@ -106,36 +106,36 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                   <Clock className="w-3.5 h-3.5 text-volt" />
                   <span className="label-subtle text-[10px]">TIME TO FLAG-OFF</span>
                 </div>
-                <div className="grid grid-cols-4 gap-2.5 sm:gap-4 text-center">
-                  <div className="bg-[#0A0F1A]/90 rounded-lg p-3 sm:p-4 border border-white/[0.08] min-w-[72px] sm:min-w-[96px] shadow-lg">
-                    <span className="font-numbers text-3xl sm:text-4xl lg:text-5xl text-ivory block leading-none font-extrabold">
+                <div className="grid grid-cols-4 gap-2 sm:gap-4 text-center w-full max-w-md">
+                  <div className="bg-[#0A0F1A]/90 rounded-lg p-2 sm:p-4 border border-white/[0.08] min-w-0 sm:min-w-[96px] shadow-lg">
+                    <span className="font-numbers text-2xl xs:text-3xl sm:text-4xl lg:text-5xl text-ivory block leading-none font-extrabold">
                       {String(timeLeft.days).padStart(2, "0")}
                     </span>
-                    <span className="label-subtle text-[8.5px] sm:text-[9.5px] text-stone mt-2 block">
+                    <span className="label-subtle text-[7.5px] sm:text-[9.5px] text-stone mt-1.5 sm:mt-2 block">
                       DAYS
                     </span>
                   </div>
-                  <div className="bg-[#0A0F1A]/90 rounded-lg p-3 sm:p-4 border border-white/[0.08] min-w-[72px] sm:min-w-[96px] shadow-lg">
-                    <span className="font-numbers text-3xl sm:text-4xl lg:text-5xl text-ivory block leading-none font-extrabold">
+                  <div className="bg-[#0A0F1A]/90 rounded-lg p-2 sm:p-4 border border-white/[0.08] min-w-0 sm:min-w-[96px] shadow-lg">
+                    <span className="font-numbers text-2xl xs:text-3xl sm:text-4xl lg:text-5xl text-ivory block leading-none font-extrabold">
                       {String(timeLeft.hours).padStart(2, "0")}
                     </span>
-                    <span className="label-subtle text-[8.5px] sm:text-[9.5px] text-stone mt-2 block">
+                    <span className="label-subtle text-[7.5px] sm:text-[9.5px] text-stone mt-1.5 sm:mt-2 block">
                       HOURS
                     </span>
                   </div>
-                  <div className="bg-[#0A0F1A]/90 rounded-lg p-3 sm:p-4 border border-white/[0.08] min-w-[72px] sm:min-w-[96px] shadow-lg">
-                    <span className="font-numbers text-3xl sm:text-4xl lg:text-5xl text-ivory block leading-none font-extrabold">
+                  <div className="bg-[#0A0F1A]/90 rounded-lg p-2 sm:p-4 border border-white/[0.08] min-w-0 sm:min-w-[96px] shadow-lg">
+                    <span className="font-numbers text-2xl xs:text-3xl sm:text-4xl lg:text-5xl text-ivory block leading-none font-extrabold">
                       {String(timeLeft.minutes).padStart(2, "0")}
                     </span>
-                    <span className="label-subtle text-[8.5px] sm:text-[9.5px] text-stone mt-2 block">
+                    <span className="label-subtle text-[7.5px] sm:text-[9.5px] text-stone mt-1.5 sm:mt-2 block">
                       MINUTES
                     </span>
                   </div>
-                  <div className="bg-[#0A0F1A]/90 rounded-lg p-3 sm:p-4 border border-volt/50 min-w-[72px] sm:min-w-[96px] shadow-[0_0_20px_rgba(204,255,0,0.18)] bg-volt/[0.06]">
-                    <span className="font-numbers text-3xl sm:text-4xl lg:text-5xl text-volt block leading-none font-extrabold shadow-sm">
+                  <div className="bg-[#0A0F1A]/90 rounded-lg p-2 sm:p-4 border border-volt/50 min-w-0 sm:min-w-[96px] shadow-[0_0_20px_rgba(204,255,0,0.18)] bg-volt/[0.06]">
+                    <span className="font-numbers text-2xl xs:text-3xl sm:text-4xl lg:text-5xl text-volt block leading-none font-extrabold shadow-sm">
                       {String(timeLeft.seconds).padStart(2, "0")}
                     </span>
-                    <span className="label-subtle text-[8.5px] sm:text-[9.5px] text-volt font-bold mt-2 block">
+                    <span className="label-subtle text-[7.5px] sm:text-[9.5px] text-volt font-bold mt-1.5 sm:mt-2 block">
                       SECONDS
                     </span>
                   </div>
@@ -167,7 +167,7 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
             <Trophy className="w-4 h-4 text-volt" />
             <span className="label-subtle text-volt">CHOOSE YOUR DISTANCE</span>
           </div>
-          <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
+          <h2 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
             FOUR CERTIFIED <span className="text-volt-gradient">RACES.</span>
           </h2>
           <p className="font-body text-stone text-base mt-4 leading-relaxed font-medium">

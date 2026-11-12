@@ -21,7 +21,7 @@ export default function FAQ() {
             <HelpCircle className="w-4 h-4 text-volt" />
             <span className="label-subtle text-volt font-bold">ATHLETE BRIEFING</span>
           </div>
-          <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
+          <h2 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
             FREQUENTLY ASKED <span className="text-volt-gradient">QUESTIONS.</span>
           </h2>
           <p className="font-body text-stone text-sm sm:text-base mt-4 leading-relaxed max-w-lg mx-auto">

@@ -62,7 +62,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-heading text-7xl sm:text-8xl md:text-9xl xl:text-[9.5rem] 2xl:text-[10.5rem] uppercase tracking-tight text-ivory leading-[0.88] font-black"
+              className="font-heading text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[9.5rem] 2xl:text-[10.5rem] uppercase tracking-tight text-ivory leading-[0.88] font-black"
             >
               EVERY MILE
               <br />
@@ -114,33 +114,33 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="mt-12 pt-8 border-t border-line/80 flex flex-wrap items-center gap-6 sm:gap-10 text-xs text-stone"
+              className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-line/80 grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center gap-4 sm:gap-8 lg:gap-10 text-xs text-stone"
             >
               <div>
-                <p className="label-subtle mb-1">DATE</p>
-                <p className="font-numbers text-base sm:text-lg text-ivory tracking-wide font-extrabold">
+                <p className="label-subtle mb-1 text-[9px] sm:text-[10px]">DATE</p>
+                <p className="font-numbers text-sm sm:text-lg text-ivory tracking-wide font-extrabold">
                   {MARATHON_META.date}
                 </p>
               </div>
-              <div className="w-px h-8 bg-line" />
+              <div className="hidden sm:block w-px h-8 bg-line" />
               <div>
-                <p className="label-subtle mb-1">VENUE</p>
-                <p className="font-numbers text-base sm:text-lg text-ivory tracking-wide font-extrabold">
+                <p className="label-subtle mb-1 text-[9px] sm:text-[10px]">VENUE</p>
+                <p className="font-numbers text-sm sm:text-lg text-ivory tracking-wide font-extrabold">
                   {MARATHON_META.venue}
                 </p>
               </div>
-              <div className="w-px h-8 bg-line" />
+              <div className="hidden sm:block w-px h-8 bg-line" />
               <div>
-                <p className="label-subtle mb-1">RUNNERS</p>
-                <p className="font-numbers text-base sm:text-lg text-volt tracking-wide font-extrabold flex items-center gap-1">
+                <p className="label-subtle mb-1 text-[9px] sm:text-[10px]">RUNNERS</p>
+                <p className="font-numbers text-sm sm:text-lg text-volt tracking-wide font-extrabold flex items-center gap-1">
                   <Zap className="w-3.5 h-3.5" />
                   {MARATHON_META.stats.runnersCount}
                 </p>
               </div>
-              <div className="w-px h-8 bg-line" />
+              <div className="hidden sm:block w-px h-8 bg-line" />
               <div>
-                <p className="label-subtle mb-1">PRIZE POOL</p>
-                <p className="font-numbers text-base sm:text-lg text-blaze tracking-wide font-extrabold flex items-center gap-1">
+                <p className="label-subtle mb-1 text-[9px] sm:text-[10px]">PRIZE POOL</p>
+                <p className="font-numbers text-sm sm:text-lg text-blaze tracking-wide font-extrabold flex items-center gap-1">
                   <Trophy className="w-3.5 h-3.5" />
                   ₹25,00,000
                 </p>
