@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X, ArrowRight, Zap, ShieldCheck } from "lucide-react";
+import { Menu, X, ArrowRight, Zap } from "lucide-react";
 import { NAV_LINKS, MARATHON_META } from "@/data/marathon";
 
 export default function Navbar() {
@@ -91,16 +91,7 @@ export default function Navbar() {
           </nav>
 
           {/* CTA & Mobile Toggle */}
-          <div className="flex items-center gap-3">
-            <Link
-              href="/admin"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-[4px] bg-[#0D1422] border border-white/10 hover:border-volt/40 text-stone hover:text-volt text-xs font-heading uppercase tracking-wider font-bold transition-all"
-              title="Official Marathon Race Control & Admin Portal"
-            >
-              <ShieldCheck className="w-3.5 h-3.5 text-volt" />
-              <span>Admin</span>
-            </Link>
-
+          <div className="flex items-center gap-4">
             <a
               href="#register"
               className="hidden sm:inline-flex btn-volt text-xs uppercase tracking-wider !py-2.5 !px-5 rounded-[4px] font-extrabold hover:scale-105 transition-all duration-300"
@@ -141,14 +132,6 @@ export default function Navbar() {
               </a>
             ))}
             <div className="pt-4 flex flex-col gap-3">
-              <Link
-                href="/admin"
-                onClick={() => setMobileMenuOpen(false)}
-                className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-[4px] bg-[#0D1422] border border-volt/30 text-volt text-xs font-heading uppercase tracking-wider font-extrabold"
-              >
-                <ShieldCheck className="w-4 h-4 text-volt" />
-                <span>Race Control Admin Panel</span>
-              </Link>
               <a
                 href="#register"
                 onClick={() => setMobileMenuOpen(false)}

@@ -159,16 +159,6 @@ export default function Footer() {
                   Frequently Asked Questions
                 </a>
               </li>
-              <li className="pt-2 border-t border-white/10">
-                <Link
-                  href="/admin"
-                  className="text-volt hover:underline flex items-center gap-1 font-bold"
-                >
-                  <ShieldCheck className="w-3.5 h-3.5 text-volt" />
-                  <span>Race Control Admin Portal</span>
-                  <ArrowUpRight className="w-3 h-3" />
-                </Link>
-              </li>
             </ul>
           </div>
 
