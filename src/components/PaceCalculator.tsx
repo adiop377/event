@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Timer, Zap, Flag, Droplets, ArrowRight, Gauge, Trophy, Flame } from "lucide-react";
 
@@ -176,8 +177,21 @@ export default function PaceCalculator() {
                   <span className="text-xs text-stone mt-1">km / hour</span>
                 </div>
 
-                <div className="sm:col-span-2 p-6 rounded-lg bg-gradient-to-r from-graphite via-[#0A0F1A] to-graphite border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <div className="flex items-center gap-3">
+                <div className="sm:col-span-2 relative rounded-lg overflow-hidden border border-white/[0.08] p-6 flex flex-col sm:flex-row items-center justify-between gap-4 group">
+                  {/* Atmospheric Pacer Photo with bottom-to-top fade-to-black overlay */}
+                  <div className="absolute inset-0 z-0">
+                    <Image
+                      src="/images/gallery-2.jpg"
+                      alt="Official marathon pacer corrals"
+                      fill
+                      unoptimized
+                      className="object-cover object-center opacity-30 group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1A] via-[#0A0F1A]/90 via-40% to-[#0A0F1A]/70 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0A0F1A] via-transparent to-[#0A0F1A] pointer-events-none" />
+                  </div>
+
+                  <div className="relative z-10 flex items-center gap-3">
                     <div className="w-12 h-12 rounded-md bg-volt/15 border border-volt/30 flex items-center justify-center text-volt shrink-0">
                       <Flag className="w-6 h-6" />
                     </div>
@@ -196,12 +210,12 @@ export default function PaceCalculator() {
 
                   <a
                     href="#register"
-                    className="btn-volt text-xs uppercase tracking-wider py-3 px-6 whitespace-nowrap rounded-[4px] font-extrabold hover:scale-105 transition-all duration-300"
+                    className="relative z-10 btn-volt text-xs uppercase tracking-wider py-3 px-6 whitespace-nowrap rounded-[4px] font-extrabold hover:scale-105 transition-all duration-300"
                   >
                     <span>REGISTER NOW</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-1" />
                   </a>
-              </div>
+                </div>
             </div>
           </div>
         </div>

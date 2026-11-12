@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Shirt, Sprout, Cpu, Award, Apple, Smartphone, PackageCheck, Zap } from "lucide-react";
 import { KIT_ITEMS } from "@/data/marathon";
@@ -65,6 +66,33 @@ export default function RaceKit() {
               </motion.div>
             );
           })}
+        </div>
+
+        {/* Official Running Footwear & Apparel Banner with Bottom-to-Top Fade-to-Black */}
+        <div className="mt-12 relative rounded-lg overflow-hidden border border-white/[0.08] group min-h-[260px] sm:min-h-[300px] flex items-end p-6 sm:p-10 shadow-2xl">
+          <Image
+            src="/images/gallery-5.jpg"
+            alt="Official championship running footwear on race track"
+            fill
+            unoptimized
+            className="object-cover object-center group-hover:scale-105 transition-transform duration-700 photo-grade"
+          />
+          {/* Seamless bottom-to-top fade-to-black gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#090D14] via-[#090D14]/85 via-50% to-[#090D14]/30 pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#090D14] to-transparent pointer-events-none" />
+
+          <div className="relative z-10 max-w-2xl">
+            <span className="label-subtle text-volt font-bold flex items-center gap-1.5 mb-2">
+              <Zap className="w-3.5 h-3.5 text-volt" />
+              CHAMPIONSHIP FOOTWEAR &amp; COMMEMORATIVE GEAR
+            </span>
+            <h3 className="font-heading text-3xl sm:text-4xl uppercase text-ivory tracking-tight mb-2">
+              ENGINEERED FOR EVERY STRIDE ACROSS PATNA
+            </h3>
+            <p className="font-body text-stone text-xs sm:text-sm leading-relaxed max-w-xl">
+              From dawn staging at Gandhi Maidan to the high-cadence sprint on Atal Expressway, our moisture-wicking commemorative jersey and ChronoTrack RFID tags ensure peak race-day performance.
+            </p>
+          </div>
         </div>
       </div>
     </section>

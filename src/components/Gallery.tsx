@@ -99,20 +99,24 @@ export default function Gallery() {
                 unoptimized
                 className="object-cover photo-grade group-hover:scale-108 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300" />
+
+              {/* Seamless bottom-to-top fade-to-black gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#090D14] via-[#090D14]/85 via-45% to-transparent pointer-events-none transition-opacity duration-300 group-hover:via-[#090D14]/90" />
+              <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#090D14] to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#090D14]/40 to-transparent pointer-events-none" />
 
               {/* Hover overlay icon - Sharp 6px */}
-              <div className="absolute top-4 right-4 w-9 h-9 rounded-md bg-graphite/90 backdrop-blur-md border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+              <div className="absolute top-4 right-4 w-9 h-9 rounded-md bg-graphite/90 backdrop-blur-md border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 z-20">
                 <Maximize2 className="w-4 h-4 text-volt" />
               </div>
 
-              {/* Title & Category */}
+              {/* Title & Category with high-contrast text pop */}
               <div className="absolute bottom-5 left-5 right-5 z-10">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-graphite/90 backdrop-blur-md border border-white/10 text-[9px] text-volt font-extrabold uppercase tracking-widest mb-2">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/15 text-[9.5px] text-volt font-extrabold uppercase tracking-widest mb-2 shadow-md">
                   <Zap className="w-2.5 h-2.5 text-volt" />
                   <span>{item.category}</span>
                 </div>
-                <h4 className="font-heading text-xl uppercase tracking-wide text-ivory group-hover:text-volt transition-colors">
+                <h4 className="font-heading text-xl sm:text-2xl uppercase tracking-wide text-ivory drop-shadow-md group-hover:text-volt transition-colors font-bold">
                   {item.title}
                 </h4>
               </div>

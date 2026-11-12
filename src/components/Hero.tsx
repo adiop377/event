@@ -199,7 +199,10 @@ export default function Hero() {
                   unoptimized
                   className="object-cover object-center photo-grade transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-ink via-ink/50 to-transparent pointer-events-none" />
+                {/* Seamless bottom-to-top fade-to-black gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#090D14] via-[#090D14]/80 via-45% to-transparent pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#090D14] to-transparent pointer-events-none" />
+                <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#090D14]/40 to-transparent pointer-events-none" />
 
                 {/* Floating Top Badge - Sharp 4px cut */}
                 <div className="absolute top-5 left-5 z-20 bg-graphite/95 backdrop-blur-md px-3 py-1 rounded border border-white/10 text-xs font-bold text-ivory flex items-center gap-2 shadow-lg">

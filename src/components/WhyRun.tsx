@@ -72,7 +72,10 @@ export default function WhyRun() {
                 fill
                 className="object-cover photo-grade group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent pointer-events-none" />
+              {/* Subtle gradient overlay (bottom-to-top fade-to-black) so text badges pop & image blends seamlessly */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#090D14] via-[#090D14]/85 via-45% to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#090D14] to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#090D14]/35 to-transparent pointer-events-none" />
               <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-center gap-3">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-graphite/95 backdrop-blur-md border border-white/10 text-xs text-ivory font-bold">
                   <ShieldCheck className="w-3.5 h-3.5 text-volt" />
