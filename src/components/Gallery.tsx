@@ -53,8 +53,8 @@ export default function Gallery() {
               <Camera className="w-4 h-4 text-volt" />
               <span className="label-subtle text-volt font-bold">ARCHIVAL MEDIA GALLERY</span>
             </div>
-            <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl uppercase tracking-tight text-ivory">
-              RACE DAY <span className="font-accent lowercase text-volt-gradient">moments.</span>
+            <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
+              RACE DAY <span className="text-volt-gradient">MOMENTS.</span>
             </h2>
           </div>
           <p className="font-body text-stone text-sm sm:text-base max-w-md leading-relaxed">

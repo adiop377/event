@@ -14,8 +14,8 @@ export default function Sponsors() {
             <Handshake className="w-4 h-4 text-volt" />
             <span className="label-subtle text-volt font-bold">PATRONS &amp; STATE PARTNERS</span>
           </div>
-          <h2 className="font-heading text-4xl sm:text-5xl uppercase tracking-tight text-ivory">
-            OUR ESTEEMED <span className="font-accent lowercase text-volt-gradient">partners.</span>
+          <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight text-ivory font-black">
+            OUR ESTEEMED <span className="text-volt-gradient">PARTNERS.</span>
           </h2>
           <p className="font-body text-stone text-xs sm:text-sm mt-3">
             Committed to building civic health and athletic infrastructure across Bihar.

@@ -37,10 +37,10 @@ module.exports = {
         ember: "#FF5722",
       },
       fontFamily: {
-        heading: ["var(--font-barlow)", "sans-serif"],
-        numbers: ["var(--font-barlow)", "sans-serif"],
-        accent: ["var(--font-barlow)", "sans-serif"], // More athletic, bold slanted
-        body: ["var(--font-inter)", "sans-serif"],
+        heading: ["var(--font-heading)", "'Oswald'", "'Bebas Neue'", "sans-serif"],
+        numbers: ["var(--font-heading)", "'Oswald'", "sans-serif"],
+        accent: ["var(--font-heading)", "'Oswald'", "sans-serif"],
+        body: ["var(--font-body)", "'Manrope'", "'Inter'", "sans-serif"],
       },
       boxShadow: {
         "card-luxury": "inset 0 1px 0 rgba(255,255,255,0.08), 0 20px 45px -15px rgba(0,0,0,0.85)",

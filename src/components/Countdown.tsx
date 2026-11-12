@@ -162,10 +162,10 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
             <Trophy className="w-4 h-4 text-volt" />
             <span className="label-subtle text-volt">CHOOSE YOUR DISTANCE</span>
           </div>
-          <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl uppercase tracking-tight text-ivory">
-            FOUR CERTIFIED <span className="font-accent lowercase text-volt-gradient">races.</span>
+          <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
+            FOUR CERTIFIED <span className="text-volt-gradient">RACES.</span>
           </h2>
-          <p className="font-body text-stone text-base mt-4 leading-relaxed">
+          <p className="font-body text-stone text-base mt-4 leading-relaxed font-medium">
             From first-time 5K sprinters to seasoned marathon endurance titans, test your limits on Patna’s fastest AIMS-certified flat asphalt.
           </p>
         </div>

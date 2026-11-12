@@ -216,8 +216,8 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
             <Zap className="w-4 h-4 text-volt" />
             <span className="label-subtle text-volt font-bold">OFFICIAL ATHLETE PORTAL</span>
           </div>
-          <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl uppercase tracking-tight text-ivory leading-none">
-            RESERVE YOUR <span className="font-accent lowercase text-volt-gradient">bib.</span>
+          <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory leading-none font-black">
+            RESERVE YOUR <span className="text-volt-gradient">BIB.</span>
           </h2>
           <p className="font-body text-base text-stone mt-4 leading-relaxed max-w-lg mx-auto">
             Secure your chip-timed entry for the {MARATHON_META.shortTitle}. Instant confirmation, official bib reservation, and digital kit passport.

@@ -69,8 +69,8 @@ export default function CourseMap() {
               <Compass className="w-4 h-4 text-volt" />
               <span className="label-subtle text-volt font-bold">TECHNICAL COURSE SPECIFICATIONS</span>
             </div>
-            <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl uppercase tracking-tight text-ivory">
-              THE PATNA <span className="font-accent lowercase text-volt-gradient">course.</span>
+            <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
+              THE PATNA <span className="text-volt-gradient">COURSE.</span>
             </h2>
           </div>
 

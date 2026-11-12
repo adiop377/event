@@ -57,17 +57,17 @@ export default function Hero() {
               </span>
             </motion.div>
 
-            {/* Main Headline with Volt Speed Gradient */}
+            {/* Oversized High-Impact Athletic Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-heading text-6xl sm:text-7xl md:text-8xl xl:text-9xl uppercase tracking-tight text-ivory leading-[0.92]"
+              className="font-heading text-7xl sm:text-8xl md:text-9xl xl:text-[9.5rem] 2xl:text-[10.5rem] uppercase tracking-tight text-ivory leading-[0.88] font-black"
             >
               EVERY MILE
               <br />
-              <span className="font-accent lowercase text-volt-gradient tracking-tight">
-                matters.
+              <span className="text-volt-gradient drop-shadow-[0_0_35px_rgba(204,255,0,0.35)]">
+                MATTERS.
               </span>
             </motion.h1>
 
@@ -207,7 +207,7 @@ export default function Hero() {
               <div className="absolute bottom-6 left-6 right-6 z-20 flex items-center justify-between">
                 <div className="bg-graphite/90 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-blaze/40 shadow-lg">
                   <span className="label-subtle text-[8.5px] text-stone block">EVENT MOTTO</span>
-                  <span className="font-accent text-sm sm:text-base text-blaze font-extrabold tracking-wide">
+                  <span className="font-heading text-sm sm:text-base text-blaze font-black tracking-wider uppercase">
                     “{MARATHON_META.event}”
                   </span>
                 </div>

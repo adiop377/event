@@ -62,8 +62,8 @@ export default function PaceCalculator() {
             <Gauge className="w-4 h-4 text-volt" />
             <span className="label-subtle text-volt">ATHLETE PERFORMANCE LAB</span>
           </div>
-          <h2 className="font-heading text-5xl sm:text-6xl uppercase tracking-tight text-ivory">
-            RACE PACE <span className="font-accent lowercase text-volt-gradient">calculator.</span>
+          <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl uppercase tracking-tight text-ivory font-black">
+            RACE PACE <span className="text-volt-gradient">CALCULATOR.</span>
           </h2>
           <p className="font-body text-stone text-sm sm:text-base mt-4 leading-relaxed">
             Dial in your target finish time to reveal required split times and match with your official race morning pacer bus.
