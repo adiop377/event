@@ -1110,7 +1110,7 @@ export default function AdminPage() {
                 <div className="flex items-center justify-between pt-3 border-t border-white/10 text-[10px] text-stone">
                   <span>Corral: {selectedRunner.corral}</span>
                   <span>Size: {selectedRunner.tShirtSize}</span>
-                  <span>14 FEB 2027 • GANDHI MAIDAN</span>
+                  <span>7 FEB 2027 • JP GANGA PATH, VENDING ZONE</span>
                 </div>
               </div>
 

@@ -78,7 +78,7 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="font-body text-stone text-base sm:text-lg md:text-xl max-w-xl mt-6 leading-relaxed"
             >
-              Six races. Four cities. One unforgettable morning when all of Patna runs together along the sacred Ganges — presented by Pride Patna Marathon. Join 50,000+ runners on 14 Feb 2027.
+              Six races. Four cities. One unforgettable morning when all of Patna runs together along the sacred Ganges — presented by Pride Patna Marathon. Join 50,000+ runners on 7 Feb 2027.
             </motion.p>
 
             {/* High-Impact CTAs - Sharp Rectangle (4px) with Hover Scale & Glow */}

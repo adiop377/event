@@ -75,14 +75,14 @@ export interface FAQItem {
 
 export const MARATHON_META = {
   shortTitle: "Pride Patna Marathon 2027",
-  title: "Patna Runs Together | Pride Patna Marathon - 14 Feb 2027",
+  title: "Patna Runs Together | Pride Patna Marathon - 7 Feb 2027",
   event: "Patna Runs Together",
-  date: "14 Feb 2027",
-  dateTimeISO: "2027-02-14T05:00:00+05:30",
-  venue: "Gandhi Maidan, Patna",
+  date: "7 Feb 2027",
+  dateTimeISO: "2027-02-07T05:00:00+05:30",
+  venue: "JP Ganga Path, Vending Zone",
   tagline: "Every mile matters.",
   description:
-    "Six races. Four cities. One unforgettable morning when all of Patna runs together — presented by Pride Patna Marathon. Join 50,000+ runners at Gandhi Maidan, Patna on 14 Feb 2027. Every mile matters.",
+    "Six races. Four cities. One unforgettable morning when all of Patna runs together — presented by Pride Patna Marathon. Join 50,000+ runners at JP Ganga Path, Vending Zone on 7 Feb 2027. Every mile matters.",
   stats: {
     runnersCount: "50,000+",
     racesCount: "4 certified races",
@@ -93,8 +93,8 @@ export const MARATHON_META = {
     email: "info@pridepatnamarathon.com",
     phone: "+91 94310 88200",
     tollFree: "1800-420-2027",
-    address: "Gate No. 1, Gandhi Maidan, Patna, Bihar 800001",
-    expoDates: "February 11 to 13, 2027 (10:00 AM – 07:00 PM)",
+    address: "JP Ganga Path, Vending Zone, Patna, Bihar 800001",
+    expoDates: "February 4 to 6, 2027 (10:00 AM – 07:00 PM)",
   },
   socials: {
     instagram: "https://instagram.com/demomarathon",
@@ -362,7 +362,7 @@ export const SCHEDULE: ScheduleEvent[] = [
   {
     time: "04:30 AM",
     title: "Holding Area & Baggage Counters Open",
-    location: "Gandhi Maidan Gate No. 1",
+    location: "JP Ganga Path, Vending Zone",
     description:
       "Warm-up arena, baggage security deposit, and electrolyte hydration stations active.",
   },
@@ -408,7 +408,7 @@ export const SCHEDULE: ScheduleEvent[] = [
   {
     time: "11:30 AM",
     title: "Course Closes & Festival Concludes",
-    location: "Gandhi Maidan Race Village",
+    location: "JP Ganga Path Race Village",
     description:
       "Official timing results published online and finisher certificate downloads open.",
   },
@@ -528,7 +528,7 @@ export const GALLERY: GalleryItem[] = [
 export const FAQS: FAQItem[] = [
   {
     q: "Where and when do I collect my race bib and kit?",
-    a: "Bib collection takes place at the Pride Patna Marathon Expo at Gandhi Maidan from February 11 to 13, 2027 (10:00 AM – 07:00 PM). Remember to carry your confirmation email and valid government photo ID. No kits are distributed on race morning.",
+    a: "Bib collection takes place at the Pride Patna Marathon Expo at JP Ganga Path, Vending Zone from February 4 to 6, 2027 (10:00 AM – 07:00 PM). Remember to carry your confirmation email and valid government photo ID. No kits are distributed on race morning.",
   },
   {
     q: "Is there a minimum age criteria for registering?",
@@ -548,7 +548,7 @@ export const FAQS: FAQItem[] = [
   },
   {
     q: "Are baggage deposit counters available at the venue?",
-    a: "Yes, secure baggage drop tents operate from 04:30 AM inside Gandhi Maidan Gate No. 1. Only official baggage tags attached to your race kit are accepted. Please avoid depositing high-value electronics or jewellery.",
+    a: "Yes, secure baggage drop tents operate from 04:30 AM inside JP Ganga Path, Vending Zone. Only official baggage tags attached to your race kit are accepted. Please avoid depositing high-value electronics or jewellery.",
   },
 ];
 

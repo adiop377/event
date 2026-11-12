@@ -4,7 +4,7 @@ import { Zap, Trophy, Flame, ShieldCheck, Flag } from "lucide-react";
 
 export default function MarqueeBanner() {
   const items = [
-    { text: "14 FEB 2027 • GANDHI MAIDAN", icon: Flame, color: "text-blaze" },
+    { text: "7 FEB 2027 • JP GANGA PATH, VENDING ZONE", icon: Flame, color: "text-blaze" },
     { text: "₹25,00,000 TOTAL PRIZE PURSE", icon: Trophy, color: "text-volt" },
     { text: "50,000+ REGISTERED ATHLETES", icon: Zap, color: "text-volt" },
     { text: "AFI & AIMS CERTIFIED FAST COURSE", icon: ShieldCheck, color: "text-emerald-400" },

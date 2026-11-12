@@ -1,6 +1,6 @@
 # Pride Patna Marathon 2027 (Patna Runs Together)
 
-Official website for **Pride Patna Marathon 2027** — Patna's premier community distance-running event taking place on **14 Feb 2027** at **Gandhi Maidan, Patna**.
+Official website for **Pride Patna Marathon 2027** — Patna's premier community distance-running event taking place on **7 Feb 2027** at **JP Ganga Path, Vending Zone, Patna**.
 
 Rebuilt with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**.
 

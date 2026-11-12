@@ -10,9 +10,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pridepatnamarathon.com"),
-  title: "Patna Runs Together | Pride Patna Marathon - 14 Feb 2027",
+  title: "Patna Runs Together | Pride Patna Marathon - 7 Feb 2027",
   description:
-    "Six races. Four cities. One unforgettable morning when all of Patna runs together — presented by Pride Patna Marathon. Join 50,000+ runners at Gandhi Maidan, Patna on 14 Feb 2027. Every mile matters.",
+    "Six races. Four cities. One unforgettable morning when all of Patna runs together — presented by Pride Patna Marathon. Join 50,000+ runners at JP Ganga Path, Vending Zone on 7 Feb 2027. Every mile matters.",
   authors: [{ name: "Pride Patna Marathon" }],
   keywords: [
     "Patna Marathon",
@@ -54,16 +54,16 @@ const jsonLd = {
   name: "Patna Runs Together",
   description:
     "Six races. Four cities. One unforgettable morning when all of Patna runs together — presented by Pride Patna Marathon.",
-  startDate: "2027-02-14T05:00:00+05:30",
-  endDate: "2027-02-14T12:00:00+05:30",
+  startDate: "2027-02-07T05:00:00+05:30",
+  endDate: "2027-02-07T12:00:00+05:30",
   eventStatus: "https://schema.org/EventScheduled",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   location: {
     "@type": "Place",
-    name: "Gandhi Maidan, Patna",
+    name: "JP Ganga Path, Vending Zone, Patna",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Gandhi Maidan",
+      streetAddress: "JP Ganga Path, Vending Zone",
       addressLocality: "Patna",
       addressRegion: "Bihar",
       postalCode: "800001",

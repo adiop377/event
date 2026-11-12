@@ -15,7 +15,7 @@ export default function RaceWeather() {
             IDEAL PERSONAL BEST (PB) CONDITIONS
           </h3>
           <p className="text-xs text-stone mt-1 max-w-md font-body">
-            Gandhi Maidan &amp; Ganga Riverfront historical climate for February 14 dawn flag-off.
+            JP Ganga Path Vending Zone &amp; Ganga Riverfront historical climate for February 7 dawn flag-off.
           </p>
         </div>
 

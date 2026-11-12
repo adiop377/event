@@ -41,9 +41,9 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
 
   const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
     "Patna Runs Together - Pride Patna Marathon"
-  )}&dates=20270213T233000Z/20270214T063000Z&details=${encodeURIComponent(
-    "Six races. Four cities. One unforgettable morning when all of Patna runs together — presented by Pride Patna Marathon.\nReporting: 04:30 AM IST\nVenue: Gandhi Maidan, Patna"
-  )}&location=${encodeURIComponent("Gandhi Maidan, Patna")}`;
+  )}&dates=20270206T233000Z/20270207T063000Z&details=${encodeURIComponent(
+    "Six races. Four cities. One unforgettable morning when all of Patna runs together — presented by Pride Patna Marathon.\nReporting: 04:30 AM IST\nVenue: JP Ganga Path, Vending Zone, Patna"
+  )}&location=${encodeURIComponent("JP Ganga Path, Vending Zone, Patna")}`;
 
   const categoryBadges: Record<string, { badge: string; color: string; prize: string; btnClass: string }> = {
     "42k": {
@@ -154,7 +154,7 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                   <span>Add to Google Calendar</span>
                 </a>
                 <span className="text-[11px] text-stone text-center font-medium">
-                  Reporting: 04:30 AM IST • Gate No. 1
+                  Reporting: 04:30 AM IST • JP Ganga Path Vending Zone
                 </span>
               </div>
             </div>

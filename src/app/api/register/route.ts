@@ -86,9 +86,9 @@ export async function POST(req: Request) {
       categoryCode: data.categoryCode,
       tShirtSize: data.tShirtSize,
       registeredAt: savedRecord.registeredAt,
-      venue: "Gandhi Maidan, Patna",
+      venue: "JP Ganga Path, Vending Zone",
       reportingTime: "04:30 AM IST",
-      raceDate: "14 Feb 2027",
+      raceDate: "7 Feb 2027",
     };
 
     return NextResponse.json({

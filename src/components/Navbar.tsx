@@ -57,9 +57,9 @@ export default function Navbar() {
                 PRIDE PATNA MARATHON
               </span>
               <span className="label-subtle text-[7.5px] sm:text-[9px] tracking-[0.16em] sm:tracking-[0.22em] text-volt font-bold flex items-center gap-1 sm:gap-1.5 truncate">
-                <span>14 FEB 2027</span>
+                <span>7 FEB 2027</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-blaze shrink-0" />
-                <span>GANDHI MAIDAN</span>
+                <span>JP GANGA PATH</span>
               </span>
             </div>
           </Link>

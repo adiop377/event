@@ -357,7 +357,7 @@ export function getAdminMetrics() {
     collectionPercentage,
     categoryCounts,
     jerseyCounts,
-    eventDate: "14 Feb 2027",
-    expoDates: "11 - 13 Feb 2027",
+    eventDate: "7 Feb 2027",
+    expoDates: "4 - 6 Feb 2027",
   };
 }

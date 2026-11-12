@@ -65,7 +65,7 @@ export default function Footer() {
                     PRIDE PATNA MARATHON
                   </span>
                   <span className="label-subtle text-[9px] tracking-[0.25em] text-volt font-bold">
-                    14 FEB 2027 • GANDHI MAIDAN
+                    7 FEB 2027 • JP GANGA PATH, VENDING ZONE
                   </span>
                 </div>
               </Link>

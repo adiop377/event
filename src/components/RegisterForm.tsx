@@ -259,7 +259,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                       <span className="label-subtle text-[9px] text-volt font-bold block">
                         PRIDE PATNA MARATHON 2027
                       </span>
-                      <span className="text-xs text-stone">Gandhi Maidan, Patna • 14 Feb 2027</span>
+                      <span className="text-xs text-stone">JP Ganga Path, Vending Zone • 7 Feb 2027</span>
                     </div>
                     <div className="text-right">
                       <span className="label-subtle text-[8.5px] text-stone">CATEGORY</span>
