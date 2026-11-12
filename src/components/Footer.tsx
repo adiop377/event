@@ -16,6 +16,8 @@ import {
   FileText,
   ShieldCheck,
   Scale,
+  Zap,
+  Flame,
 } from "lucide-react";
 import { MARATHON_META, NAV_LINKS } from "@/data/marathon";
 
@@ -41,14 +43,14 @@ export default function Footer() {
   }, [modalType]);
 
   return (
-    <footer id="contact" className="relative w-full bg-[#050608] text-stone border-t border-line/60 pt-20 pb-12 overflow-hidden">
+    <footer id="contact" className="relative w-full bg-[#06090F] text-stone border-t border-line/70 pt-20 pb-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-line/50">
           {/* Brand info */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               <Link href="#hero" className="flex items-center gap-3 mb-6 group">
-                <div className="relative w-11 h-11 rounded-full overflow-hidden border border-champagne/30 p-1 bg-graphite flex items-center justify-center">
+                <div className="relative w-11 h-11 rounded-full overflow-hidden border border-volt/40 p-1 bg-graphite flex items-center justify-center shadow-[0_0_15px_rgba(204,255,0,0.2)]">
                   <Image
                     src="/pride-patna-marathon-logo-cropped.png"
                     alt="Pride Patna Marathon Logo"
@@ -58,10 +60,10 @@ export default function Footer() {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-heading text-xl tracking-wider text-ivory group-hover:text-champagne transition-colors">
+                  <span className="font-heading text-xl tracking-wider text-ivory group-hover:text-volt transition-colors">
                     PRIDE PATNA MARATHON
                   </span>
-                  <span className="label-subtle text-[9px] tracking-[0.25em] text-champagne/90">
+                  <span className="label-subtle text-[9px] tracking-[0.25em] text-volt font-bold">
                     14 FEB 2027 • GANDHI MAIDAN
                   </span>
                 </div>
@@ -77,7 +79,7 @@ export default function Footer() {
                 href={MARATHON_META.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-graphite border border-line flex items-center justify-center text-stone hover:text-champagne hover:border-champagne transition-colors"
+                className="w-9 h-9 rounded-full bg-graphite border border-line flex items-center justify-center text-stone hover:text-volt hover:border-volt transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="w-4 h-4" />
@@ -86,7 +88,7 @@ export default function Footer() {
                 href={MARATHON_META.socials.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-graphite border border-line flex items-center justify-center text-stone hover:text-champagne hover:border-champagne transition-colors"
+                className="w-9 h-9 rounded-full bg-graphite border border-line flex items-center justify-center text-stone hover:text-volt hover:border-volt transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook className="w-4 h-4" />
@@ -95,7 +97,7 @@ export default function Footer() {
                 href={MARATHON_META.socials.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-graphite border border-line flex items-center justify-center text-stone hover:text-champagne hover:border-champagne transition-colors"
+                className="w-9 h-9 rounded-full bg-graphite border border-line flex items-center justify-center text-stone hover:text-volt hover:border-volt transition-colors"
                 aria-label="Twitter"
               >
                 <Twitter className="w-4 h-4" />
@@ -104,7 +106,7 @@ export default function Footer() {
                 href={MARATHON_META.socials.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-graphite border border-line flex items-center justify-center text-stone hover:text-champagne hover:border-champagne transition-colors"
+                className="w-9 h-9 rounded-full bg-graphite border border-line flex items-center justify-center text-stone hover:text-volt hover:border-volt transition-colors"
                 aria-label="YouTube"
               >
                 <Youtube className="w-4 h-4" />
@@ -114,45 +116,45 @@ export default function Footer() {
 
           {/* Quick Navigation */}
           <div className="lg:col-span-3">
-            <span className="label-subtle text-ivory block mb-4">QUICK NAVIGATION</span>
-            <ul className="space-y-2 text-xs">
+            <span className="label-subtle text-ivory block mb-4 font-bold">QUICK NAVIGATION</span>
+            <ul className="space-y-2 text-xs font-medium">
               <li>
-                <a href="#hero" className="hover:text-champagne transition-colors">
+                <a href="#hero" className="hover:text-volt transition-colors">
                   Home Overview
                 </a>
               </li>
               <li>
-                <a href="#about" className="hover:text-champagne transition-colors">
+                <a href="#about" className="hover:text-volt transition-colors">
                   Why Run With Us
                 </a>
               </li>
               <li>
-                <a href="#races" className="hover:text-champagne transition-colors">
+                <a href="#races" className="hover:text-volt transition-colors">
                   Race Distances &amp; Pricing
                 </a>
               </li>
               <li>
-                <a href="#route" className="hover:text-champagne transition-colors">
+                <a href="#route" className="hover:text-volt transition-colors">
                   Course Map &amp; Elevation
                 </a>
               </li>
               <li>
-                <a href="#schedule" className="hover:text-champagne transition-colors">
+                <a href="#schedule" className="hover:text-volt transition-colors">
                   Race Day Timeline
                 </a>
               </li>
               <li>
-                <a href="#kit" className="hover:text-champagne transition-colors">
+                <a href="#kit" className="hover:text-volt transition-colors">
                   Athlete Kit &amp; Inclusions
                 </a>
               </li>
               <li>
-                <a href="#gallery" className="hover:text-champagne transition-colors">
+                <a href="#gallery" className="hover:text-volt transition-colors">
                   Archival Photo Gallery
                 </a>
               </li>
               <li>
-                <a href="#faq" className="hover:text-champagne transition-colors">
+                <a href="#faq" className="hover:text-volt transition-colors">
                   Frequently Asked Questions
                 </a>
               </li>
@@ -161,26 +163,26 @@ export default function Footer() {
 
           {/* Event Secretariat */}
           <div className="lg:col-span-4">
-            <span className="label-subtle text-ivory block mb-4">EVENT SECRETARIAT</span>
+            <span className="label-subtle text-ivory block mb-4 font-bold">EVENT SECRETARIAT</span>
             <div className="space-y-3 text-xs">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-champagne shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-volt shrink-0 mt-0.5" />
                 <span>{MARATHON_META.contact.address}</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-champagne shrink-0" />
+                <Mail className="w-4 h-4 text-volt shrink-0" />
                 <a
                   href={`mailto:${MARATHON_META.contact.email}`}
-                  className="hover:text-champagne transition-colors"
+                  className="hover:text-volt transition-colors font-medium"
                 >
                   {MARATHON_META.contact.email}
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-champagne shrink-0" />
+                <Phone className="w-4 h-4 text-blaze shrink-0" />
                 <a
                   href={`tel:${MARATHON_META.contact.phone.replace(/\s+/g, "")}`}
-                  className="hover:text-champagne transition-colors"
+                  className="hover:text-blaze transition-colors font-medium"
                 >
                   {MARATHON_META.contact.phone}
                 </a>
@@ -188,14 +190,15 @@ export default function Footer() {
             </div>
 
             {/* Emergency Hotline Box */}
-            <div className="mt-6 p-4 rounded-xl bg-graphite/70 border border-line">
-              <span className="label-subtle text-[9px] text-rose-400 block mb-1">
+            <div className="mt-6 p-4 rounded-xl bg-graphite/90 border border-blaze/30">
+              <span className="label-subtle text-[9px] text-blaze block mb-1 font-bold flex items-center gap-1">
+                <Flame className="w-3 h-3 text-blaze" />
                 RACE DAY EMERGENCY HOTLINE
               </span>
-              <span className="font-numbers text-lg font-bold text-ivory block">
+              <span className="font-numbers text-lg font-extrabold text-ivory block">
                 {MARATHON_META.contact.tollFree}
               </span>
-              <span className="text-[10px] text-stone mt-0.5 block">
+              <span className="text-[10px] text-stone mt-0.5 block font-body">
                 Dedicated Apollo cardiac &amp; trauma dispatch desk.
               </span>
             </div>
@@ -209,21 +212,21 @@ export default function Footer() {
             <button
               type="button"
               onClick={() => setModalType("terms")}
-              className="hover:text-champagne transition-colors underline-offset-4 hover:underline"
+              className="hover:text-volt transition-colors underline-offset-4 hover:underline"
             >
               Terms &amp; Conditions
             </button>
             <button
               type="button"
               onClick={() => setModalType("privacy")}
-              className="hover:text-champagne transition-colors underline-offset-4 hover:underline"
+              className="hover:text-volt transition-colors underline-offset-4 hover:underline"
             >
               Privacy Policy
             </button>
             <button
               type="button"
               onClick={() => setModalType("rules")}
-              className="hover:text-champagne transition-colors underline-offset-4 hover:underline"
+              className="hover:text-volt transition-colors underline-offset-4 hover:underline"
             >
               Race Regulations
             </button>
@@ -251,13 +254,13 @@ export default function Footer() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.94, opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-2xl bg-graphite rounded-2xl border border-line overflow-hidden shadow-2xl z-10 p-6 sm:p-8 max-h-[85vh] flex flex-col"
+              className="relative w-full max-w-2xl bg-graphite rounded-2xl border border-volt/30 overflow-hidden shadow-2xl z-10 p-6 sm:p-8 max-h-[85vh] flex flex-col"
             >
               <div className="flex items-center justify-between pb-4 border-b border-line mb-4">
                 <div className="flex items-center gap-2.5">
-                  {modalType === "terms" && <Scale className="w-5 h-5 text-champagne" />}
-                  {modalType === "privacy" && <ShieldCheck className="w-5 h-5 text-champagne" />}
-                  {modalType === "rules" && <FileText className="w-5 h-5 text-champagne" />}
+                  {modalType === "terms" && <Scale className="w-5 h-5 text-volt" />}
+                  {modalType === "privacy" && <ShieldCheck className="w-5 h-5 text-volt" />}
+                  {modalType === "rules" && <FileText className="w-5 h-5 text-volt" />}
                   <h3 className="font-heading text-2xl uppercase tracking-wide text-ivory">
                     {modalType === "terms" && "Terms & Conditions"}
                     {modalType === "privacy" && "Privacy & Athlete Data Policy"}
@@ -349,7 +352,7 @@ export default function Footer() {
                 <button
                   type="button"
                   onClick={() => setModalType(null)}
-                  className="btn-champagne text-xs uppercase tracking-wider py-2.5 px-6"
+                  className="btn-volt text-xs uppercase tracking-wider py-2.5 px-6 font-extrabold"
                 >
                   I Understand
                 </button>

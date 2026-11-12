@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Clock, Calendar, Check, ArrowRight, Trophy, Zap, Sparkles, Award } from "lucide-react";
+import { Clock, Calendar, Check, ArrowRight, Trophy, Zap, Sparkles, Award, Flame } from "lucide-react";
 import { CATEGORIES, MARATHON_META, MarathonCategory } from "@/data/marathon";
 
 interface CountdownProps {
@@ -45,39 +45,43 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
     "Six races. Four cities. One unforgettable morning when all of Patna runs together — presented by Pride Patna Marathon.\nReporting: 04:30 AM IST\nVenue: Gandhi Maidan, Patna"
   )}&location=${encodeURIComponent("Gandhi Maidan, Patna")}`;
 
-  const categoryBadges: Record<string, { badge: string; color: string; prize: string }> = {
+  const categoryBadges: Record<string, { badge: string; color: string; prize: string; btnClass: string }> = {
     "42k": {
       badge: "FLAGSHIP CHAMPIONSHIP",
-      color: "bg-gradient-to-r from-amber-500 to-yellow-600 text-ink shadow-[0_0_15px_rgba(245,158,11,0.4)]",
+      color: "bg-gradient-to-r from-blaze to-amber-500 text-white shadow-[0_0_15px_rgba(255,87,34,0.4)]",
       prize: "₹5,00,000 Winner Purse",
+      btnClass: "btn-blaze",
     },
     "21k": {
       badge: "MOST POPULAR",
-      color: "bg-champagne text-ink shadow-[0_0_15px_rgba(223,178,105,0.4)]",
+      color: "bg-volt text-black shadow-[0_0_15px_rgba(204,255,0,0.45)] font-extrabold",
       prize: "₹3,00,000 Winner Purse",
+      btnClass: "btn-volt",
     },
     "10k": {
       badge: "SPEED CHALLENGE",
-      color: "bg-sky-500/90 text-ink shadow-[0_0_15px_rgba(14,165,233,0.4)]",
+      color: "bg-sky-400 text-black shadow-[0_0_15px_rgba(56,189,248,0.4)] font-bold",
       prize: "₹1,50,000 Winner Purse",
+      btnClass: "btn-ghost-luxury hover:bg-sky-400 hover:text-black hover:border-sky-400",
     },
     "5k": {
-      badge: "COMMUNITY & FAMILY",
-      color: "bg-emerald-500/90 text-ink shadow-[0_0_15px_rgba(16,185,129,0.4)]",
+      badge: "FITNESS & FAMILY",
+      color: "bg-emerald-400 text-black shadow-[0_0_15px_rgba(52,211,153,0.4)] font-bold",
       prize: "All Finishers Medaled",
+      btnClass: "btn-ghost-luxury hover:bg-emerald-400 hover:text-black hover:border-emerald-400",
     },
   };
 
   return (
-    <section id="races" className="relative w-full py-24 bg-ink border-t border-line/50">
+    <section id="races" className="relative w-full py-24 bg-ink border-t border-line/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Countdown Box with Luxury Glow */}
-        <div className="luxury-card p-6 sm:p-10 mb-20 bg-gradient-to-br from-graphite via-obsidian to-graphite border-champagne/30 shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_35px_rgba(223,178,105,0.12)]">
+        {/* Countdown Box with High-Energy Cyber Lighting */}
+        <div className="luxury-card p-6 sm:p-10 mb-20 bg-gradient-to-br from-[#121824] via-[#0D131F] to-[#121824] border-volt/30 shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_35px_rgba(204,255,0,0.12)]">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
             {/* Left label */}
             <div className="text-center lg:text-left">
-              <span className="label-subtle text-champagne flex items-center justify-center lg:justify-start gap-1.5 mb-2">
-                <Sparkles className="w-3.5 h-3.5 text-champagne" />
+              <span className="label-subtle text-volt flex items-center justify-center lg:justify-start gap-1.5 mb-2">
+                <Zap className="w-3.5 h-3.5 text-volt" />
                 OFFICIAL RACE DAY COUNTDOWN
               </span>
               <h2 className="font-heading text-4xl sm:text-5xl uppercase text-ivory tracking-tight">
@@ -86,8 +90,8 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
               <p className="text-stone text-xs sm:text-sm mt-1">{MARATHON_META.venue}</p>
 
               {/* Prize purse pill */}
-              <div className="inline-flex items-center gap-2 mt-4 px-3.5 py-1.5 rounded-full bg-champagne/10 border border-champagne/30 text-xs text-champagne font-semibold font-numbers">
-                <Trophy className="w-3.5 h-3.5 text-champagne" />
+              <div className="inline-flex items-center gap-2 mt-4 px-3.5 py-1.5 rounded-full bg-blaze/15 border border-blaze/40 text-xs text-blaze font-bold font-numbers">
+                <Flame className="w-3.5 h-3.5 text-blaze" />
                 <span>₹25,00,000 Total Championship Prize Pool</span>
               </div>
             </div>
@@ -95,11 +99,11 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
             {/* Countdown timer numbers */}
             <div className="flex flex-col items-center">
               <div className="flex items-center gap-2 mb-3 text-stone">
-                <Clock className="w-3.5 h-3.5 text-champagne" />
+                <Clock className="w-3.5 h-3.5 text-volt" />
                 <span className="label-subtle text-[10px]">TIME TO FLAG-OFF</span>
               </div>
               <div className="grid grid-cols-4 gap-2.5 sm:gap-4 text-center">
-                <div className="bg-ink/90 rounded-2xl p-3 sm:p-4 border border-line/80 min-w-[72px] sm:min-w-[96px] shadow-lg">
+                <div className="bg-ink/90 rounded-2xl p-3 sm:p-4 border border-line min-w-[72px] sm:min-w-[96px] shadow-lg">
                   <span className="font-numbers text-3xl sm:text-4xl lg:text-5xl text-ivory block leading-none font-extrabold">
                     {String(timeLeft.days).padStart(2, "0")}
                   </span>
@@ -107,7 +111,7 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                     DAYS
                   </span>
                 </div>
-                <div className="bg-ink/90 rounded-2xl p-3 sm:p-4 border border-line/80 min-w-[72px] sm:min-w-[96px] shadow-lg">
+                <div className="bg-ink/90 rounded-2xl p-3 sm:p-4 border border-line min-w-[72px] sm:min-w-[96px] shadow-lg">
                   <span className="font-numbers text-3xl sm:text-4xl lg:text-5xl text-ivory block leading-none font-extrabold">
                     {String(timeLeft.hours).padStart(2, "0")}
                   </span>
@@ -115,7 +119,7 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                     HOURS
                   </span>
                 </div>
-                <div className="bg-ink/90 rounded-2xl p-3 sm:p-4 border border-line/80 min-w-[72px] sm:min-w-[96px] shadow-lg">
+                <div className="bg-ink/90 rounded-2xl p-3 sm:p-4 border border-line min-w-[72px] sm:min-w-[96px] shadow-lg">
                   <span className="font-numbers text-3xl sm:text-4xl lg:text-5xl text-ivory block leading-none font-extrabold">
                     {String(timeLeft.minutes).padStart(2, "0")}
                   </span>
@@ -123,11 +127,11 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                     MINUTES
                   </span>
                 </div>
-                <div className="bg-ink/90 rounded-2xl p-3 sm:p-4 border border-champagne/40 min-w-[72px] sm:min-w-[96px] shadow-lg bg-champagne/[0.05]">
-                  <span className="font-numbers text-3xl sm:text-4xl lg:text-5xl text-champagne block leading-none font-extrabold">
+                <div className="bg-ink/90 rounded-2xl p-3 sm:p-4 border border-volt/50 min-w-[72px] sm:min-w-[96px] shadow-lg bg-volt/[0.06]">
+                  <span className="font-numbers text-3xl sm:text-4xl lg:text-5xl text-volt block leading-none font-extrabold shadow-sm">
                     {String(timeLeft.seconds).padStart(2, "0")}
                   </span>
-                  <span className="label-subtle text-[8.5px] sm:text-[9.5px] text-champagne/90 mt-2 block">
+                  <span className="label-subtle text-[8.5px] sm:text-[9.5px] text-volt font-bold mt-2 block">
                     SECONDS
                   </span>
                 </div>
@@ -140,12 +144,12 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                 href={googleCalendarUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-ghost-luxury text-xs uppercase tracking-wider py-3.5 px-6 text-center flex items-center justify-center gap-2 group hover:border-champagne"
+                className="btn-ghost-luxury text-xs uppercase tracking-wider py-3.5 px-6 text-center flex items-center justify-center gap-2 group hover:border-volt hover:text-volt"
               >
-                <Calendar className="w-4 h-4 text-champagne group-hover:scale-110 transition-transform" />
+                <Calendar className="w-4 h-4 text-volt group-hover:scale-110 transition-transform" />
                 <span>Add to Google Calendar</span>
               </a>
-              <span className="text-[11px] text-stone text-center">
+              <span className="text-[11px] text-stone text-center font-medium">
                 Reporting: 04:30 AM IST • Gate No. 1
               </span>
             </div>
@@ -155,11 +159,11 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 mb-3">
-            <Trophy className="w-4 h-4 text-champagne" />
-            <span className="label-subtle text-champagne">CHOOSE YOUR DISTANCE</span>
+            <Trophy className="w-4 h-4 text-volt" />
+            <span className="label-subtle text-volt">CHOOSE YOUR DISTANCE</span>
           </div>
           <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl uppercase tracking-tight text-ivory">
-            FOUR CERTIFIED <span className="font-accent lowercase text-gold-gradient">races.</span>
+            FOUR CERTIFIED <span className="font-accent lowercase text-volt-gradient">races.</span>
           </h2>
           <p className="font-body text-stone text-base mt-4 leading-relaxed">
             From first-time 5K sprinters to seasoned marathon endurance titans, test your limits on Patna’s fastest AIMS-certified flat asphalt.
@@ -173,9 +177,8 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
               badge: "CERTIFIED",
               color: "bg-ink text-stone",
               prize: "Medal Included",
+              btnClass: "btn-ghost-luxury",
             };
-
-            const isHighlighted = cat.code === "21k" || cat.code === "42k";
 
             return (
               <motion.div
@@ -186,9 +189,9 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className={`luxury-card p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 relative group ${
                   cat.code === "42k"
-                    ? "border-champagne/50 shadow-[0_0_30px_rgba(223,178,105,0.18)]"
+                    ? "border-blaze/50 shadow-[0_0_30px_rgba(255,87,34,0.2)]"
                     : cat.code === "21k"
-                    ? "border-champagne/40"
+                    ? "border-volt/50 shadow-[0_0_30px_rgba(204,255,0,0.18)]"
                     : "border-line"
                 }`}
               >
@@ -202,14 +205,16 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                 <div>
                   <div className="flex items-start justify-between mb-4 mt-2">
                     <div>
-                      <span className="font-numbers text-3xl font-extrabold text-champagne block">
+                      <span className={`font-numbers text-3xl font-extrabold block ${
+                        cat.code === "42k" ? "text-blaze" : "text-volt"
+                      }`}>
                         {cat.distance}
                       </span>
                       <h3 className="font-heading text-2xl uppercase text-ivory mt-1">
                         {cat.name}
                       </h3>
                     </div>
-                    <span className="label-subtle text-[9px] bg-ink/80 px-2.5 py-1 rounded-full border border-line">
+                    <span className="label-subtle text-[9px] bg-ink/90 px-2.5 py-1 rounded-full border border-line text-stone">
                       {cat.tagline}
                     </span>
                   </div>
@@ -220,7 +225,9 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                       <span className="font-numbers text-3xl sm:text-4xl font-extrabold text-ivory">
                         {cat.price}
                       </span>
-                      <span className="text-[11px] font-semibold text-emerald-400 flex items-center gap-1">
+                      <span className={`text-[11px] font-bold flex items-center gap-1 ${
+                        cat.code === "42k" ? "text-blaze" : "text-volt"
+                      }`}>
                         <Award className="w-3.5 h-3.5" />
                         {badgeMeta.prize}
                       </span>
@@ -230,7 +237,7 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                     </span>
                   </div>
 
-                  <p className="text-xs text-stone/90 leading-relaxed mb-6">
+                  <p className="text-xs text-stone/90 leading-relaxed mb-6 font-body">
                     {cat.description}
                   </p>
 
@@ -241,9 +248,9 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                     {cat.inclusions.map((inc) => (
                       <div
                         key={inc}
-                        className="flex items-center gap-2 text-xs text-ivory/80"
+                        className="flex items-center gap-2 text-xs text-ivory/85"
                       >
-                        <Check className="w-3.5 h-3.5 text-champagne shrink-0" />
+                        <Check className="w-3.5 h-3.5 text-volt shrink-0" />
                         <span>{inc}</span>
                       </div>
                     ))}
@@ -253,11 +260,7 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                 <a
                   href="#register"
                   onClick={() => onSelectCategory && onSelectCategory(cat)}
-                  className={`w-full py-3.5 rounded-full text-xs uppercase font-bold tracking-wider flex items-center justify-center gap-2 transition-all ${
-                    isHighlighted
-                      ? "btn-champagne"
-                      : "btn-ghost-luxury hover:bg-champagne hover:text-ink hover:border-champagne"
-                  }`}
+                  className={`w-full py-3.5 rounded-full text-xs uppercase font-extrabold tracking-wider flex items-center justify-center gap-2 transition-all ${badgeMeta.btnClass}`}
                 >
                   <span>Register for {cat.distance}</span>
                   <ArrowRight className="w-3.5 h-3.5" />

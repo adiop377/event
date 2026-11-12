@@ -132,7 +132,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-ink text-ivory antialiased selection:bg-champagne selection:text-ink relative font-body">
+      <body className="bg-ink text-ivory antialiased selection:bg-volt selection:text-black relative font-body">
         <div className="film-grain" aria-hidden="true" />
         {children}
       </body>

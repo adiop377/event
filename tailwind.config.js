@@ -8,34 +8,49 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ink: "#060709",
-        obsidian: "#0B0D12",
-        graphite: "#12151C",
-        line: "hsla(40, 64%, 84%, 0.12)",
-        ivory: "#f8f5ee",
-        stone: "#a8a398",
-        champagne: {
-          light: "#F5DFB2",
-          DEFAULT: "#dfb269",
-          hover: "#ecc47e",
-          dark: "#a67c33",
+        ink: "#090D14", // Deep Midnight Charcoal
+        obsidian: "#0D131F", // Dark Athletic Navy
+        graphite: "#141C2B", // Tech Panel
+        surface: "#1A2436", // Card Elevated
+        line: "rgba(255, 255, 255, 0.09)",
+        ivory: "#F8FAFC", // Crisp athletic white
+        stone: "#94A3B8", // Cool slate
+        volt: {
+          light: "#E5FF66",
+          DEFAULT: "#CCFF00", // Signature Nike Volt Speed
+          hover: "#b8e600",
+          dark: "#99cc00",
         },
-        ember: "#e04e26",
+        blaze: {
+          light: "#FF7A50",
+          DEFAULT: "#FF5722", // Neon Blaze Orange
+          hover: "#f4511e",
+          dark: "#d84315",
+        },
+        // Backwards compatibility mappings so existing components look electric immediately
+        champagne: {
+          light: "#E5FF66",
+          DEFAULT: "#CCFF00",
+          hover: "#b8e600",
+          dark: "#99cc00",
+        },
+        ember: "#FF5722",
       },
       fontFamily: {
         heading: ["var(--font-barlow)", "sans-serif"],
         numbers: ["var(--font-barlow)", "sans-serif"],
-        accent: ["var(--font-cormorant)", "Georgia", "serif"],
+        accent: ["var(--font-barlow)", "sans-serif"], // More athletic, bold slanted
         body: ["var(--font-inter)", "sans-serif"],
       },
       boxShadow: {
-        "card-luxury": "inset 0 1px 0 hsla(0,0%,100%,0.08), 0 20px 45px -15px rgba(0,0,0,0.9)",
-        "glow-champagne": "0 0 45px rgba(223, 178, 105, 0.22)",
-        "button-champagne": "0 4px 22px hsla(37, 75%, 55%, 0.35)",
-        "glass-elevated": "0 10px 30px -10px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.1)",
+        "card-luxury": "inset 0 1px 0 rgba(255,255,255,0.08), 0 20px 45px -15px rgba(0,0,0,0.85)",
+        "glow-volt": "0 0 35px rgba(204, 255, 0, 0.28)",
+        "glow-blaze": "0 0 35px rgba(255, 87, 34, 0.28)",
+        "button-volt": "0 4px 22px rgba(204, 255, 0, 0.35)",
+        "button-blaze": "0 4px 22px rgba(255, 87, 34, 0.35)",
       },
       animation: {
-        marquee: "marquee 28s linear infinite",
+        marquee: "marquee 25s linear infinite",
         "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         float: "float 6s ease-in-out infinite",
         shimmer: "shimmer 2.5s linear infinite",

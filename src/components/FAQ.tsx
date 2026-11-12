@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { HelpCircle, ChevronDown, Mail, Phone } from "lucide-react";
+import { HelpCircle, ChevronDown, Mail, Phone, Zap } from "lucide-react";
 import { FAQS, MARATHON_META } from "@/data/marathon";
 
 export default function FAQ() {
@@ -13,16 +13,16 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="relative w-full py-28 md:py-36 bg-ink text-ivory overflow-hidden border-t border-line/40">
+    <section id="faq" className="relative w-full py-28 md:py-36 bg-ink text-ivory overflow-hidden border-t border-line/60">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 mb-3">
-            <HelpCircle className="w-4 h-4 text-champagne" />
-            <span className="label-subtle text-champagne">ATHLETE BRIEFING</span>
+            <HelpCircle className="w-4 h-4 text-volt" />
+            <span className="label-subtle text-volt font-bold">ATHLETE BRIEFING</span>
           </div>
           <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl uppercase tracking-tight text-ivory">
-            FREQUENTLY ASKED <span className="font-accent lowercase text-champagne">questions.</span>
+            FREQUENTLY ASKED <span className="font-accent lowercase text-volt-gradient">questions.</span>
           </h2>
           <p className="font-body text-stone text-sm sm:text-base mt-4 leading-relaxed max-w-lg mx-auto">
             Everything you need to prepare for race weekend, bib verification, and timing regulations.
@@ -44,11 +44,11 @@ export default function FAQ() {
                   className="w-full p-6 text-left flex items-center justify-between gap-4 focus-visible:outline-none"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-heading text-lg sm:text-xl uppercase tracking-wide text-ivory">
+                  <span className="font-heading text-lg sm:text-xl uppercase tracking-wide text-ivory group-hover:text-volt">
                     {faq.q}
                   </span>
                   <div
-                    className={`w-8 h-8 rounded-full bg-ink flex items-center justify-center text-champagne shrink-0 transition-transform duration-300 ${
+                    className={`w-8 h-8 rounded-full bg-ink flex items-center justify-center text-volt shrink-0 transition-transform duration-300 ${
                       isOpen ? "rotate-180" : ""
                     }`}
                   >
@@ -76,7 +76,7 @@ export default function FAQ() {
         </div>
 
         {/* Help Contact Banner */}
-        <div className="mt-12 p-6 rounded-2xl bg-graphite/60 border border-line flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div className="mt-12 p-6 rounded-2xl bg-graphite/90 border border-line flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div>
             <h4 className="font-heading text-lg uppercase text-ivory">Still have questions?</h4>
             <p className="text-xs text-stone mt-0.5">
@@ -86,14 +86,14 @@ export default function FAQ() {
           <div className="flex flex-wrap items-center gap-3">
             <a
               href={`mailto:${MARATHON_META.contact.email}`}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-ink border border-line text-xs text-champagne hover:border-champagne transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-ink border border-line text-xs text-volt hover:border-volt transition-colors font-medium"
             >
               <Mail className="w-3.5 h-3.5" />
               <span>{MARATHON_META.contact.email}</span>
             </a>
             <a
               href={`tel:${MARATHON_META.contact.phone.replace(/\s+/g, "")}`}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-ink border border-line text-xs text-champagne hover:border-champagne transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-ink border border-line text-xs text-blaze hover:border-blaze transition-colors font-medium"
             >
               <Phone className="w-3.5 h-3.5" />
               <span>{MARATHON_META.contact.phone}</span>
@@ -104,4 +104,3 @@ export default function FAQ() {
     </section>
   );
 }
-

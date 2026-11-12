@@ -29,7 +29,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-ink text-ivory flex flex-col selection:bg-champagne selection:text-ink">
+    <main className="min-h-screen bg-ink text-ivory flex flex-col selection:bg-volt selection:text-black">
       <Navbar />
       <Hero />
       <MarqueeBanner />

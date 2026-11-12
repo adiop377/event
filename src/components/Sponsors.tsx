@@ -6,16 +6,16 @@ import { SPONSORS } from "@/data/marathon";
 
 export default function Sponsors() {
   return (
-    <section className="relative w-full py-24 bg-ink text-ivory overflow-hidden border-t border-line/40">
+    <section className="relative w-full py-24 bg-ink text-ivory overflow-hidden border-t border-line/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 mb-3">
-            <Handshake className="w-4 h-4 text-champagne" />
-            <span className="label-subtle text-champagne">PATRONS & STATE PARTNERS</span>
+            <Handshake className="w-4 h-4 text-volt" />
+            <span className="label-subtle text-volt font-bold">PATRONS &amp; STATE PARTNERS</span>
           </div>
           <h2 className="font-heading text-4xl sm:text-5xl uppercase tracking-tight text-ivory">
-            OUR ESTEEMED <span className="font-accent lowercase text-champagne">partners.</span>
+            OUR ESTEEMED <span className="font-accent lowercase text-volt-gradient">partners.</span>
           </h2>
           <p className="font-body text-stone text-xs sm:text-sm mt-3">
             Committed to building civic health and athletic infrastructure across Bihar.
@@ -31,12 +31,12 @@ export default function Sponsors() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.06 }}
-              className="luxury-card p-6 flex flex-col items-center justify-center text-center hover:border-champagne/40 transition-colors group min-h-[130px]"
+              className="luxury-card p-6 flex flex-col items-center justify-center text-center hover:border-volt/50 transition-all group min-h-[130px]"
             >
-              <span className="font-heading text-lg sm:text-xl tracking-wider text-ivory font-bold group-hover:text-champagne transition-colors">
+              <span className="font-heading text-lg sm:text-xl tracking-wider text-ivory font-bold group-hover:text-volt transition-colors">
                 {sponsor.logoText}
               </span>
-              <span className="label-subtle text-[8.5px] text-stone mt-1.5 block tracking-[0.2em]">
+              <span className="label-subtle text-[8.5px] text-stone mt-1.5 block tracking-[0.2em] font-semibold">
                 {sponsor.role}
               </span>
             </motion.div>
@@ -46,4 +46,3 @@ export default function Sponsors() {
     </section>
   );
 }
-
