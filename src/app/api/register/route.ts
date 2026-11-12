@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { addRegistration } from "@/data/registrationsStore";
 
 const registrationSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
@@ -50,6 +51,31 @@ export async function POST(req: Request) {
       100 + Math.random() * 900
     )}`;
 
+    const corralMap: Record<string, string> = {
+      "42k": "Elite Corral A",
+      "21k": "Corral B",
+      "10k": "Corral C",
+      "5k": "Family Corral D",
+    };
+
+    // Save into centralized registration store
+    const savedRecord = addRegistration({
+      bibNumber,
+      transactionId,
+      fullName: data.fullName,
+      bibName: data.bibName.toUpperCase(),
+      email: data.email,
+      phone: data.phone,
+      gender: data.gender,
+      dob: data.dob,
+      city: data.city,
+      emergencyContactName: data.emergencyContactName,
+      emergencyContactPhone: data.emergencyContactPhone,
+      categoryCode: data.categoryCode,
+      tShirtSize: data.tShirtSize,
+      corral: corralMap[data.categoryCode] || "Corral Gate 1",
+    });
+
     const details = {
       bibNumber,
       transactionId,
@@ -59,7 +85,7 @@ export async function POST(req: Request) {
       phone: data.phone,
       categoryCode: data.categoryCode,
       tShirtSize: data.tShirtSize,
-      registeredAt: new Date().toISOString(),
+      registeredAt: savedRecord.registeredAt,
       venue: "Gandhi Maidan, Patna",
       reportingTime: "04:30 AM IST",
       raceDate: "14 Feb 2027",
