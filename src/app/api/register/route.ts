@@ -13,7 +13,7 @@ const registrationSchema = z.object({
   city: z.string().min(2, "City of residence is required"),
   emergencyContactName: z.string().min(2, "Emergency contact name is required"),
   emergencyContactPhone: z.string().min(10, "Emergency phone must be at least 10 digits"),
-  categoryCode: z.enum(["5k", "10k", "21k", "42k"], {
+  categoryCode: z.enum(["5k", "10k", "21k"], {
     errorMap: () => ({ message: "Please select a race category" }),
   }),
   bibName: z.string().min(2, "Bib name must be at least 2 characters"),
@@ -52,10 +52,9 @@ export async function POST(req: Request) {
     )}`;
 
     const corralMap: Record<string, string> = {
-      "42k": "Elite Corral A",
-      "21k": "Corral B",
-      "10k": "Corral C",
-      "5k": "Family Corral D",
+      "21k": "Corral A (Half Marathon)",
+      "10k": "Corral B (10K Challenge)",
+      "5k": "Family Corral C (5K Fun Run)",
     };
 
     // Save into centralized registration store

@@ -46,14 +46,8 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
   )}&location=${encodeURIComponent("JP Ganga Path, Vending Zone, Patna")}`;
 
   const categoryBadges: Record<string, { badge: string; color: string; prize: string; btnClass: string }> = {
-    "42k": {
-      badge: "FLAGSHIP CHAMPIONSHIP",
-      color: "bg-gradient-to-r from-blaze to-amber-500 text-white shadow-[0_0_15px_rgba(255,87,34,0.4)]",
-      prize: "₹5,00,000 Winner Purse",
-      btnClass: "btn-blaze",
-    },
     "21k": {
-      badge: "MOST POPULAR",
+      badge: "FLAGSHIP HALF MARATHON",
       color: "bg-volt text-black shadow-[0_0_15px_rgba(204,255,0,0.45)] font-extrabold",
       prize: "₹3,00,000 Winner Purse",
       btnClass: "btn-volt",
@@ -168,15 +162,15 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
             <span className="label-subtle text-volt">CHOOSE YOUR DISTANCE</span>
           </div>
           <h2 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
-            FOUR CERTIFIED <span className="text-volt-gradient">RACES.</span>
+            THREE CERTIFIED <span className="text-volt-gradient">RACES.</span>
           </h2>
           <p className="font-body text-stone text-base mt-4 leading-relaxed font-medium">
-            From first-time 5K sprinters to seasoned marathon endurance titans, test your limits on Patna’s fastest AIMS-certified flat asphalt.
+            From first-time 5K sprinters to dedicated half marathon athletes, test your limits on Patna’s fastest AIMS-certified flat asphalt.
           </p>
         </div>
 
         {/* Categories Grid - Elevated Seamless athletic cards with subtle background difference and dark accent glow */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {CATEGORIES.map((cat, idx) => {
             const badgeMeta = categoryBadges[cat.code] || {
               badge: "CERTIFIED",
@@ -197,9 +191,7 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                 {/* Subtle blurred dark glow behind card for atmospheric sports depth */}
                 <div
                   className={`absolute -inset-1 rounded-lg blur-2xl opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none -z-10 ${
-                    cat.code === "42k"
-                      ? "bg-blaze/50"
-                      : cat.code === "21k"
+                    cat.code === "21k"
                       ? "bg-volt/45"
                       : cat.code === "10k"
                       ? "bg-sky-400/40"
@@ -217,9 +209,7 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                 <div>
                   <div className="flex items-start justify-between mb-4 mt-2">
                     <div>
-                      <span className={`font-numbers text-3xl font-extrabold block ${
-                        cat.code === "42k" ? "text-blaze" : "text-volt"
-                      }`}>
+                      <span className="font-numbers text-3xl font-extrabold block text-volt">
                         {cat.distance}
                       </span>
                       <h3 className="font-heading text-2xl uppercase text-ivory mt-1">
@@ -237,9 +227,7 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                       <span className="font-numbers text-3xl sm:text-4xl font-extrabold text-ivory">
                         {cat.price}
                       </span>
-                      <span className={`text-[11px] font-bold flex items-center gap-1 ${
-                        cat.code === "42k" ? "text-blaze" : "text-volt"
-                      }`}>
+                      <span className="text-[11px] font-bold flex items-center gap-1 text-volt">
                         <Award className="w-3.5 h-3.5" />
                         {badgeMeta.prize}
                       </span>

@@ -40,10 +40,9 @@ export async function POST(req: Request) {
     const transactionId = `OFFLINE-${Date.now().toString(36).toUpperCase()}`;
 
     const corralMap: Record<string, string> = {
-      "42k": "Elite Corral A",
-      "21k": "Corral B",
-      "10k": "Corral C",
-      "5k": "Family Corral D",
+      "21k": "Corral A (Half Marathon)",
+      "10k": "Corral B (10K Challenge)",
+      "5k": "Family Corral C (5K Fun Run)",
     };
 
     const newRunner = addRegistration({

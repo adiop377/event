@@ -105,15 +105,6 @@ const jsonLd = {
       validFrom: "2026-01-01",
       url: "https://pridepatnamarathon.com/marathon#register",
     },
-    {
-      "@type": "Offer",
-      name: "42K Full Marathon",
-      price: 1899,
-      priceCurrency: "INR",
-      availability: "https://schema.org/InStock",
-      validFrom: "2026-01-01",
-      url: "https://pridepatnamarathon.com/marathon#register",
-    },
   ],
   image: ["https://pridepatnamarathon.com/images/marathon-hero-athlete.jpg"],
 };

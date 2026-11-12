@@ -40,7 +40,6 @@ import {
 import { RunnerRegistration } from "@/data/registrationsStore";
 
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; border: string }> = {
-  "42k": { bg: "bg-blaze/15", text: "text-blaze", border: "border-blaze/40" },
   "21k": { bg: "bg-volt/15", text: "text-volt", border: "border-volt/40" },
   "10k": { bg: "bg-sky-400/15", text: "text-sky-400", border: "border-sky-400/40" },
   "5k": { bg: "bg-emerald-400/15", text: "text-emerald-400", border: "border-emerald-400/40" },
@@ -531,7 +530,6 @@ export default function AdminPage() {
               <div className="flex flex-wrap items-center gap-1.5">
                 {[
                   { id: "all", label: "All Races" },
-                  { id: "42k", label: "42K Full" },
                   { id: "21k", label: "21K Half" },
                   { id: "10k", label: "10K" },
                   { id: "5k", label: "5K Fun" },
@@ -745,17 +743,8 @@ export default function AdminPage() {
                 <span>Race Distance Category Performance</span>
               </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[
-                  {
-                    code: "42k",
-                    name: "42.2K Full Marathon",
-                    fee: 1899,
-                    color: "text-blaze",
-                    bg: "bg-blaze",
-                    count: metrics.categoryCounts["42k"] || 0,
-                    target: 500,
-                  },
                   {
                     code: "21k",
                     name: "21.1K Half Marathon",
@@ -992,10 +981,10 @@ export default function AdminPage() {
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h3 className="font-heading text-lg uppercase text-ivory font-bold">
-                    Official Course Corridor Status (42.2 KM)
+                    Official Course Corridor Status (21.1 KM)
                   </h3>
                   <p className="text-xs text-stone">
-                    Live operational telemetry from Gandhi Maidan to Digha Ghat
+                    Live operational telemetry from JP Ganga Path to Digha Ghat
                   </p>
                 </div>
                 <span className="px-3 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-bold">
@@ -1006,8 +995,8 @@ export default function AdminPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
                   {
-                    title: "Gandhi Maidan Hub",
-                    km: "0.0 KM / 42.2 KM",
+                    title: "JP Ganga Path Hub",
+                    km: "0.0 KM / 21.1 KM",
                     type: "Corral Flag-Off & Finish Arch",
                     status: "Ready",
                     details: "AFI Timing Mats, Corrals A-D, Apollo ICU Base",
@@ -1306,7 +1295,6 @@ export default function AdminPage() {
                       }
                       className="w-full px-3 py-2.5 rounded bg-[#070B12] border border-white/10 text-xs text-ivory focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt"
                     >
-                      <option value="42k">42K Full Marathon (₹1,899)</option>
                       <option value="21k">21K Half Marathon (₹1,299)</option>
                       <option value="10k">10K Urban Challenge (₹799)</option>
                       <option value="5k">5K Family Fun Run (₹499)</option>

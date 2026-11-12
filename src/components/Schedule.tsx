@@ -6,7 +6,6 @@ import { SCHEDULE } from "@/data/marathon";
 
 export default function Schedule() {
   const getBadgeStyle = (cat?: string) => {
-    if (cat === "42K") return "bg-blaze/20 text-blaze border-blaze/40";
     if (cat === "21K") return "bg-volt/20 text-volt border-volt/40";
     if (cat === "10K") return "bg-sky-400/20 text-sky-400 border-sky-400/40";
     if (cat === "5K") return "bg-emerald-400/20 text-emerald-400 border-emerald-400/40";
@@ -26,7 +25,7 @@ export default function Schedule() {
             RACE DAY <span className="text-volt-gradient">SCHEDULE.</span>
           </h2>
           <p className="font-body text-stone text-sm sm:text-base mt-4 leading-relaxed">
-            All waves depart strictly on schedule from Gandhi Maidan. Please arrive at least 45 minutes prior to your category flag-off for baggage deposit and corral staging.
+            All waves depart strictly on schedule from JP Ganga Path, Vending Zone. Please arrive at least 45 minutes prior to your category flag-off for baggage deposit and corral staging.
           </p>
         </div>
 
@@ -42,15 +41,11 @@ export default function Schedule() {
               className="relative pl-6 sm:pl-10 group"
             >
               {/* Timeline marker node */}
-              <div className={`absolute -left-[9px] top-4 w-4 h-4 rounded-full bg-graphite border-2 transition-all ${
-                event.category === "42K" ? "border-blaze group-hover:bg-blaze" : "border-volt group-hover:bg-volt"
-              }`} />
+              <div className="absolute -left-[9px] top-4 w-4 h-4 rounded-full bg-graphite border-2 border-volt group-hover:bg-volt transition-all" />
 
               {/* Time pill (on desktop shows to the left of the line) */}
               <div className="sm:absolute sm:-left-32 sm:top-3.5 sm:w-24 sm:text-right">
-                <span className={`font-numbers text-sm font-extrabold tracking-wider ${
-                  event.category === "42K" ? "text-blaze" : "text-volt"
-                }`}>
+                <span className="font-numbers text-sm font-extrabold tracking-wider text-volt">
                   {event.time}
                 </span>
               </div>

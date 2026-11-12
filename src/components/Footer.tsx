@@ -337,7 +337,7 @@ export default function Footer() {
                       2. Cut-off Timings &amp; Course Closure:
                     </p>
                     <p>
-                      Strict cut-off limits apply: Full Marathon (6 hrs 00 mins), Half Marathon (3 hrs 30 mins), 10K (2 hrs 00 mins), 5K (1 hr 15 mins). Runners behind the pace wagon will be transferred to course shuttles.
+                      Strict cut-off limits apply: Half Marathon (3 hrs 30 mins), 10K (2 hrs 00 mins), 5K (1 hr 15 mins). Runners behind the pace wagon will be transferred to course shuttles.
                     </p>
                     <p className="text-ivory font-medium">
                       3. Medical Discretion:

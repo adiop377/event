@@ -15,9 +15,8 @@ Rebuilt with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, and 
   - **5K Fun Run** (₹499)
   - **10K Challenge Run** (₹799)
   - **21.1K Half Marathon** (₹1,299)
-  - **42.2K Full Marathon** (₹1,899)
 - **Course Architecture**:
-  - Interactive course switchers (5K, 10K, 21K, 42K).
+  - Interactive course switchers (5K, 10K, 21K).
   - SVG elevation profile chart with key landmarks and water/medic stations.
 - **Race Day Schedule**:
   - Wave departure timeline from 04:30 AM to 11:30 AM.

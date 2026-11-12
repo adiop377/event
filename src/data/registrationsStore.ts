@@ -13,7 +13,7 @@ export interface RunnerRegistration {
   city: string;
   emergencyContactName: string;
   emergencyContactPhone: string;
-  categoryCode: "5k" | "10k" | "21k" | "42k";
+  categoryCode: "5k" | "10k" | "21k";
   tShirtSize: "XS" | "S" | "M" | "L" | "XL" | "XXL";
   registeredAt: string;
   paymentStatus: "confirmed" | "pending" | "refunded";
@@ -28,14 +28,13 @@ const CATEGORY_PRICES: Record<string, number> = {
   "5k": 499,
   "10k": 799,
   "21k": 1299,
-  "42k": 1899,
 };
 
 // Seed realistic data for admin demo
 const INITIAL_REGISTRATIONS: RunnerRegistration[] = [
   {
     id: "reg-001",
-    bibNumber: "PPM-42K-1001",
+    bibNumber: "PPM-21K-2001",
     transactionId: "TXN-PATNA-982101",
     fullName: "Rohan Verma",
     bibName: "ROHAN",
@@ -46,15 +45,15 @@ const INITIAL_REGISTRATIONS: RunnerRegistration[] = [
     city: "Patna",
     emergencyContactName: "Sunita Verma",
     emergencyContactPhone: "9835098765",
-    categoryCode: "42k",
+    categoryCode: "21k",
     tShirtSize: "L",
     registeredAt: "2026-11-10T09:15:00Z",
     paymentStatus: "confirmed",
-    amountPaid: 1899,
+    amountPaid: 1299,
     kitCollected: true,
     kitCollectedAt: "2026-11-12T11:00:00Z",
-    corral: "Elite Corral A",
-    medicalNotes: "No known allergies. Sub-3:30 marathon target.",
+    corral: "Corral A",
+    medicalNotes: "No known allergies. Sub-1:45 half marathon target.",
   },
   {
     id: "reg-002",
@@ -148,7 +147,7 @@ const INITIAL_REGISTRATIONS: RunnerRegistration[] = [
   },
   {
     id: "reg-006",
-    bibNumber: "PPM-42K-1002",
+    bibNumber: "PPM-21K-2002",
     transactionId: "TXN-PATNA-982106",
     fullName: "Kavita Thakur",
     bibName: "KAVITA",
@@ -159,14 +158,14 @@ const INITIAL_REGISTRATIONS: RunnerRegistration[] = [
     city: "New Delhi",
     emergencyContactName: "Rakesh Thakur",
     emergencyContactPhone: "9811228899",
-    categoryCode: "42k",
+    categoryCode: "21k",
     tShirtSize: "M",
     registeredAt: "2026-11-12T08:12:00Z",
     paymentStatus: "confirmed",
-    amountPaid: 1899,
+    amountPaid: 1299,
     kitCollected: false,
-    corral: "Elite Corral A",
-    medicalNotes: "AFI Master Athlete. Target: Boston Qualifier 3:35.",
+    corral: "Corral A",
+    medicalNotes: "AFI Master Athlete. Target: Half Marathon 1:35.",
   },
   {
     id: "reg-007",
@@ -334,7 +333,6 @@ export function getAdminMetrics() {
   const collectionPercentage = totalRunners > 0 ? Math.round((kitCollectedCount / totalRunners) * 100) : 0;
 
   const categoryCounts = {
-    "42k": all.filter((r) => r.categoryCode === "42k").length,
     "21k": all.filter((r) => r.categoryCode === "21k").length,
     "10k": all.filter((r) => r.categoryCode === "10k").length,
     "5k": all.filter((r) => r.categoryCode === "5k").length,

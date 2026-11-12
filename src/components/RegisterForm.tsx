@@ -551,9 +551,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                             <span className="font-heading text-lg uppercase text-ivory">
                               {c.name}
                             </span>
-                            <span className={`font-numbers text-xl font-extrabold ${
-                              c.code === "42k" ? "text-blaze" : "text-volt"
-                            }`}>
+                            <span className="font-numbers text-xl font-extrabold text-volt">
                               {c.price}
                             </span>
                           </div>

@@ -85,7 +85,7 @@ export const MARATHON_META = {
     "Six races. Four cities. One unforgettable morning when all of Patna runs together — presented by Pride Patna Marathon. Join 50,000+ runners at JP Ganga Path, Vending Zone on 7 Feb 2027. Every mile matters.",
   stats: {
     runnersCount: "50,000+",
-    racesCount: "4 certified races",
+    racesCount: "3 certified races",
     treesPledged: "15,000",
     edition: "2027",
   },
@@ -198,35 +198,6 @@ export const CATEGORIES: MarathonCategory[] = [
       "Digha Ghat Turn",
     ],
   },
-  {
-    code: "42k",
-    name: "42K Full Marathon",
-    distance: "42.2 KM",
-    distanceKm: 42.2,
-    tagline: "For the Brave",
-    price: "₹1,899",
-    priceNum: 1899,
-    startTime: "05:00 AM",
-    cutoffTime: "6 Hours 00 Min",
-    elevationGain: "+54m",
-    minAge: 18,
-    description:
-      "The ultimate endurance test across Patna’s historical landmarks and both Ganga riverfront causeways.",
-    inclusions: [
-      "Elite Corrals Access",
-      "Pre-Race Carbo Dinner",
-      "Finisher Windbreaker Jacket",
-      "Physio & Ice Bath",
-      "Live Tracking",
-    ],
-    routeHighlights: [
-      "Gandhi Maidan Star",
-      "Atal Path",
-      "Ganga Driveway Twin Loops",
-      "Old Patna City Ghats",
-      "High Court Ave",
-    ],
-  },
 ];
 
 export const FEATURES: FeaturePillar[] = [
@@ -329,33 +300,6 @@ export const ROUTES: RouteInfo[] = [
       { distanceKm: 21.1, elevationM: 52, label: "Finish Arch" },
     ],
   },
-  {
-    code: "42k",
-    title: "42.2K Historic Patna Sovereign Route",
-    distance: "42.195 KM",
-    elevationGain: "+54m",
-    peakElevation: "64m",
-    waterStations: 17,
-    medicalPoints: 9,
-    energyGelZones: 4,
-    landmarks: [
-      "Gandhi Maidan",
-      "Old City Heritage Gate",
-      "Patna Sahib Riverfront",
-      "JP Ganga Twin Causeway",
-      "Digha Overpass",
-      "High Court",
-    ],
-    points: [
-      { distanceKm: 0, elevationM: 52, label: "Start" },
-      { distanceKm: 7, elevationM: 56, label: "Patna City Loop" },
-      { distanceKm: 14, elevationM: 53, label: "East Waterfront" },
-      { distanceKm: 21.1, elevationM: 62, label: "Halfway Crossing" },
-      { distanceKm: 28, elevationM: 64, label: "JP Ganga Causeway" },
-      { distanceKm: 35, elevationM: 58, label: "Atal Path High Speed" },
-      { distanceKm: 42.2, elevationM: 52, label: "Grand Finish Arch" },
-    ],
-  },
 ];
 
 export const SCHEDULE: ScheduleEvent[] = [
@@ -365,14 +309,6 @@ export const SCHEDULE: ScheduleEvent[] = [
     location: "JP Ganga Path, Vending Zone",
     description:
       "Warm-up arena, baggage security deposit, and electrolyte hydration stations active.",
-  },
-  {
-    time: "05:00 AM",
-    title: "42.2K Full Marathon Flag-off",
-    category: "42K",
-    location: "Main Starting Arch",
-    description:
-      "Elite corral departure followed by open category waves under ceremonial floodlights.",
   },
   {
     time: "05:45 AM",
@@ -532,7 +468,7 @@ export const FAQS: FAQItem[] = [
   },
   {
     q: "Is there a minimum age criteria for registering?",
-    a: "Yes: 5K Fun Run is open to ages 8 and above. 10K requires participants to be at least 14 years old. 21.1K Half Marathon and 42.2K Full Marathon mandate a minimum age of 18 years on race day.",
+    a: "Yes: 5K Fun Run is open to ages 8 and above. 10K requires participants to be at least 14 years old. 21.1K Half Marathon mandates a minimum age of 18 years on race day.",
   },
   {
     q: "What is the cutoff time for the 21K Half Marathon?",

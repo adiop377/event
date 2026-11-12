@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Timer, Zap, Flag, Droplets, ArrowRight, Gauge, Trophy, Flame } from "lucide-react";
 
 export default function PaceCalculator() {
-  const [distanceCode, setDistanceCode] = useState<"5k" | "10k" | "21k" | "42k">("21k");
+  const [distanceCode, setDistanceCode] = useState<"5k" | "10k" | "21k">("21k");
   const [hours, setHours] = useState(1);
   const [minutes, setMinutes] = useState(50);
 
@@ -14,10 +14,9 @@ export default function PaceCalculator() {
     "5k": { name: "5K Fun Run", km: 5.0, defaultH: 0, defaultM: 28 },
     "10k": { name: "10K Challenge", km: 10.0, defaultH: 0, defaultM: 55 },
     "21k": { name: "21.1K Half Marathon", km: 21.097, defaultH: 1, defaultM: 50 },
-    "42k": { name: "42.2K Full Marathon", km: 42.195, defaultH: 3, defaultM: 45 },
   };
 
-  const handleDistanceChange = (code: "5k" | "10k" | "21k" | "42k") => {
+  const handleDistanceChange = (code: "5k" | "10k" | "21k") => {
     setDistanceCode(code);
     setHours(distances[code].defaultH);
     setMinutes(distances[code].defaultM);
@@ -39,10 +38,6 @@ export default function PaceCalculator() {
       if (totalMinutes <= 120) return { corral: "Corral B (2:00 Pacer)", flag: "Neon Blaze Flag", pacer: "Speed Bus 2" };
       if (totalMinutes <= 135) return { corral: "Corral C (2:15 Pacer)", flag: "Cobalt Blue Flag", pacer: "Endurance Bus 3" };
       return { corral: "Corral D (2:30+ Pacer)", flag: "Ruby Flag", pacer: "Finisher Party Bus" };
-    } else if (distanceCode === "42k") {
-      if (totalMinutes <= 210) return { corral: "Corral A (Sub-3:30)", flag: "Volt Elite Flag", pacer: "Elite Bus 1" };
-      if (totalMinutes <= 240) return { corral: "Corral B (4:00 Pacer)", flag: "Blaze Flag", pacer: "Sub-4 Pace Group" };
-      return { corral: "Corral C (4:30+ Pacer)", flag: "Cobalt Flag", pacer: "Marathon Finisher Bus" };
     } else if (distanceCode === "10k") {
       if (totalMinutes <= 50) return { corral: "Corral A (Sub-50)", flag: "Volt Flag", pacer: "Speed Bus" };
       return { corral: "Corral B (60m Pacer)", flag: "Blaze Flag", pacer: "Cruiser Bus" };
@@ -78,7 +73,7 @@ export default function PaceCalculator() {
           <div className="luxury-card p-6 sm:p-10 lg:p-12 bg-gradient-to-br from-[#111827] via-[#0A0F1A] to-[#111827] border border-white/[0.08] shadow-2xl">
             {/* Distance Tabs - Sharp 6px athletic tabs */}
             <div className="flex flex-wrap items-center justify-center gap-3 mb-10 pb-8 border-b border-white/[0.08]">
-              {(["5k", "10k", "21k", "42k"] as const).map((code) => (
+              {(["5k", "10k", "21k"] as const).map((code) => (
                 <button
                   key={code}
                   type="button"
