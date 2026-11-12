@@ -383,7 +383,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                         type="text"
                         value={formData.fullName}
                         onChange={(e) => updateField("fullName", e.target.value)}
-                        placeholder="e.g. Vikram Singh"
+                        placeholder="Enter full name"
                         className={`w-full px-4 py-3 rounded-md bg-[#0A0F1A] border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
                           errors.fullName ? "border-rose-500" : "border-white/10"
                         }`}
@@ -399,7 +399,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                         type="email"
                         value={formData.email}
                         onChange={(e) => updateField("email", e.target.value)}
-                        placeholder="vikram@example.com"
+                        placeholder="Enter email address"
                         className={`w-full px-4 py-3 rounded-md bg-[#0A0F1A] border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
                           errors.email ? "border-rose-500" : "border-white/10"
                         }`}
@@ -415,7 +415,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => updateField("phone", e.target.value)}
-                        placeholder="10-digit mobile number"
+                        placeholder="Enter 10-digit mobile number"
                         className={`w-full px-4 py-3 rounded-md bg-[#0A0F1A] border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
                           errors.phone ? "border-rose-500" : "border-white/10"
                         }`}
@@ -466,7 +466,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                         type="text"
                         value={formData.city}
                         onChange={(e) => updateField("city", e.target.value)}
-                        placeholder="Patna, Muzaffarpur, Gaya, etc."
+                        placeholder="Enter city"
                         className={`w-full px-4 py-3 rounded-md bg-[#0A0F1A] border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
                           errors.city ? "border-rose-500" : "border-white/10"
                         }`}
@@ -482,7 +482,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                         type="text"
                         value={formData.emergencyContactName}
                         onChange={(e) => updateField("emergencyContactName", e.target.value)}
-                        placeholder="Kin / Family member name"
+                        placeholder="Contact person name"
                         className={`w-full px-4 py-3 rounded-md bg-[#0A0F1A] border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
                           errors.emergencyContactName ? "border-rose-500" : "border-white/10"
                         }`}
@@ -500,7 +500,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                         type="tel"
                         value={formData.emergencyContactPhone}
                         onChange={(e) => updateField("emergencyContactPhone", e.target.value)}
-                        placeholder="10-digit emergency phone"
+                        placeholder="Emergency contact phone"
                         className={`w-full px-4 py-3 rounded-md bg-[#0A0F1A] border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
                           errors.emergencyContactPhone ? "border-rose-500" : "border-white/10"
                         }`}
@@ -577,7 +577,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                           type="text"
                           value={formData.bibName}
                           onChange={(e) => updateField("bibName", e.target.value.toUpperCase())}
-                          placeholder="e.g. VIKRAM"
+                          placeholder="ENTER BIB NAME"
                           maxLength={16}
                           className={`w-full px-4 py-3 rounded-md bg-[#0A0F1A] border text-ivory text-base uppercase font-numbers tracking-widest focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
                             errors.bibName ? "border-rose-500" : "border-white/10"
