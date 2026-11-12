@@ -20,25 +20,25 @@ export default function RaceWeather() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full lg:w-auto">
-          <div className="bg-ink/90 rounded-2xl p-3.5 border border-line text-center">
+          <div className="bg-[#0A0F1A]/85 rounded-lg p-3.5 border border-white/[0.08] text-center shadow-md">
             <Sun className="w-4 h-4 text-amber-400 mx-auto mb-1" />
             <span className="font-numbers text-xl font-extrabold text-ivory block">15°C – 19°C</span>
             <span className="label-subtle text-[8.5px] text-stone mt-0.5 block">TEMP AT DAWN</span>
           </div>
 
-          <div className="bg-ink/90 rounded-2xl p-3.5 border border-line text-center">
+          <div className="bg-[#0A0F1A]/85 rounded-lg p-3.5 border border-white/[0.08] text-center shadow-md">
             <Wind className="w-4 h-4 text-sky-400 mx-auto mb-1" />
             <span className="font-numbers text-xl font-extrabold text-ivory block">4.2 KM/H</span>
             <span className="label-subtle text-[8.5px] text-stone mt-0.5 block">GANGA BREEZE</span>
           </div>
 
-          <div className="bg-ink/90 rounded-2xl p-3.5 border border-line text-center">
+          <div className="bg-[#0A0F1A]/85 rounded-lg p-3.5 border border-white/[0.08] text-center shadow-md">
             <Droplets className="w-4 h-4 text-teal-400 mx-auto mb-1" />
             <span className="font-numbers text-xl font-extrabold text-ivory block">64%</span>
             <span className="label-subtle text-[8.5px] text-stone mt-0.5 block">AVG HUMIDITY</span>
           </div>
 
-          <div className="bg-ink/90 rounded-2xl p-3.5 border border-volt/30 text-center bg-volt/[0.04]">
+          <div className="bg-[#0A0F1A]/85 rounded-lg p-3.5 border border-volt/40 text-center bg-volt/[0.05] shadow-[0_0_15px_rgba(204,255,0,0.12)]">
             <ShieldCheck className="w-4 h-4 text-volt mx-auto mb-1" />
             <span className="font-numbers text-xl font-extrabold text-volt block">OPTIMAL</span>
             <span className="label-subtle text-[8.5px] text-volt font-bold mt-0.5 block">RACE GRADE</span>

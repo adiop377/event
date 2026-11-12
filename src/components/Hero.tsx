@@ -185,39 +185,44 @@ export default function Hero() {
               />
             </svg>
 
-            {/* Hero Athlete Image Card */}
-            <div className="relative w-full max-w-md lg:max-w-none aspect-[3/4] sm:aspect-[4/5] rounded-[28px] overflow-hidden border border-volt/35 shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_40px_rgba(204,255,0,0.18)] z-10 group bg-graphite">
-              <Image
-                src="/images/marathon-hero-athlete.jpg"
-                alt="Professional marathon athlete sprinting across Patna bridge at sunrise"
-                fill
-                priority
-                unoptimized
-                className="object-cover object-center photo-grade transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-ink via-ink/50 to-transparent pointer-events-none" />
+            {/* Hero Athlete Image Card with Sharp Athletic Edges & Ambient Accent Glow */}
+            <div className="relative w-full max-w-md lg:max-w-none">
+              {/* Subtle ambient dark glow behind athlete card */}
+              <div className="absolute -inset-2 bg-gradient-to-tr from-volt/25 via-blaze/20 to-transparent rounded-xl blur-3xl opacity-60 pointer-events-none -z-10" />
 
-              {/* Floating Top Badge */}
-              <div className="absolute top-5 left-5 z-20 bg-graphite/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-volt/40 text-xs font-bold text-ivory flex items-center gap-2 shadow-lg">
-                <ShieldCheck className="w-3.5 h-3.5 text-volt" />
-                <span>AFI &amp; AIMS Certified Fast Track</span>
-              </div>
+              <div className="relative aspect-[3/4] sm:aspect-[4/5] rounded-lg overflow-hidden border border-white/[0.1] shadow-[0_25px_60px_rgba(0,0,0,0.95)] z-10 group bg-graphite">
+                <Image
+                  src="/images/marathon-hero-athlete.jpg"
+                  alt="Professional marathon athlete sprinting across Patna bridge at sunrise"
+                  fill
+                  priority
+                  unoptimized
+                  className="object-cover object-center photo-grade transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-ink via-ink/50 to-transparent pointer-events-none" />
 
-              {/* Floating Bottom Quote & Landmark Tag */}
-              <div className="absolute bottom-6 left-6 right-6 z-20 flex items-center justify-between">
-                <div className="bg-graphite/90 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-blaze/40 shadow-lg">
-                  <span className="label-subtle text-[8.5px] text-stone block">EVENT MOTTO</span>
-                  <span className="font-heading text-sm sm:text-base text-blaze font-black tracking-wider uppercase">
-                    “{MARATHON_META.event}”
-                  </span>
+                {/* Floating Top Badge - Sharp 4px cut */}
+                <div className="absolute top-5 left-5 z-20 bg-graphite/95 backdrop-blur-md px-3 py-1 rounded border border-white/10 text-xs font-bold text-ivory flex items-center gap-2 shadow-lg">
+                  <ShieldCheck className="w-3.5 h-3.5 text-volt" />
+                  <span>AFI &amp; AIMS Certified Fast Track</span>
                 </div>
 
-                <div className="bg-graphite/90 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-line text-right">
-                  <span className="label-subtle text-[8.5px] text-stone block">CORRIDOR</span>
-                  <span className="font-numbers text-xs text-ivory font-bold flex items-center gap-1">
-                    <MapPin className="w-3 h-3 text-volt" />
-                    Ganga Waterfront
-                  </span>
+                {/* Floating Bottom Quote & Landmark Tag - Sharp 6px cuts */}
+                <div className="absolute bottom-6 left-6 right-6 z-20 flex items-center justify-between">
+                  <div className="bg-graphite/95 backdrop-blur-md px-3.5 py-2 rounded-md border border-white/10 shadow-lg">
+                    <span className="label-subtle text-[8.5px] text-stone block">EVENT MOTTO</span>
+                    <span className="font-heading text-sm sm:text-base text-blaze font-black tracking-wider uppercase">
+                      “{MARATHON_META.event}”
+                    </span>
+                  </div>
+
+                  <div className="bg-graphite/95 backdrop-blur-md px-3 py-1.5 rounded-md border border-white/10 text-right">
+                    <span className="label-subtle text-[8.5px] text-stone block">CORRIDOR</span>
+                    <span className="font-numbers text-xs text-ivory font-bold flex items-center gap-1">
+                      <MapPin className="w-3 h-3 text-volt" />
+                      Ganga Waterfront
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -267,7 +272,7 @@ export default function Hero() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.92, opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-4xl bg-graphite rounded-2xl border border-line overflow-hidden shadow-2xl z-10 p-2 sm:p-4"
+              className="relative w-full max-w-4xl bg-graphite rounded-lg border border-white/10 overflow-hidden shadow-2xl z-10 p-2 sm:p-4"
             >
               <div className="flex items-center justify-between pb-3 px-2 border-b border-line mb-3">
                 <span className="font-heading text-base tracking-wider uppercase text-ivory">
@@ -276,13 +281,13 @@ export default function Hero() {
                 <button
                   type="button"
                   onClick={() => setVideoOpen(false)}
-                  className="p-1.5 rounded-lg text-stone hover:text-ivory hover:bg-ink transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt"
+                  className="p-1.5 rounded-md text-stone hover:text-ivory hover:bg-ink transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt"
                   aria-label="Close modal"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
-              <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-ink">
+              <div className="relative aspect-video w-full rounded-md overflow-hidden bg-ink">
                 <iframe
                   className="w-full h-full"
                   src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0"

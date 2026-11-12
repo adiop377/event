@@ -35,14 +35,17 @@ export default function RaceKit() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className="luxury-card p-6 sm:p-8 flex flex-col justify-between hover:border-volt/50 transition-all group"
+                className="relative group flex flex-col justify-between rounded-lg p-6 sm:p-8 bg-gradient-to-b from-[#111A2B]/80 to-[#0A0F1A]/95 border border-white/[0.08] hover:border-white/[0.18] transition-all duration-300 shadow-xl"
               >
+                {/* Subtle blurred dark volt glow behind card */}
+                <div className="absolute -inset-1 rounded-lg bg-volt/20 blur-2xl opacity-0 group-hover:opacity-40 transition-opacity pointer-events-none -z-10" />
+
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-volt/15 border border-volt/35 flex items-center justify-center text-volt group-hover:scale-110 group-hover:bg-volt/25 transition-all shadow-md">
+                    <div className="w-12 h-12 rounded-md bg-volt/15 border border-volt/30 flex items-center justify-center text-volt group-hover:scale-110 group-hover:bg-volt/25 transition-all shadow-md">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="label-subtle text-[8.5px] bg-volt/10 text-volt border border-volt/30 px-2.5 py-1 rounded-full font-bold">
+                    <span className="label-subtle text-[8.5px] bg-volt/10 text-volt border border-volt/30 px-2.5 py-0.5 rounded font-bold">
                       INCLUDED IN REGISTRATION
                     </span>
                   </div>

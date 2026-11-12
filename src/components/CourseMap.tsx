@@ -74,15 +74,15 @@ export default function CourseMap() {
             </h2>
           </div>
 
-          {/* Route distance selector tabs */}
-          <div className="inline-flex p-1.5 rounded-full bg-graphite border border-line self-start md:self-end shadow-lg">
+          {/* Route distance selector tabs - Sharp 6px athletic tabs */}
+          <div className="inline-flex p-1.5 rounded-md bg-[#0D1422] border border-white/10 self-start md:self-end shadow-lg">
             {ROUTES.map((route) => (
               <button
                 key={route.code}
                 onClick={() => setSelectedCode(route.code)}
-                className={`px-5 py-2.5 rounded-full text-xs font-heading uppercase tracking-wider font-extrabold transition-all ${
+                className={`px-5 py-2 rounded text-xs font-heading uppercase tracking-wider font-extrabold transition-all ${
                   selectedCode === route.code
-                    ? "bg-volt text-black shadow-[0_0_15px_rgba(204,255,0,0.45)]"
+                    ? "bg-volt text-black shadow-[0_0_15px_rgba(204,255,0,0.35)]"
                     : "text-stone hover:text-ivory"
                 }`}
               >
@@ -109,26 +109,26 @@ export default function CourseMap() {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
-              <div className="bg-ink/90 rounded-2xl p-3.5 border border-line">
+              <div className="bg-[#0A0F1A]/85 rounded-lg p-3.5 border border-white/[0.08] shadow-md">
                 <span className="label-subtle text-[8.5px] text-stone block mb-1">DISTANCE</span>
                 <span className="font-numbers text-xl font-extrabold text-volt">
                   {activeRoute.distance}
                 </span>
               </div>
-              <div className="bg-ink/90 rounded-2xl p-3.5 border border-line">
+              <div className="bg-[#0A0F1A]/85 rounded-lg p-3.5 border border-white/[0.08] shadow-md">
                 <span className="label-subtle text-[8.5px] text-stone block mb-1">ELEVATION GAIN</span>
                 <span className="font-numbers text-xl font-extrabold text-ivory">
                   {activeRoute.elevationGain}
                 </span>
               </div>
-              <div className="bg-ink/90 rounded-2xl p-3.5 border border-line">
+              <div className="bg-[#0A0F1A]/85 rounded-lg p-3.5 border border-white/[0.08] shadow-md">
                 <span className="label-subtle text-[8.5px] text-stone block mb-1">WATER STATIONS</span>
                 <span className="font-numbers text-xl font-extrabold text-sky-400 flex items-center justify-center gap-1">
                   <Droplets className="w-3.5 h-3.5" />
                   {activeRoute.waterStations}
                 </span>
               </div>
-              <div className="bg-ink/90 rounded-2xl p-3.5 border border-line">
+              <div className="bg-[#0A0F1A]/85 rounded-lg p-3.5 border border-white/[0.08] shadow-md">
                 <span className="label-subtle text-[8.5px] text-stone block mb-1">APOLLO MEDICS</span>
                 <span className="font-numbers text-xl font-extrabold text-blaze flex items-center justify-center gap-1">
                   <HeartPulse className="w-3.5 h-3.5" />
@@ -161,7 +161,7 @@ export default function CourseMap() {
             </div>
 
             <div className="w-full overflow-x-auto">
-              <div className="min-w-[680px] relative bg-ink/95 rounded-2xl p-5 border border-line shadow-inner">
+              <div className="min-w-[680px] relative bg-[#0A0F1A]/95 rounded-lg p-5 border border-white/[0.08] shadow-inner">
                 <svg
                   viewBox={`0 0 ${svgWidth} ${svgHeight}`}
                   className="w-full h-44 overflow-visible"

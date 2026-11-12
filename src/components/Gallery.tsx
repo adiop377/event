@@ -69,10 +69,10 @@ export default function Gallery() {
               key={cat}
               type="button"
               onClick={() => setActiveFilter(cat)}
-              className={`px-4 py-1.5 rounded-full text-xs font-heading uppercase tracking-wider font-bold transition-all ${
+              className={`px-4 py-1.5 rounded-md text-xs font-heading uppercase tracking-wider font-bold transition-all ${
                 activeFilter === cat
-                  ? "bg-volt text-black shadow-[0_0_12px_rgba(204,255,0,0.4)]"
-                  : "bg-graphite text-stone hover:text-ivory border border-line"
+                  ? "bg-volt text-black shadow-[0_0_15px_rgba(204,255,0,0.35)]"
+                  : "bg-[#0D1422] text-stone hover:text-ivory border border-white/10"
               }`}
             >
               {cat}
@@ -80,7 +80,7 @@ export default function Gallery() {
           ))}
         </div>
 
-        {/* Gallery Grid */}
+        {/* Gallery Grid - Sharp 8px athlete photo frames & subtle borders */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {filteredItems.map((item, idx) => (
             <motion.div
@@ -90,7 +90,7 @@ export default function Gallery() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.08 }}
               onClick={() => setActiveIdx(item.id - 1)}
-              className={`relative rounded-3xl overflow-hidden border border-line/80 cursor-pointer group bg-graphite shadow-xl hover:border-volt/50 transition-all ${item.aspect}`}
+              className={`relative rounded-lg overflow-hidden border border-white/[0.08] cursor-pointer group bg-[#0D1422] shadow-xl hover:border-white/[0.22] transition-all ${item.aspect}`}
             >
               <Image
                 src={item.src}
@@ -101,14 +101,14 @@ export default function Gallery() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300" />
 
-              {/* Hover overlay icon */}
-              <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-graphite/90 backdrop-blur-md border border-volt/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+              {/* Hover overlay icon - Sharp 6px */}
+              <div className="absolute top-4 right-4 w-9 h-9 rounded-md bg-graphite/90 backdrop-blur-md border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
                 <Maximize2 className="w-4 h-4 text-volt" />
               </div>
 
               {/* Title & Category */}
               <div className="absolute bottom-5 left-5 right-5 z-10">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-graphite/90 backdrop-blur-md border border-volt/30 text-[9px] text-volt font-extrabold uppercase tracking-widest mb-2">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-graphite/90 backdrop-blur-md border border-white/10 text-[9px] text-volt font-extrabold uppercase tracking-widest mb-2">
                   <Zap className="w-2.5 h-2.5 text-volt" />
                   <span>{item.category}</span>
                 </div>
@@ -174,7 +174,7 @@ export default function Gallery() {
               exit={{ scale: 0.95, opacity: 0 }}
               className="relative max-w-5xl w-full max-h-[85vh] flex flex-col items-center"
             >
-              <div className="relative w-full h-[65vh] rounded-3xl overflow-hidden border border-volt/35 bg-graphite shadow-2xl">
+              <div className="relative w-full h-[65vh] rounded-lg overflow-hidden border border-white/20 bg-graphite shadow-2xl">
                 <Image
                   src={GALLERY[activeIdx].src}
                   alt={GALLERY[activeIdx].title}

@@ -189,8 +189,8 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Emergency Hotline Box */}
-            <div className="mt-6 p-4 rounded-xl bg-graphite/90 border border-blaze/30">
+            {/* Emergency Hotline Box - Sharp 8px & Subtle Elevation */}
+            <div className="mt-6 p-4 rounded-lg bg-[#0A0F1A]/95 border border-blaze/35 shadow-[0_0_20px_rgba(255,87,34,0.12)]">
               <span className="label-subtle text-[9px] text-blaze block mb-1 font-bold flex items-center gap-1">
                 <Flame className="w-3 h-3 text-blaze" />
                 RACE DAY EMERGENCY HOTLINE
@@ -254,7 +254,7 @@ export default function Footer() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.94, opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-2xl bg-graphite rounded-2xl border border-volt/30 overflow-hidden shadow-2xl z-10 p-6 sm:p-8 max-h-[85vh] flex flex-col"
+              className="relative w-full max-w-2xl bg-graphite rounded-lg border border-white/10 overflow-hidden shadow-2xl z-10 p-6 sm:p-8 max-h-[85vh] flex flex-col"
             >
               <div className="flex items-center justify-between pb-4 border-b border-line mb-4">
                 <div className="flex items-center gap-2.5">

@@ -103,7 +103,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2.5 rounded-xl text-stone hover:text-ivory bg-graphite/80 border border-line transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt"
+              className="lg:hidden p-2.5 rounded-md text-stone hover:text-ivory bg-graphite/80 border border-white/10 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? (

@@ -62,36 +62,40 @@ export default function WhyRun() {
 
         {/* Middle Feature Banner: Photo + Community Impact */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mt-12">
-          {/* Photo */}
-          <div className="lg:col-span-7 relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden border border-line shadow-2xl group">
-            <Image
-              src="/images/why.jpg"
-              alt="Community runners in Patna smiling at dawn"
-              fill
-              className="object-cover photo-grade group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent pointer-events-none" />
-            <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-graphite/95 backdrop-blur-md border border-line text-xs text-ivory font-bold">
-                <ShieldCheck className="w-3.5 h-3.5 text-volt" />
-                AFI &amp; AIMS Certified Course
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-graphite/95 backdrop-blur-md border border-line text-xs text-ivory font-bold">
-                <Timer className="w-3.5 h-3.5 text-volt" />
-                ChronoTrack Split Timing
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-graphite/95 backdrop-blur-md border border-line text-xs text-ivory font-bold">
-                <HeartPulse className="w-3.5 h-3.5 text-blaze" />
-                Apollo Mobile ICU Patrols
-              </span>
+          {/* Photo with 8px Sharp Corners & Dark Ambient Glow */}
+          <div className="lg:col-span-7 relative">
+            <div className="absolute -inset-2 bg-volt/[0.04] rounded-lg blur-2xl pointer-events-none -z-10" />
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-lg overflow-hidden border border-white/[0.08] shadow-2xl group">
+              <Image
+                src="/images/why.jpg"
+                alt="Community runners in Patna smiling at dawn"
+                fill
+                className="object-cover photo-grade group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent pointer-events-none" />
+              <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-center gap-3">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-graphite/95 backdrop-blur-md border border-white/10 text-xs text-ivory font-bold">
+                  <ShieldCheck className="w-3.5 h-3.5 text-volt" />
+                  AFI &amp; AIMS Certified Course
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-graphite/95 backdrop-blur-md border border-white/10 text-xs text-ivory font-bold">
+                  <Timer className="w-3.5 h-3.5 text-volt" />
+                  ChronoTrack Split Timing
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-graphite/95 backdrop-blur-md border border-white/10 text-xs text-ivory font-bold">
+                  <HeartPulse className="w-3.5 h-3.5 text-blaze" />
+                  Apollo Mobile ICU Patrols
+                </span>
+              </div>
             </div>
           </div>
 
           {/* Community Card */}
-          <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-6">
-            <div className="luxury-card p-8 sm:p-10 bg-gradient-to-br from-[#121824] via-[#0D131F] to-[#121824] border-volt/30 shadow-2xl">
-              <div className="w-14 h-14 rounded-2xl bg-volt/15 border border-volt/35 flex items-center justify-center mb-6 text-volt">
-                <TreePine className="w-7 h-7" />
+          <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-6 relative">
+            <div className="absolute -inset-2 bg-volt/[0.06] rounded-xl blur-2xl pointer-events-none -z-10" />
+            <div className="luxury-card p-8 sm:p-10 bg-gradient-to-br from-[#111827] via-[#0A0F1A] to-[#111827] border border-white/[0.08] shadow-2xl">
+              <div className="w-12 h-12 rounded-md bg-volt/15 border border-volt/30 flex items-center justify-center mb-6 text-volt">
+                <TreePine className="w-6 h-6" />
               </div>
               <span className="label-subtle text-volt block mb-2 font-bold">
                 GREEN GANGA INITIATIVE
@@ -102,7 +106,7 @@ export default function WhyRun() {
               <p className="font-body text-stone text-sm leading-relaxed mb-6">
                 15,000 native peepal, neem, and banyan saplings planted along the JP Ganga Pathway riverfront corridor. One runner = One tree nurtured for 3 years.
               </p>
-              <div className="pt-5 border-t border-line/60 flex items-center justify-between text-xs text-stone">
+              <div className="pt-5 border-t border-white/[0.07] flex items-center justify-between text-xs text-stone">
                 <span className="flex items-center gap-1.5 font-medium">
                   <Award className="w-4 h-4 text-volt" />
                   Eco-Certified Green Event

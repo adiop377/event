@@ -224,60 +224,63 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
           </p>
         </div>
 
-        {/* Wizard Form Container */}
-        <div className="luxury-card p-6 sm:p-10 lg:p-12 relative overflow-hidden bg-gradient-to-br from-[#121824] via-[#0D131F] to-[#121824] border-volt/30 shadow-[0_20px_50px_rgba(0,0,0,0.95)]">
-          {confirmation ? (
-            /* Success Confirmation Card */
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="space-y-8"
-            >
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full bg-volt/20 border-2 border-volt/70 flex items-center justify-center mx-auto mb-4 text-volt shadow-[0_0_25px_rgba(204,255,0,0.4)]">
-                  <Check className="w-8 h-8" />
-                </div>
-                <span className="label-subtle text-volt font-bold">REGISTRATION CONFIRMED</span>
-                <h3 className="font-heading text-3xl sm:text-4xl uppercase text-ivory mt-1">
-                  Welcome to the Pride Patna Marathon
-                </h3>
-                <p className="font-body text-stone text-xs sm:text-sm mt-1">
-                  A receipt &amp; race day digital pass have been recorded in the central timing database.
-                </p>
-              </div>
+        {/* Wizard Form Container with Sharp 8px Edges & Dark Accent Glow */}
+        <div className="relative">
+          <div className="absolute -inset-2 bg-volt/[0.05] rounded-xl blur-3xl pointer-events-none -z-10" />
 
-              {/* Digital Bib Card (Realistic Chest Bib Layout) */}
-              <div className="relative rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-[#161F30] via-[#0F1624] to-[#161F30] border-2 border-volt/50 shadow-2xl overflow-hidden">
-                <div className="absolute top-0 right-0 w-44 h-44 bg-volt/10 rounded-full blur-3xl pointer-events-none" />
-
-                {/* Top Bib Header */}
-                <div className="flex items-center justify-between pb-5 border-b border-line">
-                  <div>
-                    <span className="label-subtle text-[9px] text-volt font-bold block">
-                      PRIDE PATNA MARATHON 2027
-                    </span>
-                    <span className="text-xs text-stone">Gandhi Maidan, Patna • 14 Feb 2027</span>
+          <div className="luxury-card p-6 sm:p-10 lg:p-12 relative overflow-hidden bg-gradient-to-br from-[#111827] via-[#0A0F1A] to-[#111827] border border-white/[0.08] shadow-2xl">
+            {confirmation ? (
+              /* Success Confirmation Card */
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="space-y-8"
+              >
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-full bg-volt/20 border-2 border-volt/70 flex items-center justify-center mx-auto mb-4 text-volt shadow-[0_0_25px_rgba(204,255,0,0.4)]">
+                    <Check className="w-8 h-8" />
                   </div>
-                  <div className="text-right">
-                    <span className="label-subtle text-[8.5px] text-stone">CATEGORY</span>
-                    <span className="font-heading text-xl text-volt block font-extrabold">
-                      {selectedCat.name}
-                    </span>
-                  </div>
+                  <span className="label-subtle text-volt font-bold">REGISTRATION CONFIRMED</span>
+                  <h3 className="font-heading text-3xl sm:text-4xl uppercase text-ivory mt-1">
+                    Welcome to the Pride Patna Marathon
+                  </h3>
+                  <p className="font-body text-stone text-xs sm:text-sm mt-1">
+                    A receipt &amp; race day digital pass have been recorded in the central timing database.
+                  </p>
                 </div>
 
-                {/* Center Giant Bib Number */}
-                <div className="my-8 text-center py-4 bg-ink/80 rounded-2xl border border-line shadow-inner">
-                  <span className="label-subtle text-[9px] text-stone block mb-1 font-bold">
-                    OFFICIAL ATHLETE BIB
-                  </span>
-                  <h4 className="font-numbers text-5xl sm:text-6xl font-extrabold text-ivory tracking-widest">
-                    {confirmation.bibNumber}
-                  </h4>
-                  <span className="font-heading text-2xl uppercase tracking-wider text-volt mt-2 block font-extrabold">
-                    {confirmation.bibName}
-                  </span>
-                </div>
+                {/* Digital Bib Card (Realistic Chest Bib Layout with Sharp 8px Corners) */}
+                <div className="relative rounded-lg p-6 sm:p-8 bg-gradient-to-br from-[#161F30] via-[#0F1624] to-[#161F30] border border-volt/40 shadow-2xl overflow-hidden">
+                  <div className="absolute top-0 right-0 w-44 h-44 bg-volt/10 rounded-full blur-3xl pointer-events-none" />
+
+                  {/* Top Bib Header */}
+                  <div className="flex items-center justify-between pb-5 border-b border-white/10">
+                    <div>
+                      <span className="label-subtle text-[9px] text-volt font-bold block">
+                        PRIDE PATNA MARATHON 2027
+                      </span>
+                      <span className="text-xs text-stone">Gandhi Maidan, Patna • 14 Feb 2027</span>
+                    </div>
+                    <div className="text-right">
+                      <span className="label-subtle text-[8.5px] text-stone">CATEGORY</span>
+                      <span className="font-heading text-xl text-volt block font-extrabold">
+                        {selectedCat.name}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Center Giant Bib Number */}
+                  <div className="my-8 text-center py-4 bg-[#0A0F1A]/90 rounded-md border border-white/10 shadow-inner">
+                    <span className="label-subtle text-[9px] text-stone block mb-1 font-bold">
+                      OFFICIAL ATHLETE BIB
+                    </span>
+                    <h4 className="font-numbers text-5xl sm:text-6xl font-extrabold text-ivory tracking-widest">
+                      {confirmation.bibNumber}
+                    </h4>
+                    <span className="font-heading text-2xl uppercase tracking-wider text-volt mt-2 block font-extrabold">
+                      {confirmation.bibName}
+                    </span>
+                  </div>
 
                 {/* Athlete Details Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 my-6 text-xs text-stone">
@@ -360,7 +363,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
 
               {/* Form level error */}
               {errors.form && (
-                <div className="mb-6 p-4 rounded-2xl bg-rose-950/40 border border-rose-500/30 text-rose-200 text-sm flex items-center gap-3">
+                <div className="mb-6 p-4 rounded-md bg-rose-950/40 border border-rose-500/30 text-rose-200 text-sm flex items-center gap-3">
                   <AlertCircle className="w-5 h-5 text-rose-400 shrink-0" />
                   <span>{errors.form}</span>
                 </div>
@@ -381,8 +384,8 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                         value={formData.fullName}
                         onChange={(e) => updateField("fullName", e.target.value)}
                         placeholder="e.g. Vikram Singh"
-                        className={`w-full px-4 py-3.5 rounded-xl bg-ink border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
-                          errors.fullName ? "border-rose-500" : "border-line"
+                        className={`w-full px-4 py-3 rounded-md bg-[#0A0F1A] border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
+                          errors.fullName ? "border-rose-500" : "border-white/10"
                         }`}
                       />
                       {errors.fullName && (
@@ -397,8 +400,8 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                         value={formData.email}
                         onChange={(e) => updateField("email", e.target.value)}
                         placeholder="vikram@example.com"
-                        className={`w-full px-4 py-3.5 rounded-xl bg-ink border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
-                          errors.email ? "border-rose-500" : "border-line"
+                        className={`w-full px-4 py-3 rounded-md bg-[#0A0F1A] border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
+                          errors.email ? "border-rose-500" : "border-white/10"
                         }`}
                       />
                       {errors.email && (
@@ -413,8 +416,8 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                         value={formData.phone}
                         onChange={(e) => updateField("phone", e.target.value)}
                         placeholder="10-digit mobile number"
-                        className={`w-full px-4 py-3.5 rounded-xl bg-ink border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
-                          errors.phone ? "border-rose-500" : "border-line"
+                        className={`w-full px-4 py-3 rounded-md bg-[#0A0F1A] border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
+                          errors.phone ? "border-rose-500" : "border-white/10"
                         }`}
                       />
                       {errors.phone && (
@@ -430,10 +433,10 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                             key={g}
                             type="button"
                             onClick={() => updateField("gender", g)}
-                            className={`py-3.5 rounded-xl text-xs font-heading uppercase tracking-wider font-bold border transition-all ${
+                            className={`py-3 rounded-md text-xs font-heading uppercase tracking-wider font-bold border transition-all ${
                               formData.gender === g
                                 ? "bg-volt text-black border-volt shadow-md"
-                                : "bg-ink border-line text-stone hover:text-ivory"
+                                : "bg-[#0A0F1A] border-white/10 text-stone hover:text-ivory"
                             }`}
                           >
                             {g}
@@ -448,8 +451,8 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                         type="date"
                         value={formData.dob}
                         onChange={(e) => updateField("dob", e.target.value)}
-                        className={`w-full px-4 py-3.5 rounded-xl bg-ink border text-ivory text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
-                          errors.dob ? "border-rose-500" : "border-line"
+                        className={`w-full px-4 py-3 rounded-md bg-[#0A0F1A] border text-ivory text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
+                          errors.dob ? "border-rose-500" : "border-white/10"
                         }`}
                       />
                       {errors.dob && (
@@ -464,8 +467,8 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                         value={formData.city}
                         onChange={(e) => updateField("city", e.target.value)}
                         placeholder="Patna, Muzaffarpur, Gaya, etc."
-                        className={`w-full px-4 py-3.5 rounded-xl bg-ink border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
-                          errors.city ? "border-rose-500" : "border-line"
+                        className={`w-full px-4 py-3 rounded-md bg-[#0A0F1A] border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
+                          errors.city ? "border-rose-500" : "border-white/10"
                         }`}
                       />
                       {errors.city && (
@@ -480,8 +483,8 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                         value={formData.emergencyContactName}
                         onChange={(e) => updateField("emergencyContactName", e.target.value)}
                         placeholder="Kin / Family member name"
-                        className={`w-full px-4 py-3.5 rounded-xl bg-ink border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
-                          errors.emergencyContactName ? "border-rose-500" : "border-line"
+                        className={`w-full px-4 py-3 rounded-md bg-[#0A0F1A] border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
+                          errors.emergencyContactName ? "border-rose-500" : "border-white/10"
                         }`}
                       />
                       {errors.emergencyContactName && (
@@ -498,8 +501,8 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                         value={formData.emergencyContactPhone}
                         onChange={(e) => updateField("emergencyContactPhone", e.target.value)}
                         placeholder="10-digit emergency phone"
-                        className={`w-full px-4 py-3.5 rounded-xl bg-ink border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
-                          errors.emergencyContactPhone ? "border-rose-500" : "border-line"
+                        className={`w-full px-4 py-3 rounded-md bg-[#0A0F1A] border text-ivory placeholder-stone/40 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
+                          errors.emergencyContactPhone ? "border-rose-500" : "border-white/10"
                         }`}
                       />
                       {errors.emergencyContactPhone && (
@@ -530,7 +533,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                   animate={{ opacity: 1, x: 0 }}
                   className="space-y-8"
                 >
-                  {/* Category Selection */}
+                  {/* Category Selection - Sharp 8px & Subtle Elevation */}
                   <div>
                     <label className="label-subtle block mb-3">SELECT RACE DISTANCE CATEGORY *</label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -538,10 +541,10 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                         <div
                           key={c.code}
                           onClick={() => updateField("categoryCode", c.code)}
-                          className={`p-5 rounded-2xl border cursor-pointer transition-all ${
+                          className={`p-5 rounded-lg border cursor-pointer transition-all ${
                             formData.categoryCode === c.code
-                              ? "bg-volt/10 border-volt shadow-[0_0_20px_rgba(204,255,0,0.25)]"
-                              : "bg-ink border-line hover:border-line/80"
+                              ? "bg-volt/10 border-volt/60 shadow-[0_0_20px_rgba(204,255,0,0.22)]"
+                              : "bg-[#0A0F1A]/80 border-white/[0.08] hover:border-white/[0.18]"
                           }`}
                         >
                           <div className="flex items-center justify-between mb-2">
@@ -555,7 +558,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                             </span>
                           </div>
                           <p className="text-xs text-stone">{c.tagline}</p>
-                          <div className="mt-3 text-[11px] text-stone/80 flex items-center justify-between pt-2 border-t border-line/40">
+                          <div className="mt-3 text-[11px] text-stone/80 flex items-center justify-between pt-2 border-t border-white/[0.06]">
                             <span>Start {c.startTime}</span>
                             <span>Cutoff {c.cutoffTime}</span>
                           </div>
@@ -565,7 +568,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                   </div>
 
                   {/* Live Bib Simulator & Apparel Fields */}
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4 border-t border-line">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4 border-t border-white/[0.08]">
                     {/* Left: Input controls */}
                     <div className="lg:col-span-6 space-y-6">
                       <div>
@@ -576,8 +579,8 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                           onChange={(e) => updateField("bibName", e.target.value.toUpperCase())}
                           placeholder="e.g. VIKRAM"
                           maxLength={16}
-                          className={`w-full px-4 py-3.5 rounded-xl bg-ink border text-ivory text-base uppercase font-numbers tracking-widest focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
-                            errors.bibName ? "border-rose-500" : "border-line"
+                          className={`w-full px-4 py-3 rounded-md bg-[#0A0F1A] border text-ivory text-base uppercase font-numbers tracking-widest focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt transition-colors ${
+                            errors.bibName ? "border-rose-500" : "border-white/10"
                           }`}
                         />
                         <span className="text-[10px] text-stone mt-1 block">
@@ -606,10 +609,10 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                               key={size}
                               type="button"
                               onClick={() => updateField("tShirtSize", size)}
-                              className={`py-3 rounded-xl text-xs font-numbers font-bold border transition-all ${
+                              className={`py-2.5 rounded-md text-xs font-numbers font-bold border transition-all ${
                                 formData.tShirtSize === size
                                   ? "bg-volt text-black border-volt shadow-md"
-                                  : "bg-ink border-line text-stone hover:text-ivory"
+                                  : "bg-[#0A0F1A] border-white/10 text-stone hover:text-ivory"
                               }`}
                             >
                               {size}
@@ -619,23 +622,23 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                       </div>
                     </div>
 
-                    {/* Right: Simulated Real-Time Cyber Bib Card */}
+                    {/* Right: Simulated Real-Time Cyber Bib Card - Sharp 8px */}
                     <div className="lg:col-span-6">
                       <span className="label-subtle block mb-2 text-stone">
                         LIVE BIB PREVIEW
                       </span>
-                      <div className="relative rounded-2xl p-5 bg-gradient-to-b from-[#182338] to-[#0E1522] border-2 border-volt/45 shadow-xl overflow-hidden text-center">
+                      <div className="relative rounded-lg p-5 bg-gradient-to-b from-[#182338] to-[#0E1522] border border-volt/40 shadow-xl overflow-hidden text-center">
                         {/* Top Bib Punch Holes */}
                         <div className="flex justify-between items-center mb-3 px-2">
-                          <div className="w-3.5 h-3.5 rounded-full bg-ink border border-line" />
+                          <div className="w-3.5 h-3.5 rounded-full bg-ink border border-white/15" />
                           <span className="font-heading text-xs tracking-wider text-stone/90 uppercase font-bold">
                             PATNA 2027 • OFFICIAL TIMED ATHLETE
                           </span>
-                          <div className="w-3.5 h-3.5 rounded-full bg-ink border border-line" />
+                          <div className="w-3.5 h-3.5 rounded-full bg-ink border border-white/15" />
                         </div>
 
-                        {/* Category Banner */}
-                        <div className="py-1 px-4 rounded-full bg-volt text-black text-[11px] font-extrabold uppercase tracking-widest inline-block mb-3 shadow-md">
+                        {/* Category Banner - Sharp 4px athletic badge */}
+                        <div className="py-1 px-4 rounded bg-volt text-black text-[11px] font-extrabold uppercase tracking-widest inline-block mb-3 shadow-md">
                           {selectedCat.name} • {selectedCat.distance}
                         </div>
 
@@ -689,8 +692,8 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                   animate={{ opacity: 1, x: 0 }}
                   className="space-y-6"
                 >
-                  {/* Summary Card */}
-                  <div className="p-6 rounded-2xl bg-ink/90 border border-line space-y-4">
+                  {/* Summary Card - Sharp 8px & Subtle Elevation */}
+                  <div className="p-6 rounded-lg bg-[#0A0F1A]/90 border border-white/[0.08] space-y-4 shadow-lg">
                     <div className="flex items-center justify-between pb-4 border-b border-line">
                       <div>
                         <span className="label-subtle text-[9px]">SELECTED CATEGORY</span>
@@ -781,6 +784,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
           )}
         </div>
       </div>
+    </div>
 
       {/* Size Guide Modal */}
       <AnimatePresence>
@@ -801,7 +805,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
               initial={{ scale: 0.94, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.94, opacity: 0 }}
-              className="relative w-full max-w-md bg-graphite rounded-2xl border border-line p-6 shadow-2xl z-10"
+              className="relative w-full max-w-md bg-graphite rounded-lg border border-white/10 p-6 shadow-2xl z-10"
             >
               <div className="flex items-center justify-between pb-3 border-b border-line mb-4">
                 <h4 className="font-heading text-xl uppercase text-ivory">

@@ -62,7 +62,7 @@ export default function Schedule() {
                     {event.title}
                   </h3>
                   {event.category && (
-                    <span className={`label-subtle text-[9px] border px-2.5 py-0.5 rounded-full font-bold ${getBadgeStyle(event.category)}`}>
+                    <span className={`label-subtle text-[9px] border px-2.5 py-0.5 rounded font-bold ${getBadgeStyle(event.category)}`}>
                       {event.category}
                     </span>
                   )}

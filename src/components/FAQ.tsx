@@ -48,7 +48,7 @@ export default function FAQ() {
                     {faq.q}
                   </span>
                   <div
-                    className={`w-8 h-8 rounded-full bg-ink flex items-center justify-center text-volt shrink-0 transition-transform duration-300 ${
+                    className={`w-8 h-8 rounded-md bg-[#0A0F1A] border border-white/10 flex items-center justify-center text-volt shrink-0 transition-transform duration-300 ${
                       isOpen ? "rotate-180" : ""
                     }`}
                   >
@@ -64,7 +64,7 @@ export default function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <div className="px-6 pb-6 pt-1 text-sm font-body text-stone leading-relaxed border-t border-line/40">
+                      <div className="px-6 pb-6 pt-1 text-sm font-body text-stone leading-relaxed border-t border-white/[0.07]">
                         {faq.a}
                       </div>
                     </motion.div>
@@ -75,8 +75,8 @@ export default function FAQ() {
           })}
         </div>
 
-        {/* Help Contact Banner */}
-        <div className="mt-12 p-6 rounded-2xl bg-graphite/90 border border-line flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        {/* Help Contact Banner - Sharp 8px & Subtle Elevation */}
+        <div className="mt-12 p-6 rounded-lg bg-[#0D1422] border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left shadow-lg">
           <div>
             <h4 className="font-heading text-lg uppercase text-ivory">Still have questions?</h4>
             <p className="text-xs text-stone mt-0.5">
@@ -86,14 +86,14 @@ export default function FAQ() {
           <div className="flex flex-wrap items-center gap-3">
             <a
               href={`mailto:${MARATHON_META.contact.email}`}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-ink border border-line text-xs text-volt hover:border-volt transition-colors font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[#0A0F1A] border border-white/10 text-xs text-volt hover:border-volt transition-colors font-medium"
             >
               <Mail className="w-3.5 h-3.5" />
               <span>{MARATHON_META.contact.email}</span>
             </a>
             <a
               href={`tel:${MARATHON_META.contact.phone.replace(/\s+/g, "")}`}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-ink border border-line text-xs text-blaze hover:border-blaze transition-colors font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[#0A0F1A] border border-white/10 text-xs text-blaze hover:border-blaze transition-colors font-medium"
             >
               <Phone className="w-3.5 h-3.5" />
               <span>{MARATHON_META.contact.phone}</span>
