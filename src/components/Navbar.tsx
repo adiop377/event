@@ -9,16 +9,10 @@ import { NAV_LINKS, MARATHON_META } from "@/data/marathon";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
-      const winScroll = document.documentElement.scrollTop;
-      const height =
-        document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      setScrollProgress(scrolled);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
@@ -44,12 +38,6 @@ export default function Navbar() {
           : "bg-gradient-to-b from-[#090D14]/95 via-[#090D14]/50 to-transparent py-4 sm:py-5"
       }`}
     >
-      {/* Top High-Energy Scroll Progress Bar */}
-      <div
-        className="absolute top-0 left-0 h-[2.5px] bg-gradient-to-r from-volt via-blaze to-volt transition-all duration-150 z-50 shadow-[0_0_10px_rgba(204,255,0,0.8)]"
-        style={{ width: `${scrollProgress}%` }}
-      />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo & Brand */}
