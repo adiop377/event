@@ -156,7 +156,7 @@ body {
 .btn-champagne, .btn-volt {
   background: linear-gradient(135deg, #D4FF1A 0%, #CCFF00 60%, #AEE600 100%);
   color: #070A0F;
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body);
   font-size: 13.5px;
   font-weight: 800;
   letter-spacing: 0.05em;
@@ -197,7 +197,7 @@ body {
 .btn-blaze {
   background: linear-gradient(135deg, #FF6B3D 0%, #FF5722 60%, #E64A19 100%);
   color: #FFFFFF;
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body);
   font-size: 13.5px;
   font-weight: 800;
   letter-spacing: 0.05em;
@@ -223,7 +223,7 @@ body {
   background: rgba(20, 28, 43, 0.7);
   border: 1px solid var(--line);
   color: var(--ivory);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body);
   font-size: 13.5px;
   font-weight: 600;
   border-radius: 9999px;
