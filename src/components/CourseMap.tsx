@@ -422,62 +422,62 @@ ${activeRoute.landmarks.join(" -> ")}
             </div>
           </div>
 
+          {/* Course View Header & Mode Controls */}
+          <div className="pt-8 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <Navigation className="w-4 h-4 text-volt" />
+              <span className="label-subtle text-ivory text-xs font-bold tracking-wider">
+                COURSE ROUTE &amp; ELEVATION TELEMETRY
+              </span>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span className="hidden md:inline-block text-xs text-stone">
+                Patna Riverfront &amp; Expressway Corridor
+              </span>
+
+              {/* View Mode Controls */}
+              <div className="inline-flex p-1 rounded-md bg-[#0A0F1A] border border-white/10 text-[10px] font-bold">
+                <button
+                  type="button"
+                  onClick={() => setViewMode("map")}
+                  className={`px-3 py-1 rounded transition-colors ${
+                    viewMode === "map"
+                      ? "bg-volt text-black shadow-sm"
+                      : "text-stone hover:text-white"
+                  }`}
+                >
+                  OUTLINE MAP
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setViewMode("elevation")}
+                  className={`px-3 py-1 rounded transition-colors ${
+                    viewMode === "elevation"
+                      ? "bg-volt text-black shadow-sm"
+                      : "text-stone hover:text-white"
+                  }`}
+                >
+                  ELEVATION GRAPH
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setViewMode("both")}
+                  className={`px-3 py-1 rounded transition-colors ${
+                    viewMode === "both"
+                      ? "bg-volt text-black shadow-sm"
+                      : "text-stone hover:text-white"
+                  }`}
+                >
+                  ALL VIEWS
+                </button>
+              </div>
+            </div>
+          </div>
+
           {/* Section 1: COURSE ROUTE OVERVIEW (Schematic 2D Interactive Route Map) */}
           {(viewMode === "both" || viewMode === "map") && (
-            <div className="pt-8 pb-4">
-              {/* Header Bar of Route Overview */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-                <div className="flex items-center gap-2">
-                  <Navigation className="w-4 h-4 text-volt" />
-                  <span className="label-subtle text-ivory text-xs font-bold tracking-wider">
-                    COURSE ROUTE OVERVIEW
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <span className="hidden md:inline-block text-xs text-stone">
-                    Patna Riverfront &amp; Expressway Corridor
-                  </span>
-
-                  {/* View Mode Controls */}
-                  <div className="inline-flex p-1 rounded-md bg-[#0A0F1A] border border-white/10 text-[10px] font-bold">
-                    <button
-                      type="button"
-                      onClick={() => setViewMode("map")}
-                      className={`px-3 py-1 rounded transition-colors ${
-                        viewMode === "map"
-                          ? "bg-volt text-black shadow-sm"
-                          : "text-stone hover:text-white"
-                      }`}
-                    >
-                      OUTLINE MAP
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setViewMode("elevation")}
-                      className={`px-3 py-1 rounded transition-colors ${
-                        viewMode === "elevation"
-                          ? "bg-volt text-black shadow-sm"
-                          : "text-stone hover:text-white"
-                      }`}
-                    >
-                      ELEVATION GRAPH
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setViewMode("both")}
-                      className={`px-3 py-1 rounded transition-colors ${
-                        viewMode === "both"
-                          ? "bg-volt text-black shadow-sm"
-                          : "text-stone hover:text-white"
-                      }`}
-                    >
-                      ALL VIEWS
-                    </button>
-                  </div>
-                </div>
-              </div>
-
+            <div className="pb-4">
               {/* 2D Interactive Route Schematic Canvas */}
               <div className="relative bg-[#070B12]/95 border border-white/[0.08] rounded-lg p-3 sm:p-6 overflow-hidden shadow-inner">
                 <div className="w-full overflow-x-auto">
