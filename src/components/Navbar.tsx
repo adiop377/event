@@ -94,9 +94,9 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             <a
               href="#register"
-              className="hidden sm:inline-flex btn-volt text-xs uppercase tracking-wider !py-2.5 !px-5"
+              className="hidden sm:inline-flex btn-volt text-xs uppercase tracking-wider !py-2.5 !px-5 rounded-[4px] font-extrabold hover:scale-105 transition-all duration-300"
             >
-              <span>Register Now</span>
+              <span>REGISTER NOW</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </a>
 
@@ -135,9 +135,9 @@ export default function Navbar() {
               <a
                 href="#register"
                 onClick={() => setMobileMenuOpen(false)}
-                className="btn-volt text-center text-sm uppercase tracking-wider py-3.5"
+                className="btn-volt text-center text-sm uppercase tracking-wider py-3.5 rounded-[4px] font-extrabold hover:scale-105 transition-all duration-300"
               >
-                Reserve Your Bib
+                REGISTER NOW
               </a>
               <p className="text-center text-xs text-stone mt-2">
                 Athlete Secretariat: {MARATHON_META.contact.phone}

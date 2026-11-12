@@ -164,8 +164,9 @@ body {
   font-family: var(--font-body);
   font-size: 13.5px;
   font-weight: 800;
-  letter-spacing: 0.05em;
-  border-radius: 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 4px !important;
   padding: 12px 28px;
   display: inline-flex;
   align-items: center;
@@ -197,13 +198,13 @@ body {
 
 .btn-champagne:hover, .btn-volt:hover {
   background: linear-gradient(135deg, #E5FF66 0%, #D4FF1A 50%, #CCFF00 100%);
-  transform: translateY(-2px) scale(1.035);
-  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.7), 0 0 35px 3px rgba(204, 255, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px) scale(1.04) !important;
+  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.75), 0 0 35px 4px rgba(204, 255, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.65) !important;
 }
 
 .btn-champagne:active, .btn-volt:active {
-  transform: translateY(0px) scale(0.98);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 18px rgba(204, 255, 0, 0.35);
+  transform: translateY(0px) scale(0.98) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 18px rgba(204, 255, 0, 0.35) !important;
 }
 
 /* Secondary Blaze Orange Button - Sharp 4px Rectangle & Inviting Glow */
@@ -213,8 +214,9 @@ body {
   font-family: var(--font-body);
   font-size: 13.5px;
   font-weight: 800;
-  letter-spacing: 0.05em;
-  border-radius: 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 4px !important;
   padding: 12px 28px;
   display: inline-flex;
   align-items: center;
@@ -231,13 +233,13 @@ body {
 
 .btn-blaze:hover {
   background: linear-gradient(135deg, #FF8A65 0%, #FF6B3D 50%, #FF5722 100%);
-  transform: translateY(-2px) scale(1.035);
-  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.7), 0 0 35px 3px rgba(255, 87, 34, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px) scale(1.04) !important;
+  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.75), 0 0 35px 4px rgba(255, 87, 34, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.45) !important;
 }
 
 .btn-blaze:active {
-  transform: translateY(0px) scale(0.98);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 18px rgba(255, 87, 34, 0.35);
+  transform: translateY(0px) scale(0.98) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 18px rgba(255, 87, 34, 0.35) !important;
 }
 
 /* Ghost / Technical Outline Button - Sharp 4px Rectangle & Inviting Glow */
@@ -247,8 +249,9 @@ body {
   color: var(--ivory);
   font-family: var(--font-body);
   font-size: 13.5px;
-  font-weight: 600;
-  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-radius: 4px !important;
   padding: 11px 24px;
   display: inline-flex;
   align-items: center;
@@ -265,13 +268,13 @@ body {
   border-color: rgba(204, 255, 0, 0.5);
   color: #ffffff;
   background: rgba(204, 255, 0, 0.12);
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.7), 0 0 25px rgba(204, 255, 0, 0.3);
+  transform: translateY(-2px) scale(1.035) !important;
+  box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.7), 0 0 28px rgba(204, 255, 0, 0.35) !important;
 }
 
 .btn-ghost-luxury:active {
-  transform: translateY(0px) scale(0.98);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transform: translateY(0px) scale(0.98) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
 }
 
 .photo-grade {

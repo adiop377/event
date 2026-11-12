@@ -196,11 +196,11 @@ export default function PaceCalculator() {
 
                   <a
                     href="#register"
-                    className="btn-volt text-xs uppercase tracking-wider py-3 px-6 whitespace-nowrap"
-                >
-                  <span>Train For This</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                </a>
+                    className="btn-volt text-xs uppercase tracking-wider py-3 px-6 whitespace-nowrap rounded-[4px] font-extrabold hover:scale-105 transition-all duration-300"
+                  >
+                    <span>REGISTER NOW</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                  </a>
               </div>
             </div>
           </div>

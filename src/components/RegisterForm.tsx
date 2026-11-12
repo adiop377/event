@@ -517,7 +517,7 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                     <button
                       type="button"
                       onClick={handleNext}
-                      className="btn-volt text-xs uppercase tracking-wider py-4 px-9 font-extrabold"
+                      className="btn-volt text-xs uppercase tracking-wider py-4 px-9 font-extrabold rounded-[4px] hover:scale-105 transition-all duration-300"
                     >
                       <span>Proceed to Category &amp; Bib Design</span>
                       <ArrowRight className="w-4 h-4 ml-1" />
@@ -769,12 +769,12 @@ export default function RegisterForm({ initialCategory }: RegisterFormProps) {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="btn-volt text-xs uppercase tracking-wider py-4 px-9 disabled:opacity-50 font-extrabold"
+                      className="btn-volt text-xs uppercase tracking-wider py-4 px-9 disabled:opacity-50 font-extrabold rounded-[4px] hover:scale-105 transition-all duration-300"
                     >
                       {loading ? (
                         <span>Processing Bib Issuance...</span>
                       ) : (
-                        <span>Complete Registration ({selectedCat.price})</span>
+                        <span>REGISTER NOW ({selectedCat.price})</span>
                       )}
                     </button>
                   </div>

@@ -272,9 +272,9 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                 <a
                   href="#register"
                   onClick={() => onSelectCategory && onSelectCategory(cat)}
-                  className={`w-full py-3.5 rounded text-xs uppercase font-extrabold tracking-wider flex items-center justify-center gap-2 transition-all ${badgeMeta.btnClass}`}
+                  className={`w-full py-3.5 rounded-[4px] text-xs uppercase font-extrabold tracking-wider flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.04] ${badgeMeta.btnClass}`}
                 >
-                  <span>Register for {cat.distance}</span>
+                  <span>REGISTER NOW — {cat.distance}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
               </motion.div>

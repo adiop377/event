@@ -39,12 +39,12 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Headline & Info */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left">
-            {/* Top pill with glowing pulse */}
+            {/* Top pill with glowing pulse - Sharp 4px Corner */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-3 w-fit mb-6 px-4 py-2 rounded-full bg-graphite/90 border border-volt/35 backdrop-blur-xl shadow-[0_0_20px_rgba(204,255,0,0.18)]"
+              className="inline-flex items-center gap-3 w-fit mb-6 px-4 py-2 rounded-[4px] bg-graphite/90 border border-volt/35 backdrop-blur-xl shadow-[0_0_20px_rgba(204,255,0,0.18)]"
             >
               <span className="label-subtle text-[9.5px] sm:text-[10px] text-volt font-bold tracking-[0.2em] flex items-center gap-1.5">
                 <Zap className="w-3.5 h-3.5 text-volt" />
@@ -90,16 +90,16 @@ export default function Hero() {
             >
               <a
                 href="#register"
-                className="btn-volt text-xs sm:text-sm uppercase tracking-wider group !py-4 !px-9"
+                className="btn-volt text-xs sm:text-sm uppercase tracking-wider group !py-4 !px-9 rounded-[4px] font-extrabold hover:scale-105 transition-all duration-300"
               >
-                <span>Reserve your bib</span>
+                <span>REGISTER NOW</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>
 
               <button
                 type="button"
                 onClick={() => setVideoOpen(true)}
-                className="btn-ghost-luxury text-xs sm:text-sm !py-3.5 !px-7 group relative"
+                className="btn-ghost-luxury text-xs sm:text-sm !py-3.5 !px-7 group relative rounded-[4px] font-bold hover:scale-105 transition-all duration-300"
                 aria-label="Watch race preview promo video"
               >
                 <div className="w-7 h-7 rounded bg-volt/15 border border-volt/35 flex items-center justify-center text-volt group-hover:scale-110 transition-transform">
