@@ -81,7 +81,7 @@ export default function Hero() {
               Six races. Four cities. One unforgettable morning when all of Patna runs together along the sacred Ganges — presented by Pride Patna Marathon. Join 50,000+ runners on 14 Feb 2027.
             </motion.p>
 
-            {/* High-Impact CTAs */}
+            {/* High-Impact CTAs - Sharp Rectangle (4px) with Hover Scale & Glow */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -90,7 +90,7 @@ export default function Hero() {
             >
               <a
                 href="#register"
-                className="btn-volt text-xs sm:text-sm uppercase tracking-wider group !py-4 !px-9 shadow-[0_0_25px_rgba(204,255,0,0.35)]"
+                className="btn-volt text-xs sm:text-sm uppercase tracking-wider group !py-4 !px-9"
               >
                 <span>Reserve your bib</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -102,7 +102,7 @@ export default function Hero() {
                 className="btn-ghost-luxury text-xs sm:text-sm !py-3.5 !px-7 group relative"
                 aria-label="Watch race preview promo video"
               >
-                <div className="w-7 h-7 rounded-full bg-volt/15 border border-volt/35 flex items-center justify-center text-volt group-hover:scale-110 transition-transform">
+                <div className="w-7 h-7 rounded bg-volt/15 border border-volt/35 flex items-center justify-center text-volt group-hover:scale-110 transition-transform">
                   <Play className="w-3.5 h-3.5 fill-current ml-0.5 text-volt" />
                 </div>
                 <span>Watch promo</span>

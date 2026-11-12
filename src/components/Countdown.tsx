@@ -62,13 +62,13 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
       badge: "SPEED CHALLENGE",
       color: "bg-sky-400 text-black shadow-[0_0_15px_rgba(56,189,248,0.4)] font-bold",
       prize: "₹1,50,000 Winner Purse",
-      btnClass: "btn-ghost-luxury hover:bg-sky-400 hover:text-black hover:border-sky-400",
+      btnClass: "btn-ghost-luxury hover:bg-sky-400 hover:text-black hover:border-sky-400 hover:shadow-[0_10px_28px_-4px_rgba(0,0,0,0.6),0_0_28px_rgba(56,189,248,0.4)]",
     },
     "5k": {
       badge: "FITNESS & FAMILY",
       color: "bg-emerald-400 text-black shadow-[0_0_15px_rgba(52,211,153,0.4)] font-bold",
       prize: "All Finishers Medaled",
-      btnClass: "btn-ghost-luxury hover:bg-emerald-400 hover:text-black hover:border-emerald-400",
+      btnClass: "btn-ghost-luxury hover:bg-emerald-400 hover:text-black hover:border-emerald-400 hover:shadow-[0_10px_28px_-4px_rgba(0,0,0,0.6),0_0_28px_rgba(52,211,153,0.4)]",
     },
   };
 
@@ -272,7 +272,7 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                 <a
                   href="#register"
                   onClick={() => onSelectCategory && onSelectCategory(cat)}
-                  className={`w-full py-3.5 rounded-full text-xs uppercase font-extrabold tracking-wider flex items-center justify-center gap-2 transition-all ${badgeMeta.btnClass}`}
+                  className={`w-full py-3.5 rounded text-xs uppercase font-extrabold tracking-wider flex items-center justify-center gap-2 transition-all ${badgeMeta.btnClass}`}
                 >
                   <span>Register for {cat.distance}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
