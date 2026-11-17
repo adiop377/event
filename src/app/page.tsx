@@ -6,13 +6,6 @@ import Hero from "@/components/Hero";
 import MarqueeBanner from "@/components/MarqueeBanner";
 import Countdown from "@/components/Countdown";
 import WhyRun from "@/components/WhyRun";
-import PaceCalculator from "@/components/PaceCalculator";
-import CourseMap from "@/components/CourseMap";
-import Schedule from "@/components/Schedule";
-import RaceKit from "@/components/RaceKit";
-import Sponsors from "@/components/Sponsors";
-import Gallery from "@/components/Gallery";
-import FAQ from "@/components/FAQ";
 import RegisterForm from "@/components/RegisterForm";
 import Footer from "@/components/Footer";
 import { MarathonCategory } from "@/data/marathon";
@@ -35,13 +28,6 @@ export default function Home() {
       <MarqueeBanner />
       <Countdown onSelectCategory={handleSelectCategory} />
       <WhyRun />
-      <PaceCalculator />
-      <CourseMap />
-      <Schedule />
-      <RaceKit />
-      <Sponsors />
-      <Gallery />
-      <FAQ />
       <RegisterForm initialCategory={selectedCategory} />
       <Footer />
     </main>

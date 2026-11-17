@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Clock, Calendar, Check, ArrowRight, Trophy, Zap, Sparkles, Award, Flame } from "lucide-react";
 import { CATEGORIES, MARATHON_META, MarathonCategory } from "@/data/marathon";
@@ -42,94 +43,96 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
   const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
     "Patna Runs Together - Pride Patna Marathon"
   )}&dates=20270206T233000Z/20270207T063000Z&details=${encodeURIComponent(
-    "Six races. Four cities. One unforgettable morning when all of Patna runs together — presented by Pride Patna Marathon.\nReporting: 04:30 AM IST\nVenue: JP Ganga Path, Vending Zone, Patna"
+    "Three certified race categories (5KM, 10KM, 21KM). One unforgettable morning when all of Patna runs together — presented by Pride Patna Marathon.\nReporting: 04:30 AM IST\nVenue: JP Ganga Path, Vending Zone, Patna"
   )}&location=${encodeURIComponent("JP Ganga Path, Vending Zone, Patna")}`;
 
   const categoryBadges: Record<string, { badge: string; color: string; prize: string; btnClass: string }> = {
     "21k": {
-      badge: "FLAGSHIP HALF MARATHON",
-      color: "bg-volt text-black shadow-[0_0_15px_rgba(204,255,0,0.45)] font-extrabold",
-      prize: "₹3,00,000 Winner Purse",
-      btnClass: "btn-volt",
+      badge: "MOST POPULAR",
+      color: "bg-[#CCFF00] text-black shadow-sm font-black",
+      prize: "Timed Finisher Medal & Certificate",
+      btnClass: "bg-[#CCFF00] hover:bg-[#b8e600] text-black font-extrabold shadow-sm",
     },
     "10k": {
       badge: "SPEED CHALLENGE",
-      color: "bg-sky-400 text-black shadow-[0_0_15px_rgba(56,189,248,0.4)] font-bold",
-      prize: "₹1,50,000 Winner Purse",
-      btnClass: "btn-ghost-luxury hover:bg-sky-400 hover:text-black hover:border-sky-400 hover:shadow-[0_10px_28px_-4px_rgba(0,0,0,0.6),0_0_28px_rgba(56,189,248,0.4)]",
+      color: "bg-sky-500 text-white shadow-sm font-bold",
+      prize: "Timed Finisher Medal & Certificate",
+      btnClass: "bg-slate-900 hover:bg-black text-white font-extrabold shadow-sm",
     },
     "5k": {
       badge: "FITNESS & FAMILY",
-      color: "bg-emerald-400 text-black shadow-[0_0_15px_rgba(52,211,153,0.4)] font-bold",
+      color: "bg-emerald-600 text-white shadow-sm font-bold",
       prize: "All Finishers Medaled",
-      btnClass: "btn-ghost-luxury hover:bg-emerald-400 hover:text-black hover:border-emerald-400 hover:shadow-[0_10px_28px_-4px_rgba(0,0,0,0.6),0_0_28px_rgba(52,211,153,0.4)]",
+      btnClass: "bg-slate-900 hover:bg-black text-white font-extrabold shadow-sm",
     },
   };
 
   return (
-    <section id="races" className="relative w-full py-24 bg-ink border-t border-line/60">
+    <section id="races" className="relative w-full py-12 sm:py-20 lg:py-24 bg-ink border-t border-line/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Countdown Box with High-Energy Cyber Lighting & Dark Accent Glow */}
-        <div className="relative mb-20">
+        <div className="relative mb-12 sm:mb-16 lg:mb-20">
           {/* Subtle Ambient Glow Behind Main Countdown Card */}
           <div className="absolute -inset-2 bg-volt/[0.05] rounded-xl blur-3xl pointer-events-none -z-10" />
 
-          <div className="luxury-card p-6 sm:p-10 bg-gradient-to-br from-[#111827] via-[#0A0F1A] to-[#111827] border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
+          <div className="luxury-card p-4 sm:p-8 lg:p-10 bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 shadow-xl transition-colors">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
               {/* Left label */}
               <div className="text-center lg:text-left">
-                <span className="label-subtle text-volt flex items-center justify-center lg:justify-start gap-1.5 mb-2">
-                  <Zap className="w-3.5 h-3.5 text-volt" />
+                <span className="label-subtle text-emerald-600 dark:text-volt flex items-center justify-center lg:justify-start gap-1.5 mb-2 font-bold">
+                  <Zap className="w-3.5 h-3.5 text-emerald-600 dark:text-volt" />
                   OFFICIAL RACE DAY COUNTDOWN
                 </span>
-                <h2 className="font-heading text-4xl sm:text-5xl uppercase text-ivory tracking-tight">
+                <h2 className="font-heading text-4xl sm:text-5xl uppercase text-slate-900 dark:text-white tracking-tight font-black">
                   {MARATHON_META.date}
                 </h2>
-                <p className="text-stone text-xs sm:text-sm mt-1">{MARATHON_META.venue}</p>
+                <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1 font-medium">{MARATHON_META.venue}</p>
 
-                {/* Prize purse pill */}
-                <div className="inline-flex items-center gap-2 mt-4 px-3.5 py-1.5 rounded bg-blaze/15 border border-blaze/40 text-xs text-blaze font-bold font-numbers">
-                  <Flame className="w-3.5 h-3.5 text-blaze" />
-                  <span>₹25,00,000 Total Championship Prize Pool</span>
+                {/* Certified runners pill */}
+                <div className="inline-flex items-center gap-2 mt-4 px-3.5 py-1.5 rounded bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-700/50 text-xs text-emerald-700 dark:text-emerald-400 font-bold font-numbers">
+                  <Zap className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                  <span>5,000+ Registered Athletes</span>
                 </div>
               </div>
 
               {/* Countdown timer numbers - Sharp Edgy 8px athletic counters */}
-              <div className="flex flex-col items-center">
-                <div className="flex items-center gap-2 mb-3 text-stone">
-                  <Clock className="w-3.5 h-3.5 text-volt" />
-                  <span className="label-subtle text-[10px]">TIME TO FLAG-OFF</span>
+              <div className="flex flex-col items-center shrink-0">
+                <div className="flex items-center gap-2 mb-2.5 text-slate-600 dark:text-slate-400">
+                  <Clock className="w-3.5 h-3.5 text-slate-800 dark:text-volt" />
+                  <span className="label-subtle text-[9px] sm:text-[10px] text-slate-600 dark:text-slate-400 font-bold tracking-wider">
+                    TIME TO FLAG-OFF
+                  </span>
                 </div>
-                <div className="grid grid-cols-4 gap-2 sm:gap-4 text-center w-full max-w-md">
-                  <div className="bg-[#0A0F1A]/90 rounded-lg p-2 sm:p-4 border border-white/[0.08] min-w-0 sm:min-w-[96px] shadow-lg">
-                    <span className="font-numbers text-2xl xs:text-3xl sm:text-4xl lg:text-5xl text-ivory block leading-none font-extrabold">
+                <div className="grid grid-cols-4 gap-2 sm:gap-3 text-center w-full max-w-[340px] xs:max-w-[380px] sm:max-w-md">
+                  <div className="bg-slate-50 dark:bg-[#0D121C] rounded-lg px-2 py-2.5 sm:px-3.5 sm:py-3.5 border border-slate-200 dark:border-white/10 min-w-[62px] xs:min-w-[72px] sm:min-w-[80px] shadow-sm flex flex-col items-center justify-center">
+                    <span className="font-numbers text-2xl xs:text-3xl sm:text-3xl xl:text-4xl text-slate-900 dark:text-white block leading-none font-black tracking-tight whitespace-nowrap tabular-nums">
                       {String(timeLeft.days).padStart(2, "0")}
                     </span>
-                    <span className="label-subtle text-[7.5px] sm:text-[9.5px] text-stone mt-1.5 sm:mt-2 block">
+                    <span className="label-subtle text-[7px] xs:text-[8px] sm:text-[9px] text-slate-500 dark:text-slate-400 mt-1.5 block font-bold tracking-wider">
                       DAYS
                     </span>
                   </div>
-                  <div className="bg-[#0A0F1A]/90 rounded-lg p-2 sm:p-4 border border-white/[0.08] min-w-0 sm:min-w-[96px] shadow-lg">
-                    <span className="font-numbers text-2xl xs:text-3xl sm:text-4xl lg:text-5xl text-ivory block leading-none font-extrabold">
+                  <div className="bg-slate-50 dark:bg-[#0D121C] rounded-lg px-2 py-2.5 sm:px-3.5 sm:py-3.5 border border-slate-200 dark:border-white/10 min-w-[62px] xs:min-w-[72px] sm:min-w-[80px] shadow-sm flex flex-col items-center justify-center">
+                    <span className="font-numbers text-2xl xs:text-3xl sm:text-3xl xl:text-4xl text-slate-900 dark:text-white block leading-none font-black tracking-tight whitespace-nowrap tabular-nums">
                       {String(timeLeft.hours).padStart(2, "0")}
                     </span>
-                    <span className="label-subtle text-[7.5px] sm:text-[9.5px] text-stone mt-1.5 sm:mt-2 block">
+                    <span className="label-subtle text-[7px] xs:text-[8px] sm:text-[9px] text-slate-500 dark:text-slate-400 mt-1.5 block font-bold tracking-wider">
                       HOURS
                     </span>
                   </div>
-                  <div className="bg-[#0A0F1A]/90 rounded-lg p-2 sm:p-4 border border-white/[0.08] min-w-0 sm:min-w-[96px] shadow-lg">
-                    <span className="font-numbers text-2xl xs:text-3xl sm:text-4xl lg:text-5xl text-ivory block leading-none font-extrabold">
+                  <div className="bg-slate-50 dark:bg-[#0D121C] rounded-lg px-2 py-2.5 sm:px-3.5 sm:py-3.5 border border-slate-200 dark:border-white/10 min-w-[62px] xs:min-w-[72px] sm:min-w-[80px] shadow-sm flex flex-col items-center justify-center">
+                    <span className="font-numbers text-2xl xs:text-3xl sm:text-3xl xl:text-4xl text-slate-900 dark:text-white block leading-none font-black tracking-tight whitespace-nowrap tabular-nums">
                       {String(timeLeft.minutes).padStart(2, "0")}
                     </span>
-                    <span className="label-subtle text-[7.5px] sm:text-[9.5px] text-stone mt-1.5 sm:mt-2 block">
+                    <span className="label-subtle text-[7px] xs:text-[8px] sm:text-[9px] text-slate-500 dark:text-slate-400 mt-1.5 block font-bold tracking-wider">
                       MINUTES
                     </span>
                   </div>
-                  <div className="bg-[#0A0F1A]/90 rounded-lg p-2 sm:p-4 border border-volt/50 min-w-0 sm:min-w-[96px] shadow-[0_0_20px_rgba(204,255,0,0.18)] bg-volt/[0.06]">
-                    <span className="font-numbers text-2xl xs:text-3xl sm:text-4xl lg:text-5xl text-volt block leading-none font-extrabold shadow-sm">
+                  <div className="bg-volt/20 dark:bg-volt/10 rounded-lg px-2 py-2.5 sm:px-3.5 sm:py-3.5 border border-volt/80 dark:border-volt/50 min-w-[62px] xs:min-w-[72px] sm:min-w-[80px] shadow-sm flex flex-col items-center justify-center">
+                    <span className="font-numbers text-2xl xs:text-3xl sm:text-3xl xl:text-4xl text-slate-900 dark:text-volt block leading-none font-black tracking-tight whitespace-nowrap tabular-nums">
                       {String(timeLeft.seconds).padStart(2, "0")}
                     </span>
-                    <span className="label-subtle text-[7.5px] sm:text-[9.5px] text-volt font-bold mt-1.5 sm:mt-2 block">
+                    <span className="label-subtle text-[7px] xs:text-[8px] sm:text-[9px] text-slate-900 dark:text-volt font-black mt-1.5 block tracking-wider">
                       SECONDS
                     </span>
                   </div>
@@ -161,10 +164,10 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
             <Trophy className="w-4 h-4 text-volt" />
             <span className="label-subtle text-volt">CHOOSE YOUR DISTANCE</span>
           </div>
-          <h2 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
+          <h2 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl uppercase tracking-tight text-ivory font-extrabold">
             THREE CERTIFIED <span className="text-volt-gradient">RACES.</span>
           </h2>
-          <p className="font-body text-stone text-base mt-4 leading-relaxed font-medium">
+          <p className="font-body text-stone text-sm sm:text-base mt-4 leading-relaxed font-medium">
             From first-time 5K sprinters to dedicated half marathon athletes, test your limits on Patna’s fastest AIMS-certified flat asphalt.
           </p>
         </div>
@@ -186,11 +189,11 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="relative group flex flex-col justify-between rounded-lg p-6 sm:p-7 bg-gradient-to-b from-[#111A2B]/85 to-[#0A0F1A]/95 border border-white/[0.08] hover:border-white/[0.18] transition-all duration-300 shadow-xl"
+                className="relative group flex flex-col justify-between rounded-lg p-6 sm:p-7 bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-volt/50 transition-all duration-300 shadow-md hover:shadow-xl"
               >
                 {/* Subtle blurred dark glow behind card for atmospheric sports depth */}
                 <div
-                  className={`absolute -inset-1 rounded-lg blur-2xl opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none -z-10 ${
+                  className={`absolute -inset-1 rounded-lg blur-2xl opacity-10 group-hover:opacity-25 transition-opacity pointer-events-none -z-10 ${
                     cat.code === "21k"
                       ? "bg-volt/45"
                       : cat.code === "10k"
@@ -201,7 +204,7 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
 
                 {/* Floating Top Badge - Sharp 4px athletic cut */}
                 <div
-                  className={`absolute -top-3 left-6 text-[9.5px] font-bold uppercase tracking-widest px-3 py-0.5 rounded ${badgeMeta.color}`}
+                  className={`absolute -top-3 left-6 text-[9.5px] font-bold uppercase tracking-widest px-3 py-0.5 rounded shadow-sm ${badgeMeta.color}`}
                 >
                   {badgeMeta.badge}
                 </div>
@@ -209,65 +212,84 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                 <div>
                   <div className="flex items-start justify-between mb-4 mt-2">
                     <div>
-                      <span className="font-numbers text-3xl font-extrabold block text-volt">
+                      <span className="font-numbers text-3xl font-black block text-slate-900 dark:text-white">
                         {cat.distance}
                       </span>
-                      <h3 className="font-heading text-2xl uppercase text-ivory mt-1">
+                      <h3 className="font-heading text-2xl uppercase text-slate-900 dark:text-white mt-1 font-black">
                         {cat.name}
                       </h3>
                     </div>
-                    <span className="label-subtle text-[9px] bg-ink/90 px-2.5 py-1 rounded border border-white/[0.08] text-stone">
+                    <span className="label-subtle text-[9px] bg-slate-100 dark:bg-white/10 px-2.5 py-1 rounded border border-slate-200 dark:border-white/15 text-slate-600 dark:text-slate-300 font-bold">
                       {cat.tagline}
                     </span>
                   </div>
 
                   {/* Pricing & Purse */}
-                  <div className="my-4 pt-4 border-t border-white/[0.07]">
+                  <div className="my-4 pt-4 border-t border-slate-100 dark:border-white/10">
                     <div className="flex items-baseline justify-between">
-                      <span className="font-numbers text-3xl sm:text-4xl font-extrabold text-ivory">
+                      <span className="font-numbers text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">
                         {cat.price}
                       </span>
-                      <span className="text-[11px] font-bold flex items-center gap-1 text-volt">
-                        <Award className="w-3.5 h-3.5" />
+                      <span className="text-[11px] font-bold flex items-center gap-1 text-emerald-700 dark:text-volt">
+                        <Award className="w-3.5 h-3.5 text-emerald-600 dark:text-volt" />
                         {badgeMeta.prize}
                       </span>
                     </div>
-                    <span className="text-[11px] text-stone mt-1 block">
+                    <span className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 block font-medium">
                       Start {cat.startTime} • Strict Cutoff {cat.cutoffTime}
                     </span>
                   </div>
 
-                  <p className="text-xs text-stone/90 leading-relaxed mb-6 font-body">
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-6 font-body font-medium">
                     {cat.description}
                   </p>
 
                   <div className="space-y-2.5 mb-6">
-                    <span className="label-subtle text-[9px] text-stone block mb-2">
+                    <span className="label-subtle text-[9px] text-slate-500 dark:text-slate-400 block mb-2 font-bold">
                       ATHLETE INCLUSIONS:
                     </span>
                     {cat.inclusions.map((inc) => (
                       <div
                         key={inc}
-                        className="flex items-center gap-2 text-xs text-ivory/85"
+                        className="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300 font-medium"
                       >
-                        <Check className="w-3.5 h-3.5 text-volt shrink-0" />
+                        <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-volt shrink-0" />
                         <span>{inc}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <a
-                  href="#register"
-                  onClick={() => onSelectCategory && onSelectCategory(cat)}
-                  className={`w-full py-3.5 rounded-[4px] text-xs uppercase font-extrabold tracking-wider flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.04] ${badgeMeta.btnClass}`}
-                >
-                  <span>REGISTER NOW — {cat.distance}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </a>
+                <div className="flex flex-col gap-2 mt-auto">
+                  <a
+                    href="#register"
+                    onClick={() => onSelectCategory && onSelectCategory(cat)}
+                    className={`w-full py-3 rounded-[4px] text-xs uppercase font-extrabold tracking-wider flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.02] ${badgeMeta.btnClass}`}
+                  >
+                    <span>REGISTER NOW — {cat.distance}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                  <Link
+                    href={`/races?cat=${cat.code}`}
+                    className="text-center text-[11px] font-heading uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-volt py-1 font-bold transition-colors"
+                  >
+                    View {cat.distance} Route &amp; Kit Details →
+                  </Link>
+                </div>
               </motion.div>
             );
           })}
+        </div>
+
+        {/* View All Races Architecture */}
+        <div className="mt-8 sm:mt-10 text-center">
+          <Link
+            href="/races"
+            className="inline-flex items-center gap-2 text-xs font-heading uppercase tracking-wider text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-volt font-bold py-2.5 px-5 rounded bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-volt/50 transition-all shadow-sm"
+          >
+            <span>EXPLORE FULL RACE ARCHITECTURE &amp; PACER LAB</span>
+            <ArrowRight className="w-3.5 h-3.5 text-emerald-600 dark:text-volt" />
+          </Link>
         </div>
       </div>
     </section>

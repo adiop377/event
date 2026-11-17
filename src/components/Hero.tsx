@@ -28,7 +28,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[92vh] w-full flex items-center justify-center pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-ink"
+      className="relative min-h-[90vh] w-full flex items-center justify-center pt-20 pb-10 sm:pt-28 sm:pb-16 md:pt-36 md:pb-24 overflow-hidden bg-ink"
     >
       {/* High-Energy Cyber-Athletic Ambient Lights */}
       <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-volt/[0.07] rounded-full blur-[170px] pointer-events-none" />
@@ -36,7 +36,7 @@ export default function Hero() {
       <div className="absolute top-10 right-1/4 w-[350px] h-[350px] bg-sky-500/[0.05] rounded-full blur-[130px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
           {/* Left Column: Headline & Info */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left">
             {/* Top pill with glowing pulse - Sharp 4px Corner */}
@@ -44,15 +44,15 @@ export default function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-3 w-fit mb-6 px-4 py-2 rounded-[4px] bg-graphite/90 border border-volt/35 backdrop-blur-xl shadow-[0_0_20px_rgba(204,255,0,0.18)]"
+              className="inline-flex items-center gap-2 sm:gap-3 w-fit mb-4 sm:mb-6 px-3 py-1.5 sm:px-4 sm:py-2 rounded-[4px] bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/15 shadow-sm"
             >
-              <span className="label-subtle text-[9.5px] sm:text-[10px] text-volt font-bold tracking-[0.2em] flex items-center gap-1.5">
-                <Zap className="w-3.5 h-3.5 text-volt" />
+              <span className="label-subtle text-[8px] xs:text-[9.5px] sm:text-[10px] text-slate-800 dark:text-slate-200 font-extrabold tracking-[0.14em] sm:tracking-[0.2em] flex items-center gap-1 sm:gap-1.5 whitespace-nowrap">
+                <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blaze" />
                 PRIDE PATNA MARATHON 2027
               </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-stone/40" />
-              <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-blaze tracking-wider uppercase">
-                <Flame className="w-3 h-3 text-blaze animate-pulse" />
+              <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-slate-300 dark:bg-white/20 shrink-0" />
+              <span className="inline-flex items-center gap-1 sm:gap-1.5 text-[8.5px] xs:text-[10px] font-bold text-blaze tracking-wider uppercase whitespace-nowrap">
+                <Flame className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-blaze animate-pulse" />
                 REGISTRATIONS LIVE
               </span>
             </motion.div>
@@ -62,11 +62,11 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-heading text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[9.5rem] 2xl:text-[10.5rem] uppercase tracking-tight text-ivory leading-[0.88] font-black"
+              className="font-heading text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl uppercase tracking-tight text-ivory leading-[1.0] sm:leading-[0.92] font-extrabold"
             >
               EVERY MILE
               <br />
-              <span className="text-volt-gradient drop-shadow-[0_0_35px_rgba(204,255,0,0.35)]">
+              <span className="text-volt-gradient drop-shadow-[0_0_20px_rgba(204,255,0,0.22)]">
                 MATTERS.
               </span>
             </motion.h1>
@@ -76,34 +76,34 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="font-body text-stone text-base sm:text-lg md:text-xl max-w-xl mt-6 leading-relaxed"
+              className="font-body text-stone text-xs sm:text-base md:text-lg max-w-xl mt-3 sm:mt-5 leading-relaxed text-stone/90"
             >
-              Six races. Four cities. One unforgettable morning when all of Patna runs together along the sacred Ganges — presented by Pride Patna Marathon. Join 50,000+ runners on 7 Feb 2027.
+              Three certified race categories (5KM, 10KM, 21KM). One unforgettable morning when all of Patna runs together along the sacred Ganges — presented by Pride Patna Marathon. Join 5,000+ runners on 7 Feb 2027.
             </motion.p>
 
-            {/* High-Impact CTAs - Sharp Rectangle (4px) with Hover Scale & Glow */}
+            {/* High-Impact CTAs - Side-by-side on mobile, elegant & compact */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-4 mt-8"
+              className="flex flex-row items-center gap-2.5 sm:gap-4 mt-5 sm:mt-8 w-full sm:w-auto"
             >
               <a
                 href="#register"
-                className="btn-volt text-xs sm:text-sm uppercase tracking-wider group !py-4 !px-9 rounded-[4px] font-extrabold hover:scale-105 transition-all duration-300"
+                className="btn-volt text-xs sm:text-sm uppercase tracking-wider group !py-3 !px-4 sm:!py-4 sm:!px-9 rounded-[4px] font-extrabold hover:scale-105 transition-all duration-300 flex-1 sm:flex-initial text-center justify-center whitespace-nowrap shadow-md"
               >
                 <span>REGISTER NOW</span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-1" />
               </a>
 
               <button
                 type="button"
                 onClick={() => setVideoOpen(true)}
-                className="btn-ghost-luxury text-xs sm:text-sm !py-3.5 !px-7 group relative rounded-[4px] font-bold hover:scale-105 transition-all duration-300"
+                className="btn-ghost-luxury text-xs sm:text-sm !py-2.5 !px-3 sm:!py-3.5 sm:!px-7 group relative rounded-[4px] font-bold hover:scale-105 transition-all duration-300 flex-1 sm:flex-initial text-center justify-center whitespace-nowrap"
                 aria-label="Watch race preview promo video"
               >
-                <div className="w-7 h-7 rounded bg-volt/15 border border-volt/35 flex items-center justify-center text-volt group-hover:scale-110 transition-transform">
-                  <Play className="w-3.5 h-3.5 fill-current ml-0.5 text-volt" />
+                <div className="w-5 h-5 sm:w-7 sm:h-7 rounded bg-volt/15 border border-volt/35 flex items-center justify-center text-volt group-hover:scale-110 transition-transform shrink-0">
+                  <Play className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 fill-current ml-0.5 text-volt" />
                 </div>
                 <span>Watch promo</span>
               </button>
@@ -114,35 +114,27 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-line/80 grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center gap-4 sm:gap-8 lg:gap-10 text-xs text-stone"
+              className="mt-6 sm:mt-12 pt-4 sm:pt-8 border-t border-line/60 flex items-center flex-wrap gap-4 sm:gap-8 lg:gap-10 text-xs text-stone"
             >
               <div>
-                <p className="label-subtle mb-1 text-[9px] sm:text-[10px]">DATE</p>
-                <p className="font-numbers text-sm sm:text-lg text-ivory tracking-wide font-extrabold">
+                <p className="label-subtle mb-0.5 sm:mb-1 text-[8px] sm:text-[10px]">DATE</p>
+                <p className="font-numbers text-xs xs:text-sm sm:text-lg text-ivory tracking-wide font-extrabold">
                   {MARATHON_META.date}
                 </p>
               </div>
-              <div className="hidden sm:block w-px h-8 bg-line" />
+              <div className="w-px h-7 sm:h-8 bg-line" />
               <div>
-                <p className="label-subtle mb-1 text-[9px] sm:text-[10px]">VENUE</p>
-                <p className="font-numbers text-sm sm:text-lg text-ivory tracking-wide font-extrabold">
+                <p className="label-subtle mb-0.5 sm:mb-1 text-[8px] sm:text-[10px]">VENUE</p>
+                <p className="font-numbers text-xs xs:text-sm sm:text-lg text-ivory tracking-wide font-extrabold">
                   {MARATHON_META.venue}
                 </p>
               </div>
-              <div className="hidden sm:block w-px h-8 bg-line" />
+              <div className="w-px h-7 sm:h-8 bg-line" />
               <div>
-                <p className="label-subtle mb-1 text-[9px] sm:text-[10px]">RUNNERS</p>
-                <p className="font-numbers text-sm sm:text-lg text-volt tracking-wide font-extrabold flex items-center gap-1">
-                  <Zap className="w-3.5 h-3.5" />
+                <p className="label-subtle mb-0.5 sm:mb-1 text-[8px] sm:text-[10px]">RUNNERS</p>
+                <p className="font-numbers text-xs xs:text-sm sm:text-lg text-emerald-700 dark:text-emerald-400 tracking-wide font-extrabold flex items-center gap-1">
+                  <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   {MARATHON_META.stats.runnersCount}
-                </p>
-              </div>
-              <div className="hidden sm:block w-px h-8 bg-line" />
-              <div>
-                <p className="label-subtle mb-1 text-[9px] sm:text-[10px]">PRIZE POOL</p>
-                <p className="font-numbers text-sm sm:text-lg text-blaze tracking-wide font-extrabold flex items-center gap-1">
-                  <Trophy className="w-3.5 h-3.5" />
-                  ₹25,00,000
                 </p>
               </div>
             </motion.div>
@@ -153,7 +145,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-5 relative flex items-center justify-center lg:justify-end"
+            className="lg:col-span-5 relative flex items-center justify-center lg:justify-end mt-6 sm:mt-10 lg:mt-0"
           >
             {/* Glowing Dual Electric Track Ribbon SVG */}
             <svg
@@ -186,7 +178,7 @@ export default function Hero() {
             </svg>
 
             {/* Hero Athlete Image Card with Sharp Athletic Edges & Ambient Accent Glow */}
-            <div className="relative w-full max-w-md lg:max-w-none">
+            <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-none mx-auto">
               {/* Subtle ambient dark glow behind athlete card */}
               <div className="absolute -inset-2 bg-gradient-to-tr from-volt/25 via-blaze/20 to-transparent rounded-xl blur-3xl opacity-60 pointer-events-none -z-10" />
 
@@ -199,30 +191,29 @@ export default function Hero() {
                   unoptimized
                   className="object-cover object-center photo-grade transition-transform duration-700 group-hover:scale-105"
                 />
-                {/* Seamless bottom-to-top fade-to-black gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#090D14] via-[#090D14]/80 via-45% to-transparent pointer-events-none" />
-                <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#090D14] to-transparent pointer-events-none" />
-                <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#090D14]/40 to-transparent pointer-events-none" />
+                {/* Subtle gradient overlays so pure text pops cleanly */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
+                <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
 
-                {/* Floating Top Badge - Sharp 4px cut */}
-                <div className="absolute top-5 left-5 z-20 bg-graphite/95 backdrop-blur-md px-3 py-1 rounded border border-white/10 text-xs font-bold text-ivory flex items-center gap-2 shadow-lg">
-                  <ShieldCheck className="w-3.5 h-3.5 text-volt" />
-                  <span>AFI &amp; AIMS Certified Fast Track</span>
+                {/* Floating Top Badge - Clean text without background box */}
+                <div className="absolute top-4 left-4 sm:top-5 sm:left-5 z-20 text-[10px] sm:text-xs font-semibold text-white/90 flex items-center gap-1.5 sm:gap-2 drop-shadow-md">
+                  <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-volt" />
+                  <span className="tracking-wide">AFI &amp; AIMS Certified Fast Track</span>
                 </div>
 
-                {/* Floating Bottom Quote & Landmark Tag - Sharp 6px cuts */}
-                <div className="absolute bottom-6 left-6 right-6 z-20 flex items-center justify-between">
-                  <div className="bg-graphite/95 backdrop-blur-md px-3.5 py-2 rounded-md border border-white/10 shadow-lg">
-                    <span className="label-subtle text-[8.5px] text-stone block">EVENT MOTTO</span>
-                    <span className="font-heading text-sm sm:text-base text-blaze font-black tracking-wider uppercase">
+                {/* Floating Bottom Quote & Landmark Tag - Clean text without background box */}
+                <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 z-20 flex items-end justify-between gap-3 sm:gap-4">
+                  <div className="drop-shadow-md">
+                    <span className="label-subtle text-[7.5px] sm:text-[8.5px] text-white/75 block font-bold tracking-wider">EVENT MOTTO</span>
+                    <span className="font-heading text-sm sm:text-lg text-blaze font-bold tracking-wider uppercase">
                       “{MARATHON_META.event}”
                     </span>
                   </div>
 
-                  <div className="bg-graphite/95 backdrop-blur-md px-3 py-1.5 rounded-md border border-white/10 text-right">
-                    <span className="label-subtle text-[8.5px] text-stone block">CORRIDOR</span>
-                    <span className="font-numbers text-xs text-ivory font-bold flex items-center gap-1">
-                      <MapPin className="w-3 h-3 text-volt" />
+                  <div className="text-right drop-shadow-md">
+                    <span className="label-subtle text-[7.5px] sm:text-[8.5px] text-white/75 block font-bold tracking-wider">CORRIDOR</span>
+                    <span className="font-numbers text-[11px] sm:text-sm text-white font-bold flex items-center justify-end gap-1">
+                      <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-volt" />
                       Ganga Waterfront
                     </span>
                   </div>
@@ -268,47 +259,47 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setVideoOpen(false)}
-              className="absolute inset-0 bg-ink/90 backdrop-blur-md"
+              className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
             />
             <motion.div
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.92, opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-4xl bg-graphite rounded-lg border border-white/10 overflow-hidden shadow-2xl z-10 p-2 sm:p-4"
+              className="relative w-full max-w-4xl bg-white dark:bg-[#111827] rounded-lg border border-slate-200 dark:border-white/10 overflow-hidden shadow-2xl z-10 p-2 sm:p-4"
             >
-              <div className="flex items-center justify-between pb-3 px-2 border-b border-line mb-3">
-                <span className="font-heading text-base tracking-wider uppercase text-ivory">
+              <div className="flex items-center justify-between pb-3 px-2 border-b border-slate-200 dark:border-white/10 mb-3">
+                <span className="font-heading text-base tracking-wider uppercase text-slate-900 dark:text-white font-bold">
                   {MARATHON_META.event} • Official Preview
                 </span>
                 <button
                   type="button"
                   onClick={() => setVideoOpen(false)}
-                  className="p-1.5 rounded-md text-stone hover:text-ivory hover:bg-ink transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt"
+                  className="p-1.5 rounded-md text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt"
                   aria-label="Close modal"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
-              <div className="relative aspect-video w-full rounded-md overflow-hidden bg-ink/95 border border-white/10 flex flex-col items-center justify-center text-center p-6 sm:p-10">
+              <div className="relative aspect-video w-full rounded-md overflow-hidden bg-slate-50 dark:bg-[#070A0F] border border-slate-200 dark:border-white/10 flex flex-col items-center justify-center text-center p-6 sm:p-10">
                 {/* Background ambient lighting */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-volt/15 via-ink to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-volt/25 via-slate-50 dark:via-[#070A0F] to-transparent pointer-events-none" />
 
                 <div className="relative z-10 max-w-md mx-auto space-y-4">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-full bg-volt/10 border border-volt/30 flex items-center justify-center text-volt shadow-[0_0_30px_rgba(200,255,0,0.25)]">
-                    <Film className="w-7 h-7 text-volt" />
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-full bg-volt/20 border border-volt/60 flex items-center justify-center text-slate-900 dark:text-volt shadow-md">
+                    <Film className="w-7 h-7 text-slate-900 dark:text-volt" />
                   </div>
 
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-volt/10 border border-volt/30 text-[10px] sm:text-xs font-mono uppercase tracking-wider text-volt font-bold">
-                    <span className="w-2 h-2 rounded-full bg-volt animate-ping" />
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-volt/30 border border-volt/60 text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-900 dark:text-volt font-bold">
+                    <span className="w-2 h-2 rounded-full bg-slate-900 dark:bg-volt animate-ping" />
                     Official Teaser Releasing Soon
                   </div>
 
-                  <h3 className="font-heading text-lg sm:text-2xl text-ivory tracking-wide uppercase">
+                  <h3 className="font-heading text-lg sm:text-2xl text-slate-900 dark:text-white tracking-wide uppercase font-black">
                     Patna Runs Together
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-stone leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
                     The official cinematic race promo for the 7 Feb 2027 edition at {MARATHON_META.venue} is currently in final production and will premiere shortly.
                   </p>
 
@@ -316,14 +307,14 @@ export default function Hero() {
                     <a
                       href="#routes"
                       onClick={() => setVideoOpen(false)}
-                      className="btn-volt !py-2.5 !px-5 text-xs font-bold rounded"
+                      className="btn-volt !py-2.5 !px-5 text-xs font-bold rounded shadow-sm"
                     >
                       EXPLORE RACE ROUTES
                     </a>
                     <button
                       type="button"
                       onClick={() => setVideoOpen(false)}
-                      className="px-4 py-2 text-xs font-semibold text-stone hover:text-ivory transition-colors"
+                      className="px-4 py-2 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
                     >
                       Close
                     </button>

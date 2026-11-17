@@ -82,9 +82,9 @@ export const MARATHON_META = {
   venue: "JP Ganga Path, Vending Zone",
   tagline: "Every mile matters.",
   description:
-    "Six races. Four cities. One unforgettable morning when all of Patna runs together — presented by Pride Patna Marathon. Join 50,000+ runners at JP Ganga Path, Vending Zone on 7 Feb 2027. Every mile matters.",
+    "Three certified race categories (5KM, 10KM, 21KM). One unforgettable morning when all of Patna runs together — presented by Pride Patna Marathon. Join 5,000+ runners at JP Ganga Path, Vending Zone on 7 Feb 2027. Every mile matters.",
   stats: {
-    runnersCount: "50,000+",
+    runnersCount: "5,000+",
     racesCount: "3 certified races",
     treesPledged: "15,000",
     edition: "2027",
@@ -105,13 +105,13 @@ export const MARATHON_META = {
 };
 
 export const NAV_LINKS = [
-  { label: "Home", href: "#hero" },
-  { label: "About", href: "#about" },
-  { label: "Races", href: "#races" },
-  { label: "Route", href: "#route" },
-  { label: "Schedule", href: "#schedule" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Races", href: "/races" },
+  { label: "Route", href: "/route" },
+  { label: "Schedule", href: "/schedule" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const CATEGORIES: MarathonCategory[] = [
@@ -137,7 +137,7 @@ export const CATEGORIES: MarathonCategory[] = [
       "Digital Certificate",
     ],
     routeHighlights: [
-      "Gandhi Maidan West",
+      "JP Ganga Path Promenade",
       "Golghar Heritage Loop",
       "Children Park Return",
     ],
@@ -164,7 +164,7 @@ export const CATEGORIES: MarathonCategory[] = [
       "Pacer Support",
     ],
     routeHighlights: [
-      "Gandhi Maidan Arena",
+      "JP Ganga Path Arena",
       "Dak Bungalow Crossing",
       "Bailey Road Flyover Loop",
       "Museum Boulevard",
@@ -173,8 +173,8 @@ export const CATEGORIES: MarathonCategory[] = [
   {
     code: "21k",
     name: "21K Half Marathon",
-    distance: "21.1 KM",
-    distanceKm: 21.1,
+    distance: "21 KM",
+    distanceKm: 21,
     tagline: "For Serious Runners",
     price: "₹1,299",
     priceNum: 1299,
@@ -192,7 +192,7 @@ export const CATEGORIES: MarathonCategory[] = [
       "Hydration Packets",
     ],
     routeHighlights: [
-      "Gandhi Maidan",
+      "JP Ganga Path Vending Zone",
       "Atal Path High-Speed",
       "JP Ganga Pathway Waterfront",
       "Digha Ghat Turn",
@@ -238,7 +238,7 @@ export const ROUTES: RouteInfo[] = [
     medicalPoints: 2,
     energyGelZones: 0,
     landmarks: [
-      "Gandhi Maidan West Gate",
+      "JP Ganga Path West Gate",
       "Golghar Heritage Roundabout",
       "Children Park Avenue",
       "Finish Arch Gate 1",
@@ -261,7 +261,7 @@ export const ROUTES: RouteInfo[] = [
     medicalPoints: 3,
     energyGelZones: 1,
     landmarks: [
-      "Gandhi Maidan",
+      "JP Ganga Path",
       "Dak Bungalow Crossing",
       "Museum Boulevard",
       "Bailey Road Flyover",
@@ -277,15 +277,15 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     code: "21k",
-    title: "21.1K Ganga Pathway Championship",
-    distance: "21.097 KM",
+    title: "21K Ganga Pathway Championship",
+    distance: "21 KM",
     elevationGain: "+32m",
     peakElevation: "62m",
     waterStations: 9,
     medicalPoints: 5,
     energyGelZones: 2,
     landmarks: [
-      "Gandhi Maidan",
+      "JP Ganga Path (Vending Zone)",
       "Atal Path Expressway",
       "JP Ganga Pathway Waterfront",
       "Digha Rail Bridge View",
@@ -297,7 +297,7 @@ export const ROUTES: RouteInfo[] = [
       { distanceKm: 9, elevationM: 61, label: "Ganga Pathway Entry" },
       { distanceKm: 13.5, elevationM: 62, label: "Digha Turnaround" },
       { distanceKm: 17.5, elevationM: 57, label: "Riverway Return" },
-      { distanceKm: 21.1, elevationM: 52, label: "Finish Arch" },
+      { distanceKm: 21, elevationM: 52, label: "Finish Arch" },
     ],
   },
 ];
@@ -312,7 +312,7 @@ export const SCHEDULE: ScheduleEvent[] = [
   },
   {
     time: "05:45 AM",
-    title: "21.1K Half Marathon Flag-off",
+    title: "21K Half Marathon Flag-off",
     category: "21K",
     location: "Main Starting Arch",
     description:
@@ -339,7 +339,7 @@ export const SCHEDULE: ScheduleEvent[] = [
     title: "Podium & Grand Felicitation Ceremony",
     location: "Main Stage Arena",
     description:
-      "Awarding cash prizes, championship trophies, and honoring veteran masters runners.",
+      "Awarding championship trophies, finisher medals, and honoring veteran masters runners.",
   },
   {
     time: "11:30 AM",
@@ -420,7 +420,7 @@ export const GALLERY: GalleryItem[] = [
   {
     id: 1,
     src: "/images/gallery-1.jpg",
-    title: "Dawn Warm-up at Gandhi Maidan",
+    title: "Dawn Warm-up at JP Ganga Path",
     category: "Atmosphere",
     aspect: "col-span-1 md:col-span-2 aspect-[16/10]",
   },
@@ -468,11 +468,11 @@ export const FAQS: FAQItem[] = [
   },
   {
     q: "Is there a minimum age criteria for registering?",
-    a: "Yes: 5K Fun Run is open to ages 8 and above. 10K requires participants to be at least 14 years old. 21.1K Half Marathon mandates a minimum age of 18 years on race day.",
+    a: "Yes: 5K Fun Run is open to ages 8 and above. 10K requires participants to be at least 14 years old. 21K Half Marathon mandates a minimum age of 18 years on race day.",
   },
   {
     q: "What is the cutoff time for the 21K Half Marathon?",
-    a: "The cutoff time for the 21.1K Half Marathon is strictly 3 hours and 30 minutes from gun start (09:15 AM). Athletes falling behind the pace wagon will be picked up by safety shuttle to ensure public road reopening.",
+    a: "The cutoff time for the 21K Half Marathon is strictly 3 hours and 30 minutes from gun start (09:15 AM). Athletes falling behind the pace wagon will be picked up by safety shuttle to ensure public road reopening.",
   },
   {
     q: "What medical provisions are available along the route?",

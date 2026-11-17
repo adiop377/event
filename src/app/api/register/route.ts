@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { addRegistration } from "@/data/registrationsStore";
+import { getEventControl } from "@/data/eventControlStore";
 
 const registrationSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
@@ -27,7 +28,23 @@ const registrationSchema = z.object({
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const eventState = getEventControl();
+    if (!eventState.registrationsOpen) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: eventState.registrationNotice || "Registrations are currently closed by the Race Director.",
+          errors: { form: eventState.registrationNotice || "Registrations are currently closed by the Race Director." },
+        },
+        { status: 403 }
+      );
+    }
+
+    const rawBody = await req.json();
+    const body = {
+      ...rawBody,
+      bibName: (rawBody.bibName || rawBody.fullName || "").trim().toUpperCase(),
+    };
     const result = registrationSchema.safeParse(body);
 
     if (!result.success) {
@@ -47,14 +64,22 @@ export async function POST(req: Request) {
     const randomSuffix = Math.floor(1000 + Math.random() * 9000);
     const bibPrefix = data.categoryCode.toUpperCase();
     const bibNumber = `PPM-${bibPrefix}-${randomSuffix}`;
-    const transactionId = `TXN-${Date.now().toString(36).toUpperCase()}-${Math.floor(
-      100 + Math.random() * 900
-    )}`;
+    const transactionId = rawBody.utrNumber
+      ? `UPI-${rawBody.utrNumber.trim().toUpperCase()}`
+      : `TXN-${Date.now().toString(36).toUpperCase()}-${Math.floor(
+          100 + Math.random() * 900
+        )}`;
 
     const corralMap: Record<string, string> = {
       "21k": "Corral A (Half Marathon)",
       "10k": "Corral B (10K Challenge)",
       "5k": "Family Corral C (5K Fun Run)",
+    };
+
+    const categoryPrices: Record<string, number> = {
+      "21k": 1299,
+      "10k": 799,
+      "5k": 499,
     };
 
     // Save into centralized registration store
@@ -73,6 +98,8 @@ export async function POST(req: Request) {
       categoryCode: data.categoryCode,
       tShirtSize: data.tShirtSize,
       corral: corralMap[data.categoryCode] || "Corral Gate 1",
+      paymentStatus: "pending",
+      amountPaid: categoryPrices[data.categoryCode] || 999,
     });
 
     const details = {
@@ -88,6 +115,8 @@ export async function POST(req: Request) {
       venue: "JP Ganga Path, Vending Zone",
       reportingTime: "04:30 AM IST",
       raceDate: "7 Feb 2027",
+      paymentStatus: "pending",
+      amountPaid: savedRecord.amountPaid,
     };
 
     return NextResponse.json({

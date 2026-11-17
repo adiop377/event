@@ -54,7 +54,7 @@ export async function POST(req: Request) {
       phone: body.phone,
       gender: body.gender || "male",
       dob: body.dob || "1995-01-01",
-      city: body.city || "Patna",
+      city: body.city || "",
       emergencyContactName: body.emergencyContactName || "Parent / Kin",
       emergencyContactPhone: body.emergencyContactPhone || body.phone,
       categoryCode: body.categoryCode,

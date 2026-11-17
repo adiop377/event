@@ -21,3 +21,6 @@ pnpm-debug.log*
 Thumbs.db
 *.tsbuildinfo
 
+# Nested backup / duplicate
+patna-project/
+

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,13 +9,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ink: "#090D14", // Deep Midnight Charcoal
-        obsidian: "#0D131F", // Dark Athletic Navy
-        graphite: "#141C2B", // Tech Panel
-        surface: "#1A2436", // Card Elevated
-        line: "rgba(255, 255, 255, 0.09)",
-        ivory: "#F8FAFC", // Crisp athletic white
-        stone: "#94A3B8", // Cool slate
+        ink: "var(--ink)",
+        obsidian: "var(--obsidian)",
+        graphite: "var(--graphite)",
+        surface: "var(--surface)",
+        line: "var(--line)",
+        ivory: "var(--ivory)",
+        stone: "var(--stone)",
         volt: {
           light: "#E5FF66",
           DEFAULT: "#CCFF00", // Signature Nike Volt Speed
@@ -37,9 +38,9 @@ module.exports = {
         ember: "#FF5722",
       },
       fontFamily: {
-        heading: ["var(--font-heading)", "'Oswald'", "'Bebas Neue'", "sans-serif"],
-        numbers: ["var(--font-heading)", "'Oswald'", "sans-serif"],
-        accent: ["var(--font-heading)", "'Oswald'", "sans-serif"],
+        heading: ["var(--font-heading)", "'Montserrat'", "'Oswald'", "sans-serif"],
+        numbers: ["var(--font-heading)", "'Montserrat'", "'Oswald'", "sans-serif"],
+        accent: ["var(--font-heading)", "'Montserrat'", "sans-serif"],
         body: ["var(--font-body)", "'Manrope'", "'Inter'", "sans-serif"],
       },
       boxShadow: {

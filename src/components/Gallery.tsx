@@ -44,35 +44,35 @@ export default function Gallery() {
   }, [activeIdx]);
 
   return (
-    <section id="gallery" className="relative w-full py-28 md:py-36 bg-ink text-ivory overflow-hidden border-t border-line/60">
+    <section id="gallery" className="relative w-full py-14 sm:py-24 md:py-36 bg-ink text-ivory overflow-hidden border-t border-line/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4 sm:gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 mb-3">
+            <div className="inline-flex items-center gap-2 mb-2 sm:mb-3">
               <Camera className="w-4 h-4 text-volt" />
               <span className="label-subtle text-volt font-bold">ARCHIVAL MEDIA GALLERY</span>
             </div>
-            <h2 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
+            <h2 className="font-heading text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl uppercase tracking-tight text-ivory font-extrabold">
               RACE DAY <span className="text-volt-gradient">MOMENTS.</span>
             </h2>
           </div>
-          <p className="font-body text-stone text-sm sm:text-base max-w-md leading-relaxed">
+          <p className="font-body text-stone text-xs sm:text-base max-w-md leading-relaxed font-medium">
             Relive the quiet dawn intensity, adrenaline at the flag-off line, and finisher arch jubilation from previous editions in Patna.
           </p>
         </div>
 
         {/* Filter Pills */}
-        <div className="flex items-center gap-2 mb-10 pb-4 border-b border-line/60 overflow-x-auto scrollbar-none sm:flex-wrap">
+        <div className="flex items-center gap-2 mb-6 sm:mb-10 pb-3 sm:pb-4 border-b border-line/60 overflow-x-auto scrollbar-none sm:flex-wrap">
           {categories.map((cat) => (
             <button
               key={cat}
               type="button"
               onClick={() => setActiveFilter(cat)}
-              className={`px-4 py-1.5 rounded-md text-xs font-heading uppercase tracking-wider font-bold transition-all ${
+              className={`px-4 py-1.5 rounded-md text-xs font-heading uppercase tracking-wider font-extrabold transition-all ${
                 activeFilter === cat
-                  ? "bg-volt text-black shadow-[0_0_15px_rgba(204,255,0,0.35)]"
-                  : "bg-[#0D1422] text-stone hover:text-ivory border border-white/10"
+                  ? "bg-[#CCFF00] text-black shadow-sm font-black"
+                  : "bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-200 hover:text-black dark:hover:text-white border border-slate-200 dark:border-white/15"
               }`}
             >
               {cat}
@@ -90,7 +90,7 @@ export default function Gallery() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.08 }}
               onClick={() => setActiveIdx(item.id - 1)}
-              className={`relative rounded-lg overflow-hidden border border-white/[0.08] cursor-pointer group bg-[#0D1422] shadow-xl hover:border-white/[0.22] transition-all ${item.aspect}`}
+              className={`relative rounded-lg overflow-hidden border border-slate-200 dark:border-white/10 cursor-pointer group bg-slate-100 dark:bg-[#111827] shadow-md hover:border-slate-300 dark:hover:border-volt/40 transition-all ${item.aspect}`}
             >
               <Image
                 src={item.src}
@@ -100,23 +100,21 @@ export default function Gallery() {
                 className="object-cover photo-grade group-hover:scale-108 transition-transform duration-700"
               />
 
-              {/* Seamless bottom-to-top fade-to-black gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#090D14] via-[#090D14]/85 via-45% to-transparent pointer-events-none transition-opacity duration-300 group-hover:via-[#090D14]/90" />
-              <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#090D14] to-transparent pointer-events-none" />
-              <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#090D14]/40 to-transparent pointer-events-none" />
+              {/* Bottom-to-top gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none transition-opacity duration-300 group-hover:from-black/90" />
 
-              {/* Hover overlay icon - Sharp 6px */}
-              <div className="absolute top-4 right-4 w-9 h-9 rounded-md bg-graphite/90 backdrop-blur-md border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 z-20">
-                <Maximize2 className="w-4 h-4 text-volt" />
+              {/* Hover overlay icon */}
+              <div className="absolute top-4 right-4 w-9 h-9 rounded-md bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 z-20 shadow-md">
+                <Maximize2 className="w-4 h-4 text-white" />
               </div>
 
               {/* Title & Category with high-contrast text pop */}
               <div className="absolute bottom-5 left-5 right-5 z-10">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/15 text-[9.5px] text-volt font-extrabold uppercase tracking-widest mb-2 shadow-md">
-                  <Zap className="w-2.5 h-2.5 text-volt" />
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/15 text-[9.5px] text-[#CCFF00] font-extrabold uppercase tracking-widest mb-2 shadow-md">
+                  <Zap className="w-2.5 h-2.5 text-[#CCFF00]" />
                   <span>{item.category}</span>
                 </div>
-                <h4 className="font-heading text-xl sm:text-2xl uppercase tracking-wide text-ivory drop-shadow-md group-hover:text-volt transition-colors font-bold">
+                <h4 className="font-heading text-xl sm:text-2xl uppercase tracking-wide text-white drop-shadow-md group-hover:text-[#CCFF00] transition-colors font-black">
                   {item.title}
                 </h4>
               </div>

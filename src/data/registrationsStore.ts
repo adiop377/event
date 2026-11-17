@@ -281,15 +281,18 @@ export function getAllRegistrations(): RunnerRegistration[] {
 }
 
 export function addRegistration(
-  data: Omit<RunnerRegistration, "id" | "registeredAt" | "paymentStatus" | "amountPaid" | "kitCollected">
+  data: Omit<RunnerRegistration, "id" | "registeredAt" | "paymentStatus" | "amountPaid" | "kitCollected"> & {
+    paymentStatus?: "confirmed" | "pending" | "refunded";
+    amountPaid?: number;
+  }
 ): RunnerRegistration {
   const store = getStore();
   const newReg: RunnerRegistration = {
     ...data,
     id: `reg-${Date.now().toString(36)}`,
     registeredAt: new Date().toISOString(),
-    paymentStatus: "confirmed",
-    amountPaid: CATEGORY_PRICES[data.categoryCode] || 999,
+    paymentStatus: data.paymentStatus || "pending",
+    amountPaid: data.amountPaid || CATEGORY_PRICES[data.categoryCode] || 999,
     kitCollected: false,
   };
   store.unshift(newReg);

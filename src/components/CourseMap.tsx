@@ -46,7 +46,7 @@ const SCHEMATIC_MAPS: Record<string, SchematicRoute> = {
     waypoints: [
       {
         id: "start",
-        name: "GANDHI MAIDAN (START / FINISH)",
+        name: "JP GANGA PATH (START / FINISH)",
         km: "0.0 KM / 5.0 KM",
         x: 220,
         y: 235,
@@ -82,7 +82,7 @@ const SCHEMATIC_MAPS: Record<string, SchematicRoute> = {
         y: 205,
         type: "return",
         elevation: "53m",
-        notes: "Direct sprint corridor back to Gandhi Maidan Gate 1",
+        notes: "Direct sprint corridor back to JP Ganga Path Finish Arch",
       },
     ],
   },
@@ -94,7 +94,7 @@ const SCHEMATIC_MAPS: Record<string, SchematicRoute> = {
     waypoints: [
       {
         id: "start",
-        name: "GANDHI MAIDAN (START / FINISH)",
+        name: "JP GANGA PATH (START / FINISH)",
         km: "0.0 KM / 10.0 KM",
         x: 200,
         y: 240,
@@ -142,8 +142,8 @@ const SCHEMATIC_MAPS: Record<string, SchematicRoute> = {
     waypoints: [
       {
         id: "start",
-        name: "GANDHI MAIDAN (START / FINISH)",
-        km: "0.0 KM / 21.1 KM",
+        name: "JP GANGA PATH (START / FINISH)",
+        km: "0.0 KM / 21 KM",
         x: 180,
         y: 245,
         type: "start",
@@ -254,22 +254,22 @@ ${activeRoute.landmarks.join(" -> ")}
   };
 
   return (
-    <section id="route" className="relative w-full py-28 md:py-36 bg-ink text-ivory overflow-hidden border-t border-line/60">
+    <section id="route" className="relative w-full py-14 sm:py-24 md:py-36 bg-ink text-ivory overflow-hidden border-t border-line/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4 sm:gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 mb-3">
+            <div className="inline-flex items-center gap-2 mb-2 sm:mb-3">
               <span className="w-6 h-[2px] bg-volt inline-block" />
               <span className="label-subtle text-volt font-bold tracking-widest text-xs">COURSE ARCHITECTURE</span>
             </div>
-            <h2 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
+            <h2 className="font-heading text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl uppercase tracking-tight text-ivory font-extrabold">
               THE PATNA <span className="text-volt-gradient">COURSE.</span>
             </h2>
           </div>
 
           {/* Route distance selector tabs */}
-          <div className="inline-flex flex-wrap p-1.5 rounded-md bg-[#0D1422] border border-white/10 self-start md:self-end shadow-lg gap-1">
+          <div className="inline-flex flex-wrap p-1.5 rounded-md bg-slate-100 dark:bg-[#182438] border border-slate-200 dark:border-white/10 self-start md:self-end shadow-sm gap-1">
             {ROUTES.map((route) => (
               <button
                 key={route.code}
@@ -280,8 +280,8 @@ ${activeRoute.landmarks.join(" -> ")}
                 }}
                 className={`px-3.5 sm:px-5 py-1.5 sm:py-2 rounded text-xs font-heading uppercase tracking-wider font-extrabold transition-all ${
                   selectedCode === route.code
-                    ? "bg-volt text-black shadow-[0_0_15px_rgba(204,255,0,0.35)]"
-                    : "text-stone hover:text-ivory"
+                    ? "bg-[#CCFF00] text-black shadow-sm font-black"
+                    : "text-slate-600 dark:text-slate-300 hover:text-black dark:hover:text-white font-bold"
                 }`}
               >
                 {route.code.toUpperCase()}
@@ -291,18 +291,18 @@ ${activeRoute.landmarks.join(" -> ")}
         </div>
 
         {/* Route Card Container */}
-        <div className="luxury-card p-4 sm:p-8 lg:p-12 bg-graphite/95 backdrop-blur-xl border-volt/20 shadow-2xl rounded-lg">
+        <div className="luxury-card p-4 sm:p-8 lg:p-12 bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 shadow-xl rounded-lg">
           {/* Top Stats Bar - 4 High-Impact Stat Columns */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 pb-8 border-b border-white/[0.08]">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 pb-8 border-b border-slate-100 dark:border-white/10">
             {/* Distance */}
             <div>
-              <span className="label-subtle text-[9px] sm:text-[10px] text-stone tracking-wider block mb-1 font-bold">
+              <span className="label-subtle text-[9px] sm:text-[10px] text-slate-500 dark:text-slate-400 tracking-wider block mb-1 font-bold">
                 DISTANCE
               </span>
-              <div className="font-numbers text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-ivory tracking-tight">
+              <div className="font-numbers text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
                 {activeRoute.distance}
               </div>
-              <p className="font-body text-xs text-stone mt-1 line-clamp-1">
+              <p className="font-body text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-1 font-medium">
                 {activeRoute.title}
               </p>
             </div>
@@ -310,12 +310,12 @@ ${activeRoute.landmarks.join(" -> ")}
             {/* Total Gain */}
             <div>
               <div className="flex items-center gap-1.5 mb-1">
-                <TrendingUp className="w-3.5 h-3.5 text-volt" />
-                <span className="label-subtle text-[9px] sm:text-[10px] text-stone tracking-wider font-bold">
+                <TrendingUp className="w-3.5 h-3.5 text-emerald-600 dark:text-volt" />
+                <span className="label-subtle text-[9px] sm:text-[10px] text-slate-500 dark:text-slate-400 tracking-wider font-bold">
                   TOTAL GAIN
                 </span>
               </div>
-              <div className="font-numbers text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-ivory tracking-tight">
+              <div className="font-numbers text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
                 {activeRoute.elevationGain}
               </div>
               <p className="font-body text-xs text-stone mt-1">
@@ -379,14 +379,14 @@ ${activeRoute.landmarks.join(" -> ")}
               </span>
 
               {/* View Mode Controls */}
-              <div className="inline-flex p-1 rounded-md bg-[#0A0F1A] border border-white/10 text-[10px] font-bold">
+              <div className="inline-flex p-1 rounded-md bg-slate-100 border border-slate-200 text-[10px] font-bold">
                 <button
                   type="button"
                   onClick={() => setViewMode("map")}
                   className={`px-3 py-1 rounded transition-colors ${
                     viewMode === "map"
-                      ? "bg-volt text-black shadow-sm"
-                      : "text-stone hover:text-white"
+                      ? "bg-[#CCFF00] text-black shadow-sm font-black"
+                      : "text-slate-600 hover:text-black"
                   }`}
                 >
                   OUTLINE MAP
@@ -396,8 +396,8 @@ ${activeRoute.landmarks.join(" -> ")}
                   onClick={() => setViewMode("elevation")}
                   className={`px-3 py-1 rounded transition-colors ${
                     viewMode === "elevation"
-                      ? "bg-volt text-black shadow-sm"
-                      : "text-stone hover:text-white"
+                      ? "bg-[#CCFF00] text-black shadow-sm font-black"
+                      : "text-slate-600 hover:text-black"
                   }`}
                 >
                   ELEVATION GRAPH
@@ -407,8 +407,8 @@ ${activeRoute.landmarks.join(" -> ")}
                   onClick={() => setViewMode("both")}
                   className={`px-3 py-1 rounded transition-colors ${
                     viewMode === "both"
-                      ? "bg-volt text-black shadow-sm"
-                      : "text-stone hover:text-white"
+                      ? "bg-[#CCFF00] text-black shadow-sm font-black"
+                      : "text-slate-600 hover:text-black"
                   }`}
                 >
                   ALL VIEWS
@@ -421,7 +421,7 @@ ${activeRoute.landmarks.join(" -> ")}
           {(viewMode === "both" || viewMode === "map") && (
             <div className="pb-4">
               {/* 2D Interactive Route Schematic Canvas */}
-              <div className="relative bg-[#070B12]/95 border border-white/[0.08] rounded-lg p-3 sm:p-6 overflow-hidden shadow-inner">
+              <div className="relative bg-slate-50 border border-slate-200 rounded-lg p-3 sm:p-6 overflow-hidden shadow-sm">
                 <div className="w-full overflow-x-auto">
                   <div className="min-w-[760px] relative">
                     <svg
@@ -564,7 +564,7 @@ ${activeRoute.landmarks.join(" -> ")}
                                   ? "#CCFF00"
                                   : "#FFFFFF"
                               }
-                              stroke="#090D14"
+                              stroke="#FFFFFF"
                               strokeWidth={isTurnaround ? "3" : "2.5"}
                               filter={
                                 isTurnaround
@@ -582,7 +582,7 @@ ${activeRoute.landmarks.join(" -> ")}
                                   x={wp.x}
                                   y={wp.y + 22}
                                   textAnchor="middle"
-                                  fill="#F8FAFC"
+                                  fill="#0F172A"
                                   fontSize="10"
                                   fontWeight="800"
                                   letterSpacing="0.06em"
@@ -594,7 +594,7 @@ ${activeRoute.landmarks.join(" -> ")}
                                   x={wp.x}
                                   y={wp.y + 35}
                                   textAnchor="middle"
-                                  fill="#CCFF00"
+                                  fill="#15803D"
                                   fontSize="9"
                                   fontWeight="800"
                                   fontFamily="var(--font-barlow)"
@@ -608,7 +608,7 @@ ${activeRoute.landmarks.join(" -> ")}
                                   x={wp.x}
                                   y={wp.y - 16}
                                   textAnchor="middle"
-                                  fill="#FF5722"
+                                  fill="#EA580C"
                                   fontSize="10.5"
                                   fontWeight="900"
                                   letterSpacing="0.08em"
@@ -620,7 +620,7 @@ ${activeRoute.landmarks.join(" -> ")}
                                   x={wp.x}
                                   y={wp.y - 4}
                                   textAnchor="middle"
-                                  fill="#CBD5E1"
+                                  fill="#475569"
                                   fontSize="8.5"
                                   fontWeight="700"
                                   fontFamily="var(--font-barlow)"
@@ -634,7 +634,7 @@ ${activeRoute.landmarks.join(" -> ")}
                                   x={wp.x}
                                   y={wp.type === "return" ? wp.y + 18 : wp.y - 12}
                                   textAnchor="middle"
-                                  fill="#E2E8F0"
+                                  fill="#1E293B"
                                   fontSize="9.5"
                                   fontWeight="700"
                                   letterSpacing="0.05em"
@@ -658,26 +658,26 @@ ${activeRoute.landmarks.join(" -> ")}
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
-                      className="mt-3 p-3 rounded-md bg-[#0A0F1A]/95 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+                      className="mt-3 p-3 rounded-md bg-slate-100 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
                     >
                       <div className="flex items-center gap-2">
                         <MapPin
                           className={`w-4 h-4 ${
                             activeWaypoint.type === "turnaround"
                               ? "text-blaze"
-                              : "text-volt"
+                              : "text-emerald-600"
                           }`}
                         />
-                        <span className="font-bold text-ivory tracking-wide">
+                        <span className="font-bold text-slate-900 tracking-wide">
                           {activeWaypoint.name}
                         </span>
-                        <span className="text-stone">({activeWaypoint.km})</span>
-                        <span className="px-2 py-0.5 rounded bg-white/[0.06] text-volt text-[10px] font-mono">
+                        <span className="text-slate-600">({activeWaypoint.km})</span>
+                        <span className="px-2 py-0.5 rounded bg-white text-slate-800 text-[10px] font-mono border border-slate-200 font-bold">
                           Elev: {activeWaypoint.elevation}
                         </span>
                       </div>
-                      <div className="text-stone font-body text-xs flex items-center gap-1.5">
-                        <Info className="w-3.5 h-3.5 text-sky-400" />
+                      <div className="text-slate-600 font-body text-xs flex items-center gap-1.5 font-medium">
+                        <Info className="w-3.5 h-3.5 text-sky-600" />
                         <span>{activeWaypoint.notes}</span>
                       </div>
                     </motion.div>
@@ -689,22 +689,22 @@ ${activeRoute.landmarks.join(" -> ")}
 
           {/* Section 2: ELEVATION PROFILE GRAPH (Directly below route map) */}
           {(viewMode === "both" || viewMode === "elevation") && (
-            <div className="pt-6 my-4 border-t border-white/[0.08]">
+            <div className="pt-6 my-4 border-t border-slate-100">
               <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
                 <div className="flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-volt" />
-                  <span className="label-subtle text-ivory text-xs font-bold tracking-wider">
+                  <TrendingUp className="w-4 h-4 text-emerald-600" />
+                  <span className="label-subtle text-slate-900 text-xs font-bold tracking-wider">
                     ELEVATION PROFILE
                   </span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="label-subtle text-[10px] text-stone">
+                  <span className="label-subtle text-[10px] text-slate-500 font-medium">
                     Sea Level Reference: ~52m AMSL • Peak: {activeRoute.peakElevation}
                   </span>
                   <button
                     type="button"
                     onClick={handleDownloadMap}
-                    className="inline-flex items-center gap-1.5 text-xs text-volt hover:underline font-semibold"
+                    className="inline-flex items-center gap-1.5 text-xs text-emerald-700 hover:underline font-bold"
                   >
                     <Download className="w-3.5 h-3.5" />
                     <span>Download Route Spec</span>
@@ -713,15 +713,15 @@ ${activeRoute.landmarks.join(" -> ")}
               </div>
 
               <div className="w-full overflow-x-auto">
-                <div className="min-w-[680px] relative bg-[#070B12]/95 rounded-lg p-5 border border-white/[0.08] shadow-inner">
+                <div className="min-w-[680px] relative bg-slate-50 rounded-lg p-5 border border-slate-200 shadow-sm">
                   <svg
                     viewBox={`0 0 ${svgWidth} ${svgHeight}`}
                     className="w-full h-44 overflow-visible"
                   >
                     <defs>
                       <linearGradient id="elevationGradVolt" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#CCFF00" stopOpacity="0.45" />
-                        <stop offset="100%" stopColor="#CCFF00" stopOpacity="0.0" />
+                        <stop offset="0%" stopColor="#10B981" stopOpacity="0.35" />
+                        <stop offset="100%" stopColor="#10B981" stopOpacity="0.0" />
                       </linearGradient>
                     </defs>
 
@@ -731,7 +731,7 @@ ${activeRoute.landmarks.join(" -> ")}
                       y1={paddingY}
                       x2={svgWidth - paddingX}
                       y2={paddingY}
-                      stroke="rgba(255,255,255,0.06)"
+                      stroke="rgba(0,0,0,0.06)"
                       strokeDasharray="4 4"
                     />
                     <line
@@ -739,7 +739,7 @@ ${activeRoute.landmarks.join(" -> ")}
                       y1={svgHeight / 2}
                       x2={svgWidth - paddingX}
                       y2={svgHeight / 2}
-                      stroke="rgba(255,255,255,0.06)"
+                      stroke="rgba(0,0,0,0.06)"
                       strokeDasharray="4 4"
                     />
                     <line
@@ -747,7 +747,7 @@ ${activeRoute.landmarks.join(" -> ")}
                       y1={svgHeight - paddingY}
                       x2={svgWidth - paddingX}
                       y2={svgHeight - paddingY}
-                      stroke="rgba(255,255,255,0.14)"
+                      stroke="rgba(0,0,0,0.12)"
                     />
 
                     {/* Shaded Area */}
@@ -757,7 +757,7 @@ ${activeRoute.landmarks.join(" -> ")}
                     <path
                       d={pathD}
                       fill="none"
-                      stroke="#CCFF00"
+                      stroke="#059669"
                       strokeWidth="3.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -772,8 +772,8 @@ ${activeRoute.landmarks.join(" -> ")}
                             cx={x}
                             cy={y}
                             r={p.label ? "6" : "3.5"}
-                            fill="#090D14"
-                            stroke={p.label ? "#FF5722" : "#CCFF00"}
+                            fill="#FFFFFF"
+                            stroke={p.label ? "#EA580C" : "#059669"}
                             strokeWidth="2.5"
                           />
                           {p.label && (
@@ -782,9 +782,9 @@ ${activeRoute.landmarks.join(" -> ")}
                                 x={x}
                                 y={y - 12}
                                 textAnchor="middle"
-                                fill="#F8FAFC"
+                                fill="#0F172A"
                                 fontSize="11"
-                                fontWeight="700"
+                                fontWeight="800"
                                 fontFamily="var(--font-inter)"
                               >
                                 {p.label} ({p.elevationM}m)
@@ -793,7 +793,7 @@ ${activeRoute.landmarks.join(" -> ")}
                                 x={x}
                                 y={svgHeight - paddingY + 18}
                                 textAnchor="middle"
-                                fill="#94A3B8"
+                                fill="#64748B"
                                 fontSize="10"
                                 fontWeight="700"
                                 fontFamily="var(--font-barlow)"
@@ -812,37 +812,37 @@ ${activeRoute.landmarks.join(" -> ")}
           )}
 
           {/* Aid Station Support Summary */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 py-4 border-y border-white/[0.08] text-xs text-stone my-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 py-4 border-y border-slate-100 text-xs text-slate-600 my-6">
             <div className="flex items-center gap-2">
-              <Droplets className="w-4 h-4 text-sky-400" />
+              <Droplets className="w-4 h-4 text-sky-500" />
               <span>Hydration Every 2.5 km</span>
             </div>
             <div className="flex items-center gap-2">
-              <HeartPulse className="w-4 h-4 text-blaze" />
+              <HeartPulse className="w-4 h-4 text-orange-600" />
               <span>Apollo ICU at Corrals</span>
             </div>
             <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-volt" />
+              <Zap className="w-4 h-4 text-emerald-600" />
               <span>Enerzal Gel Zones</span>
             </div>
             <div className="flex items-center gap-2">
-              <Music className="w-4 h-4 text-amber-400" />
+              <Music className="w-4 h-4 text-amber-500" />
               <span>Cultural Dhol Stages</span>
             </div>
           </div>
 
           {/* Landmarks / Turns */}
           <div>
-            <span className="label-subtle text-stone block mb-3 font-bold text-[10px] tracking-wider">
+            <span className="label-subtle text-slate-500 block mb-3 font-bold text-[10px] tracking-wider">
               KEY LANDMARKS &amp; CORRIDORS
             </span>
             <div className="flex flex-wrap gap-2.5">
               {activeRoute.landmarks.map((landmark, idx) => (
                 <div
                   key={landmark}
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-[#0A0F1A] border border-white/10 text-xs text-ivory font-medium shadow-sm hover:border-volt/40 transition-colors"
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-slate-100 border border-slate-200 text-xs text-slate-800 font-bold shadow-sm hover:border-slate-400 transition-colors"
                 >
-                  <span className="w-5 h-5 rounded-full bg-volt/15 text-volt text-[10px] font-numbers flex items-center justify-center font-bold">
+                  <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-numbers flex items-center justify-center font-bold">
                     {idx + 1}
                   </span>
                   <span>{landmark}</span>

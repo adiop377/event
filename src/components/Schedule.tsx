@@ -13,24 +13,24 @@ export default function Schedule() {
   };
 
   return (
-    <section id="schedule" className="relative w-full py-28 md:py-36 bg-ink text-ivory overflow-hidden border-t border-line/60">
+    <section id="schedule" className="relative w-full py-14 sm:py-24 md:py-36 bg-ink text-ivory overflow-hidden border-t border-line/60">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <Clock className="w-4 h-4 text-volt" />
-            <span className="label-subtle text-volt font-bold">RACE MORNING ITINERARY</span>
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
+          <div className="inline-flex items-center gap-2 mb-2 sm:mb-3">
+            <Clock className="w-4 h-4 text-emerald-600" />
+            <span className="label-subtle text-emerald-700 font-bold">RACE MORNING ITINERARY</span>
           </div>
-          <h2 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-ivory font-black">
-            RACE DAY <span className="text-volt-gradient">SCHEDULE.</span>
+          <h2 className="font-heading text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl uppercase tracking-tight text-slate-900 dark:text-white font-extrabold">
+            RACE DAY <span className="text-emerald-600 dark:text-volt">SCHEDULE.</span>
           </h2>
-          <p className="font-body text-stone text-sm sm:text-base mt-4 leading-relaxed">
+          <p className="font-body text-slate-600 dark:text-slate-300 text-xs sm:text-base mt-2 sm:mt-4 leading-relaxed font-medium">
             All waves depart strictly on schedule from JP Ganga Path, Vending Zone. Please arrive at least 45 minutes prior to your category flag-off for baggage deposit and corral staging.
           </p>
         </div>
 
         {/* Timeline List */}
-        <div className="relative border-l-2 border-line/70 ml-4 sm:ml-32 space-y-8">
+        <div className="relative border-l-2 border-slate-200 dark:border-white/10 ml-4 sm:ml-32 space-y-8">
           {SCHEDULE.map((event, idx) => (
             <motion.div
               key={event.time + event.title}
@@ -41,19 +41,19 @@ export default function Schedule() {
               className="relative pl-6 sm:pl-10 group"
             >
               {/* Timeline marker node */}
-              <div className="absolute -left-[9px] top-4 w-4 h-4 rounded-full bg-graphite border-2 border-volt group-hover:bg-volt transition-all" />
+              <div className="absolute -left-[9px] top-4 w-4 h-4 rounded-full bg-white dark:bg-[#070A0F] border-2 border-emerald-600 dark:border-volt group-hover:bg-emerald-600 dark:group-hover:bg-volt transition-all shadow-sm" />
 
               {/* Time pill (on desktop shows to the left of the line) */}
               <div className="sm:absolute sm:-left-32 sm:top-3.5 sm:w-24 sm:text-right">
-                <span className="font-numbers text-sm font-extrabold tracking-wider text-volt">
+                <span className="font-numbers text-sm font-black tracking-wider text-slate-900 dark:text-white">
                   {event.time}
                 </span>
               </div>
 
               {/* Event Card */}
-              <div className="luxury-card p-5 sm:p-6 bg-graphite/90 hover:border-volt/40 transition-colors">
+              <div className="luxury-card p-5 sm:p-6 bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 shadow-md hover:border-slate-300 dark:hover:border-volt/40 transition-colors">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <h3 className="font-heading text-xl sm:text-2xl uppercase tracking-wide text-ivory">
+                  <h3 className="font-heading text-xl sm:text-2xl uppercase tracking-wide text-slate-900 dark:text-white font-bold">
                     {event.title}
                   </h3>
                   {event.category && (
@@ -63,12 +63,12 @@ export default function Schedule() {
                   )}
                 </div>
 
-                <p className="font-body text-stone text-xs sm:text-sm leading-relaxed mb-3">
+                <p className="font-body text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-3 font-medium">
                   {event.description}
                 </p>
 
-                <div className="flex items-center gap-1.5 text-xs text-stone/80 font-medium">
-                  <MapPin className="w-3.5 h-3.5 text-volt" />
+                <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium">
+                  <MapPin className="w-3.5 h-3.5 text-emerald-600 dark:text-volt" />
                   <span>{event.location}</span>
                 </div>
               </div>

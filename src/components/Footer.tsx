@@ -44,190 +44,184 @@ export default function Footer() {
   }, [modalType]);
 
   return (
-    <footer id="contact" className="relative w-full bg-[#06090F] text-stone border-t border-line/70 pt-20 pb-12 overflow-hidden">
+    <footer id="contact" className="relative w-full bg-slate-100 dark:bg-[#070A0F] text-slate-600 dark:text-slate-300 border-t border-slate-200 dark:border-white/10 pt-8 sm:pt-10 pb-5 sm:pb-6 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-line/50">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 pb-6 sm:pb-8 border-b border-slate-200 dark:border-white/10">
           {/* Brand info */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
+          <div className="md:col-span-5 flex flex-col justify-between">
             <div>
-              <Link href="#hero" className="flex items-center gap-3 mb-6 group">
-                <div className="relative w-11 h-11 rounded-full overflow-hidden border border-volt/40 p-1 bg-graphite flex items-center justify-center shadow-[0_0_15px_rgba(204,255,0,0.2)]">
+              <Link href="/" className="flex items-center gap-2.5 mb-2.5 group">
+                <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-slate-300 dark:border-white/20 p-1 bg-white dark:bg-[#111827] flex items-center justify-center shadow-sm shrink-0">
                   <Image
                     src="/pride-patna-marathon-logo-cropped.png"
                     alt="Pride Patna Marathon Logo"
-                    width={40}
-                    height={40}
+                    width={36}
+                    height={36}
                     className="object-contain"
                   />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-heading text-xl tracking-wider text-ivory group-hover:text-volt transition-colors">
+                  <span className="font-heading text-base sm:text-lg tracking-wider text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-volt transition-colors font-black">
                     PRIDE PATNA MARATHON
                   </span>
-                  <span className="label-subtle text-[9px] tracking-[0.25em] text-volt font-bold">
+                  <span className="label-subtle text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-emerald-700 dark:text-volt font-extrabold">
                     7 FEB 2027 • JP GANGA PATH, VENDING ZONE
                   </span>
                 </div>
               </Link>
-              <p className="font-body text-stone text-xs sm:text-sm leading-relaxed max-w-sm mb-6">
+              <p className="font-body text-slate-600 dark:text-slate-400 text-xs leading-relaxed max-w-sm mb-3 font-medium">
                 Bihar&apos;s premier community distance-running event uniting elite marathoners, civic pioneers, and families on the banks of the Ganges.
               </p>
             </div>
 
             {/* Social Icons */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               <a
                 href={MARATHON_META.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-graphite border border-line flex items-center justify-center text-stone hover:text-volt hover:border-volt transition-colors"
+                className="w-8 h-8 rounded-full bg-white dark:bg-[#182438] border border-slate-200 dark:border-white/15 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-black dark:hover:text-white hover:border-slate-400 dark:hover:border-volt/40 transition-colors shadow-sm"
                 aria-label="Instagram"
               >
-                <Instagram className="w-4 h-4" />
+                <Instagram className="w-3.5 h-3.5" />
               </a>
               <a
                 href={MARATHON_META.socials.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-graphite border border-line flex items-center justify-center text-stone hover:text-volt hover:border-volt transition-colors"
+                className="w-8 h-8 rounded-full bg-white dark:bg-[#182438] border border-slate-200 dark:border-white/15 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-black dark:hover:text-white hover:border-slate-400 dark:hover:border-volt/40 transition-colors shadow-sm"
                 aria-label="Facebook"
               >
-                <Facebook className="w-4 h-4" />
+                <Facebook className="w-3.5 h-3.5" />
               </a>
               <a
                 href={MARATHON_META.socials.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-graphite border border-line flex items-center justify-center text-stone hover:text-volt hover:border-volt transition-colors"
+                className="w-8 h-8 rounded-full bg-white dark:bg-[#182438] border border-slate-200 dark:border-white/15 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-black dark:hover:text-white hover:border-slate-400 dark:hover:border-volt/40 transition-colors shadow-sm"
                 aria-label="Twitter"
               >
-                <Twitter className="w-4 h-4" />
+                <Twitter className="w-3.5 h-3.5" />
               </a>
               <a
                 href={MARATHON_META.socials.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-graphite border border-line flex items-center justify-center text-stone hover:text-volt hover:border-volt transition-colors"
+                className="w-8 h-8 rounded-full bg-white dark:bg-[#182438] border border-slate-200 dark:border-white/15 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-black dark:hover:text-white hover:border-slate-400 dark:hover:border-volt/40 transition-colors shadow-sm"
                 aria-label="YouTube"
               >
-                <Youtube className="w-4 h-4" />
+                <Youtube className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>
 
-          {/* Quick Navigation */}
-          <div className="lg:col-span-3">
-            <span className="label-subtle text-ivory block mb-4 font-bold">QUICK NAVIGATION</span>
-            <ul className="space-y-2 text-xs font-medium">
-              <li>
-                <a href="#hero" className="hover:text-volt transition-colors">
-                  Home Overview
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="hover:text-volt transition-colors">
-                  Why Run With Us
-                </a>
-              </li>
-              <li>
-                <a href="#races" className="hover:text-volt transition-colors">
-                  Race Distances &amp; Pricing
-                </a>
-              </li>
-              <li>
-                <a href="#route" className="hover:text-volt transition-colors">
-                  Course Map &amp; Elevation
-                </a>
-              </li>
-              <li>
-                <a href="#schedule" className="hover:text-volt transition-colors">
-                  Race Day Timeline
-                </a>
-              </li>
-              <li>
-                <a href="#kit" className="hover:text-volt transition-colors">
-                  Athlete Kit &amp; Inclusions
-                </a>
-              </li>
-              <li>
-                <a href="#gallery" className="hover:text-volt transition-colors">
-                  Archival Photo Gallery
-                </a>
-              </li>
-              <li>
-                <a href="#faq" className="hover:text-volt transition-colors">
-                  Frequently Asked Questions
-                </a>
-              </li>
-            </ul>
+          {/* Quick Navigation (2 Compact Columns) */}
+          <div className="md:col-span-3">
+            <span className="label-subtle text-slate-900 dark:text-white block mb-2 font-bold text-[10px] tracking-widest uppercase">
+              QUICK NAVIGATION
+            </span>
+            <div className="grid grid-cols-2 gap-x-2 gap-y-1.5 text-xs font-medium">
+              <Link href="/" className="hover:text-emerald-700 dark:hover:text-volt transition-colors">
+                Home
+              </Link>
+              <Link href="/about" className="hover:text-emerald-700 dark:hover:text-volt transition-colors">
+                About Us
+              </Link>
+              <Link href="/races" className="hover:text-emerald-700 dark:hover:text-volt transition-colors">
+                Race Categories
+              </Link>
+              <Link href="/route" className="hover:text-emerald-700 dark:hover:text-volt transition-colors">
+                Course Map
+              </Link>
+              <Link href="/schedule" className="hover:text-emerald-700 dark:hover:text-volt transition-colors">
+                Timeline
+              </Link>
+              <Link href="/gallery" className="hover:text-emerald-700 dark:hover:text-volt transition-colors">
+                Media Gallery
+              </Link>
+              <Link href="/contact" className="hover:text-emerald-700 dark:hover:text-volt transition-colors">
+                Contact &amp; FAQ
+              </Link>
+              <Link href="/#register" className="text-emerald-700 dark:text-volt font-bold hover:underline">
+                Register Now
+              </Link>
+            </div>
           </div>
 
           {/* Event Secretariat */}
-          <div className="lg:col-span-4">
-            <span className="label-subtle text-ivory block mb-4 font-bold">EVENT SECRETARIAT</span>
-            <div className="space-y-3 text-xs">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-volt shrink-0 mt-0.5" />
-                <span>{MARATHON_META.contact.address}</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-volt shrink-0" />
-                <a
-                  href={`mailto:${MARATHON_META.contact.email}`}
-                  className="hover:text-volt transition-colors font-medium"
-                >
-                  {MARATHON_META.contact.email}
-                </a>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-blaze shrink-0" />
-                <a
-                  href={`tel:${MARATHON_META.contact.phone.replace(/\s+/g, "")}`}
-                  className="hover:text-blaze transition-colors font-medium"
-                >
-                  {MARATHON_META.contact.phone}
-                </a>
+          <div className="md:col-span-4 flex flex-col justify-between">
+            <div>
+              <span className="label-subtle text-slate-900 dark:text-white block mb-2 font-bold text-[10px] tracking-widest uppercase">
+                EVENT SECRETARIAT
+              </span>
+              <div className="space-y-1.5 text-xs">
+                <div className="flex items-start gap-2">
+                  <MapPin className="w-3.5 h-3.5 text-volt shrink-0 mt-0.5" />
+                  <span className="truncate">{MARATHON_META.venue}, Patna</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Mail className="w-3.5 h-3.5 text-volt shrink-0" />
+                  <a
+                    href={`mailto:${MARATHON_META.contact.email}`}
+                    className="hover:text-volt transition-colors font-medium truncate"
+                  >
+                    {MARATHON_META.contact.email}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Phone className="w-3.5 h-3.5 text-blaze shrink-0" />
+                  <a
+                    href={`tel:${MARATHON_META.contact.phone.replace(/\s+/g, "")}`}
+                    className="hover:text-blaze transition-colors font-medium"
+                  >
+                    {MARATHON_META.contact.phone}
+                  </a>
+                </div>
               </div>
             </div>
 
-            {/* Emergency Hotline Box - Sharp 8px & Subtle Elevation */}
-            <div className="mt-6 p-4 rounded-lg bg-[#0A0F1A]/95 border border-blaze/35 shadow-[0_0_20px_rgba(255,87,34,0.12)]">
-              <span className="label-subtle text-[9px] text-blaze block mb-1 font-bold flex items-center gap-1">
-                <Flame className="w-3 h-3 text-blaze" />
-                RACE DAY EMERGENCY HOTLINE
+            {/* Compact Emergency Hotline Pill */}
+            <div className="mt-3 px-3 py-2 rounded-md bg-white dark:bg-[#111827] border border-orange-200 dark:border-orange-500/30 shadow-sm flex items-center justify-between">
+              <span className="label-subtle text-[9px] text-orange-600 dark:text-orange-400 font-bold flex items-center gap-1.5 uppercase tracking-wider">
+                <Flame className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400" />
+                EMERGENCY HOTLINE
               </span>
-              <span className="font-numbers text-lg font-extrabold text-ivory block">
+              <span className="font-numbers text-sm font-black text-slate-900 dark:text-white">
                 {MARATHON_META.contact.tollFree}
-              </span>
-              <span className="text-[10px] text-stone mt-0.5 block font-body">
-                Dedicated Apollo cardiac &amp; trauma dispatch desk.
               </span>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone">
+        <div className="pt-4 sm:pt-5 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs text-slate-500 dark:text-slate-400 font-medium">
           <p>© 2027 Pride Patna Marathon. All Rights Reserved.</p>
-          <div className="flex items-center gap-6 text-[11px]">
+          <div className="flex items-center gap-4 sm:gap-5 text-[11px]">
+            <Link
+              href="/admin"
+              className="text-emerald-700 dark:text-volt font-bold hover:underline inline-flex items-center gap-1"
+            >
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>Admin Portal</span>
+            </Link>
             <button
               type="button"
               onClick={() => setModalType("terms")}
-              className="hover:text-volt transition-colors underline-offset-4 hover:underline"
+              className="hover:text-slate-900 dark:hover:text-white transition-colors underline-offset-4 hover:underline"
             >
               Terms &amp; Conditions
             </button>
             <button
               type="button"
               onClick={() => setModalType("privacy")}
-              className="hover:text-volt transition-colors underline-offset-4 hover:underline"
+              className="hover:text-slate-900 dark:hover:text-white transition-colors underline-offset-4 hover:underline"
             >
               Privacy Policy
             </button>
             <button
               type="button"
               onClick={() => setModalType("rules")}
-              className="hover:text-volt transition-colors underline-offset-4 hover:underline"
+              className="hover:text-slate-900 dark:hover:text-white transition-colors underline-offset-4 hover:underline"
             >
               Race Regulations
             </button>
@@ -239,7 +233,7 @@ export default function Footer() {
       <AnimatePresence>
         {modalType && (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-ink/90 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md"
             role="dialog"
             aria-modal="true"
           >
@@ -255,7 +249,7 @@ export default function Footer() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.94, opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-2xl bg-graphite rounded-lg border border-white/10 overflow-hidden shadow-2xl z-10 p-6 sm:p-8 max-h-[85vh] flex flex-col"
+              className="relative w-full max-w-2xl bg-white dark:bg-[#111827] rounded-lg border border-slate-200 dark:border-white/10 overflow-hidden shadow-2xl z-10 p-6 sm:p-8 max-h-[85vh] flex flex-col text-slate-900 dark:text-white"
             >
               <div className="flex items-center justify-between pb-4 border-b border-line mb-4">
                 <div className="flex items-center gap-2.5">

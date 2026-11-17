@@ -13,7 +13,7 @@ export default function PaceCalculator() {
   const distances = {
     "5k": { name: "5K Fun Run", km: 5.0, defaultH: 0, defaultM: 28 },
     "10k": { name: "10K Challenge", km: 10.0, defaultH: 0, defaultM: 55 },
-    "21k": { name: "21.1K Half Marathon", km: 21.097, defaultH: 1, defaultM: 50 },
+    "21k": { name: "21K Half Marathon", km: 21.0, defaultH: 1, defaultM: 50 },
   };
 
   const handleDistanceChange = (code: "5k" | "10k" | "21k") => {
@@ -48,31 +48,26 @@ export default function PaceCalculator() {
   const pacerInfo = getPacerDetails();
 
   return (
-    <section className="relative w-full py-24 bg-[#090D14] text-ivory overflow-hidden border-t border-line/60">
-      {/* High-Tech Background Accent */}
-      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-volt/[0.05] rounded-full blur-[160px] pointer-events-none" />
-
+    <section className="relative w-full py-14 sm:py-24 bg-white dark:bg-[#070A0F] text-slate-900 dark:text-white overflow-hidden border-t border-slate-200 dark:border-white/10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <Gauge className="w-4 h-4 text-volt" />
-            <span className="label-subtle text-volt">ATHLETE PERFORMANCE LAB</span>
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
+          <div className="inline-flex items-center gap-2 mb-2 sm:mb-3">
+            <Gauge className="w-4 h-4 text-emerald-600 dark:text-volt" />
+            <span className="label-subtle text-emerald-700 dark:text-volt font-bold">ATHLETE PERFORMANCE LAB</span>
           </div>
-          <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl uppercase tracking-tight text-ivory font-black">
-            RACE PACE <span className="text-volt-gradient">CALCULATOR.</span>
+          <h2 className="font-heading text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl uppercase tracking-tight text-slate-900 dark:text-white font-extrabold">
+            RACE PACE <span className="text-emerald-600 dark:text-volt">CALCULATOR.</span>
           </h2>
-          <p className="font-body text-stone text-sm sm:text-base mt-4 leading-relaxed">
+          <p className="font-body text-slate-600 dark:text-slate-400 text-xs sm:text-base mt-2 sm:mt-4 leading-relaxed font-medium">
             Dial in your target finish time to reveal required split times and match with your official race morning pacer bus.
           </p>
         </div>
 
-        {/* Main Performance Lab Card with Sharp Corners & Ambient Glow */}
+        {/* Main Performance Lab Card */}
         <div className="relative">
-          <div className="absolute -inset-2 bg-volt/[0.05] rounded-lg blur-3xl pointer-events-none -z-10" />
-
-          <div className="luxury-card p-6 sm:p-10 lg:p-12 bg-gradient-to-br from-[#111827] via-[#0A0F1A] to-[#111827] border border-white/[0.08] shadow-2xl">
-            {/* Distance Tabs - Sharp 6px athletic tabs */}
-            <div className="flex flex-wrap items-center justify-center gap-3 mb-10 pb-8 border-b border-white/[0.08]">
+          <div className="luxury-card p-4 sm:p-10 lg:p-12 bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 shadow-xl">
+            {/* Distance Tabs */}
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-10 pb-6 sm:pb-8 border-b border-slate-100 dark:border-white/10">
               {(["5k", "10k", "21k"] as const).map((code) => (
                 <button
                   key={code}
@@ -80,8 +75,8 @@ export default function PaceCalculator() {
                   onClick={() => handleDistanceChange(code)}
                   className={`px-6 py-2.5 rounded-md text-xs font-heading uppercase tracking-wider font-extrabold transition-all ${
                     distanceCode === code
-                      ? "bg-volt text-black shadow-[0_0_20px_rgba(204,255,0,0.35)]"
-                      : "bg-[#0A0F1A] text-stone hover:text-ivory border border-white/10"
+                      ? "bg-[#CCFF00] text-black shadow-sm font-black"
+                      : "bg-slate-100 dark:bg-[#182438] text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white border border-slate-200 dark:border-white/10"
                   }`}
                 >
                   {distances[code].name}
@@ -93,21 +88,21 @@ export default function PaceCalculator() {
               {/* Left Inputs: Target Time */}
               <div className="lg:col-span-5 space-y-6">
                 <div>
-                  <span className="label-subtle block mb-2">TARGET FINISH TIME</span>
+                  <span className="label-subtle block mb-2 text-slate-700 dark:text-slate-300 font-bold">TARGET FINISH TIME</span>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="text-[11px] text-stone block mb-1">HOURS</label>
+                      <label className="text-[11px] text-slate-500 dark:text-slate-400 block mb-1 font-semibold">HOURS</label>
                       <input
                         type="number"
                         min={0}
                         max={7}
                         value={hours}
                         onChange={(e) => setHours(Math.max(0, parseInt(e.target.value) || 0))}
-                        className="w-full px-4 py-3 rounded-md bg-[#0A0F1A] border border-white/10 text-ivory font-numbers text-xl focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt"
+                        className="w-full px-4 py-3 rounded-md bg-slate-50 dark:bg-[#0D121C] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white font-numbers text-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 font-bold"
                       />
                     </div>
                     <div>
-                      <label className="text-[11px] text-stone block mb-1">MINUTES</label>
+                      <label className="text-[11px] text-slate-500 dark:text-slate-400 block mb-1 font-semibold">MINUTES</label>
                       <input
                         type="number"
                         min={0}
@@ -116,7 +111,7 @@ export default function PaceCalculator() {
                         onChange={(e) =>
                           setMinutes(Math.min(59, Math.max(0, parseInt(e.target.value) || 0)))
                         }
-                        className="w-full px-4 py-3 rounded-md bg-[#0A0F1A] border border-white/10 text-ivory font-numbers text-xl focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt"
+                        className="w-full px-4 py-3 rounded-md bg-slate-50 dark:bg-[#0D121C] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white font-numbers text-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 font-bold"
                       />
                     </div>
                   </div>
@@ -124,30 +119,30 @@ export default function PaceCalculator() {
 
                 {/* Slider representation */}
                 <div>
-                  <div className="flex justify-between text-xs text-stone mb-2">
+                  <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400 mb-2 font-medium">
                     <span>Fast Pace</span>
-                    <span className="text-volt font-numbers font-bold">
+                    <span className="text-emerald-700 dark:text-volt font-numbers font-black">
                       {hours}h {minutes}m total
                     </span>
                     <span>Relaxed Pace</span>
                   </div>
                   <input
                     type="range"
-                    min={distanceCode === "5k" ? 15 : distanceCode === "10k" ? 35 : distanceCode === "21k" ? 75 : 150}
-                    max={distanceCode === "5k" ? 60 : distanceCode === "10k" ? 110 : distanceCode === "21k" ? 210 : 360}
+                    min={distanceCode === "5k" ? 15 : distanceCode === "10k" ? 35 : 75}
+                    max={distanceCode === "5k" ? 60 : distanceCode === "10k" ? 110 : 210}
                     value={totalMinutes}
                     onChange={(e) => {
                       const val = parseInt(e.target.value);
                       setHours(Math.floor(val / 60));
                       setMinutes(val % 60);
                     }}
-                    className="w-full accent-volt cursor-pointer"
+                    className="w-full accent-emerald-600 dark:accent-volt cursor-pointer"
                   />
                 </div>
 
                 {/* Nutrition Tip */}
-                <div className="p-4 rounded-md bg-[#0A0F1A]/80 border border-white/10 flex items-center gap-3 text-xs text-stone">
-                  <Droplets className="w-5 h-5 text-sky-400 shrink-0" />
+                <div className="p-4 rounded-md bg-sky-50 dark:bg-[#0D121C] border border-sky-100 dark:border-white/10 flex items-center gap-3 text-xs text-slate-700 dark:text-slate-300 font-medium">
+                  <Droplets className="w-5 h-5 text-sky-600 shrink-0" />
                   <span>
                     Hydration Plan: Take 120ml electrolyte sip every 2.5 km at official Apollo aid stations.
                   </span>
@@ -156,48 +151,35 @@ export default function PaceCalculator() {
 
               {/* Right Display: Split Metrics */}
               <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-6 rounded-lg bg-[#0A0F1A]/95 border border-volt/30 text-center flex flex-col justify-center shadow-[0_0_25px_rgba(204,255,0,0.12)]">
-                  <span className="label-subtle text-volt block mb-1 font-bold">REQUIRED PACE</span>
-                  <span className="font-numbers text-4xl sm:text-5xl font-extrabold text-ivory">
+                <div className="p-6 rounded-lg bg-slate-50 dark:bg-[#0D121C] border border-slate-200 dark:border-white/10 text-center flex flex-col justify-center shadow-sm">
+                  <span className="label-subtle text-emerald-700 dark:text-volt block mb-1 font-bold">REQUIRED PACE</span>
+                  <span className="font-numbers text-4xl sm:text-5xl font-black text-slate-900 dark:text-white">
                     {paceMinutes}:{String(paceSeconds).padStart(2, "0")}
                   </span>
-                  <span className="text-xs text-stone mt-1">minutes per kilometer</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">minutes per kilometer</span>
                 </div>
 
-                <div className="p-6 rounded-lg bg-[#0A0F1A]/95 border border-blaze/30 text-center flex flex-col justify-center shadow-[0_0_25px_rgba(255,87,34,0.12)]">
-                  <span className="label-subtle text-blaze block mb-1 font-bold">AVERAGE SPEED</span>
-                  <span className="font-numbers text-4xl sm:text-5xl font-extrabold text-blaze">
+                <div className="p-6 rounded-lg bg-slate-50 dark:bg-[#0D121C] border border-slate-200 dark:border-white/10 text-center flex flex-col justify-center shadow-sm">
+                  <span className="label-subtle text-orange-600 dark:text-blaze block mb-1 font-bold">AVERAGE SPEED</span>
+                  <span className="font-numbers text-4xl sm:text-5xl font-black text-orange-600 dark:text-blaze">
                     {speedKmh}
                   </span>
-                  <span className="text-xs text-stone mt-1">km / hour</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">km / hour</span>
                 </div>
 
-                <div className="sm:col-span-2 relative rounded-lg overflow-hidden border border-white/[0.08] p-6 flex flex-col sm:flex-row items-center justify-between gap-4 group">
-                  {/* Atmospheric Pacer Photo with bottom-to-top fade-to-black overlay */}
-                  <div className="absolute inset-0 z-0">
-                    <Image
-                      src="/images/gallery-2.jpg"
-                      alt="Official marathon pacer corrals"
-                      fill
-                      unoptimized
-                      className="object-cover object-center opacity-30 group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1A] via-[#0A0F1A]/90 via-40% to-[#0A0F1A]/70 pointer-events-none" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#0A0F1A] via-transparent to-[#0A0F1A] pointer-events-none" />
-                  </div>
-
+                <div className="sm:col-span-2 relative rounded-lg overflow-hidden border border-slate-800 bg-slate-900 p-6 flex flex-col sm:flex-row items-center justify-between gap-4 group text-white">
                   <div className="relative z-10 flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-md bg-volt/15 border border-volt/30 flex items-center justify-center text-volt shrink-0">
+                    <div className="w-12 h-12 rounded-md bg-white/10 border border-white/20 flex items-center justify-center text-[#CCFF00] shrink-0">
                       <Flag className="w-6 h-6" />
                     </div>
                     <div>
-                      <span className="label-subtle text-[9px] text-volt block">
+                      <span className="label-subtle text-[9px] text-[#CCFF00] block font-bold">
                         RECOMMENDED PACER CORRAL
                       </span>
-                      <h4 className="font-heading text-xl text-ivory uppercase">
+                      <h4 className="font-heading text-xl text-white uppercase font-bold">
                         {pacerInfo.corral}
                       </h4>
-                      <span className="text-xs text-stone">
+                      <span className="text-xs text-slate-300">
                         Flag: {pacerInfo.flag} • Group: {pacerInfo.pacer}
                       </span>
                     </div>
@@ -205,7 +187,7 @@ export default function PaceCalculator() {
 
                   <a
                     href="#register"
-                    className="relative z-10 btn-volt text-xs uppercase tracking-wider py-3 px-6 whitespace-nowrap rounded-[4px] font-extrabold hover:scale-105 transition-all duration-300"
+                    className="relative z-10 bg-[#CCFF00] hover:bg-[#b8e600] text-black text-xs uppercase tracking-wider py-3 px-6 whitespace-nowrap rounded-[4px] font-black hover:scale-105 transition-all duration-300 shadow-md"
                   >
                     <span>REGISTER NOW</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-1" />

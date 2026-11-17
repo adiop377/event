@@ -36,6 +36,15 @@ import {
   AlertCircle,
   QrCode,
   Printer,
+  ArrowRight,
+  Radio,
+  Sliders,
+  Megaphone,
+  Calendar,
+  KeyRound,
+  Check,
+  Wallet,
+  AlertTriangle,
 } from "lucide-react";
 import { RunnerRegistration } from "@/data/registrationsStore";
 
@@ -46,6 +55,15 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; border: string
 };
 
 export default function AdminPage() {
+  // Authentication State
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authChecking, setAuthChecking] = useState(true);
+  const [loginId, setLoginId] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState<string | null>(null);
+  const [loggingIn, setLoggingIn] = useState(false);
+
   const [runners, setRunners] = useState<RunnerRegistration[]>([]);
   const [metrics, setMetrics] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -53,8 +71,60 @@ export default function AdminPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedKitFilter, setSelectedKitFilter] = useState<string>("all");
   const [activeTab, setActiveTab] = useState<
-    "overview" | "roster" | "expo" | "operations" | "settings"
-  >("roster");
+    "control" | "roster" | "overview" | "expo" | "operations"
+  >("control");
+
+  // Master Control State
+  const [eventControl, setEventControl] = useState<any>(null);
+  const [savingControl, setSavingControl] = useState(false);
+  const [controlSuccessMessage, setControlSuccessMessage] = useState<string | null>(null);
+
+  // Broadcast Alert Editor State
+  const [alertActive, setAlertActive] = useState(false);
+  const [alertType, setAlertType] = useState<"info" | "warning" | "alert">("info");
+  const [alertMessage, setAlertMessage] = useState("");
+
+  // Registration Notice State
+  const [regNotice, setRegNotice] = useState("");
+
+  // Schedule State
+  const [scheduleData, setScheduleData] = useState({
+    date: "7 Feb 2027",
+    venue: "JP Ganga Path, Vending Zone",
+    reportingTime: "04:30 AM IST",
+    flagOff21k: "05:00 AM",
+    flagOff10k: "06:00 AM",
+    flagOff5k: "07:00 AM",
+  });
+
+  // Quotas State
+  const [quotaData, setQuotaData] = useState({
+    "21k": 2000,
+    "10k": 1800,
+    "5k": 1200,
+  });
+
+  // Admin Credentials Update State
+  const [credUsername, setCredUsername] = useState("admin8976@gmail.com");
+  const [credPassword, setCredPassword] = useState("");
+  const [credMessage, setCredMessage] = useState<string | null>(null);
+
+  // Admin Payment Settings State
+  const [adminPaymentData, setAdminPaymentData] = useState({
+    upiId: "patnamarathon@upi",
+    merchantName: "Pride Patna Marathon 2027",
+    accountNumber: "50200084729103",
+    ifscCode: "HDFC0001234",
+    enableCards: true,
+  });
+
+  // New Incident Form State
+  const [newIncident, setNewIncident] = useState({
+    location: "",
+    severity: "low" as "low" | "medium" | "critical",
+    unit: "",
+    description: "",
+  });
 
   // Modals
   const [selectedRunner, setSelectedRunner] = useState<RunnerRegistration | null>(null);
@@ -74,7 +144,7 @@ export default function AdminPage() {
     phone: "",
     gender: "male" as const,
     dob: "1995-05-15",
-    city: "Patna",
+    city: "",
     emergencyContactName: "",
     emergencyContactPhone: "",
     categoryCode: "21k" as const,
@@ -82,12 +152,36 @@ export default function AdminPage() {
     medicalNotes: "",
   });
 
+  // Fetch Event Control Settings
+  const fetchEventControl = async () => {
+    try {
+      const res = await fetch("/api/admin/settings");
+      const json = await res.json();
+      if (json.success && json.control) {
+        setEventControl(json.control);
+        setAlertActive(json.control.emergencyAlert.active);
+        setAlertType(json.control.emergencyAlert.type);
+        setAlertMessage(json.control.emergencyAlert.message);
+        setRegNotice(json.control.registrationNotice);
+        if (json.control.eventSchedule) setScheduleData(json.control.eventSchedule);
+        if (json.control.categoryQuotas) setQuotaData(json.control.categoryQuotas);
+        if (json.control.paymentSettings) setAdminPaymentData(json.control.paymentSettings);
+        if (json.currentAdminUsername) setCredUsername(json.currentAdminUsername);
+      }
+    } catch (err) {
+      console.error("Failed to load control settings:", err);
+    }
+  };
+
   // Fetch data
   const fetchData = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/admin/runners");
-      const json = await res.json();
+      const [runnersRes] = await Promise.all([
+        fetch("/api/admin/runners"),
+        fetchEventControl(),
+      ]);
+      const json = await runnersRes.json();
       if (json.success) {
         setRunners(json.runners);
         setMetrics(json.metrics);
@@ -100,8 +194,305 @@ export default function AdminPage() {
   };
 
   useEffect(() => {
-    fetchData();
+    const token = localStorage.getItem("patna_admin_token");
+    if (token) {
+      setIsAuthenticated(true);
+      fetchData();
+    }
+    setAuthChecking(false);
   }, []);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoggingIn(true);
+    setLoginError(null);
+    try {
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: loginId, password: loginPassword }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        setLoginError(data.error || "Invalid ID or Password! Only authorized organizers can log in.");
+        setLoggingIn(false);
+        return;
+      }
+      localStorage.setItem("patna_admin_token", data.token);
+      setIsAuthenticated(true);
+      setLoggingIn(false);
+      fetchData();
+    } catch (err) {
+      setLoginError("Server communication error. Please try again.");
+      setLoggingIn(false);
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("patna_admin_token");
+    document.cookie = "patna_admin_token=; path=/; max-age=0;";
+    setIsAuthenticated(false);
+    setLoginId("");
+    setLoginPassword("");
+  };
+
+  // Master Control Actions
+  const handleToggleRegistrations = async () => {
+    setSavingControl(true);
+    try {
+      const res = await fetch("/api/admin/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "toggle_registrations" }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setEventControl(data.control);
+        setControlSuccessMessage(
+          data.control.registrationsOpen
+            ? "Registrations are now LIVE on the public website!"
+            : "Registrations are now PAUSED on the public website."
+        );
+        setTimeout(() => setControlSuccessMessage(null), 4000);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSavingControl(false);
+    }
+  };
+
+  const handleSaveRegistrationNotice = async () => {
+    setSavingControl(true);
+    try {
+      const res = await fetch("/api/admin/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "update_control",
+          payload: { registrationNotice: regNotice },
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setEventControl(data.control);
+        setControlSuccessMessage("Registration notice updated successfully!");
+        setTimeout(() => setControlSuccessMessage(null), 4000);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSavingControl(false);
+    }
+  };
+
+  const handleSaveAlertBroadcast = async (overrideActive?: boolean) => {
+    setSavingControl(true);
+    const targetActive = overrideActive !== undefined ? overrideActive : !alertActive;
+    try {
+      const res = await fetch("/api/admin/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "toggle_emergency_alert",
+          payload: {
+            active: targetActive,
+            message: alertMessage,
+            type: alertType,
+          },
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setEventControl(data.control);
+        setAlertActive(targetActive);
+        setControlSuccessMessage(
+          targetActive
+            ? "Live broadcast banner is now active across all public website pages!"
+            : "Live broadcast banner has been deactivated."
+        );
+        setTimeout(() => setControlSuccessMessage(null), 4000);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSavingControl(false);
+    }
+  };
+
+  const handleSaveRaceMode = async (mode: string) => {
+    setSavingControl(true);
+    try {
+      const res = await fetch("/api/admin/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "update_control",
+          payload: { raceMode: mode },
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setEventControl(data.control);
+        setControlSuccessMessage(`Event lifecycle phase switched to ${mode.toUpperCase()}!`);
+        setTimeout(() => setControlSuccessMessage(null), 4000);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSavingControl(false);
+    }
+  };
+
+  const handleSaveSchedule = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSavingControl(true);
+    try {
+      const res = await fetch("/api/admin/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "update_control",
+          payload: { eventSchedule: scheduleData },
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setEventControl(data.control);
+        setControlSuccessMessage("Race schedule & flag-off timetable saved!");
+        setTimeout(() => setControlSuccessMessage(null), 4000);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSavingControl(false);
+    }
+  };
+
+  const handleSaveQuotas = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSavingControl(true);
+    try {
+      const res = await fetch("/api/admin/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "update_control",
+          payload: { categoryQuotas: quotaData },
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setEventControl(data.control);
+        setControlSuccessMessage("Category quotas and capacity caps saved!");
+        setTimeout(() => setControlSuccessMessage(null), 4000);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSavingControl(false);
+    }
+  };
+
+  const handleUpdateCredentials = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!credUsername.trim() || !credPassword.trim()) {
+      setCredMessage("Username and password cannot be empty.");
+      return;
+    }
+    setSavingControl(true);
+    setCredMessage(null);
+    try {
+      const res = await fetch("/api/admin/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "update_credentials",
+          payload: { newUsername: credUsername, newPassword: credPassword },
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setCredMessage("Credentials updated successfully in real-time!");
+        setCredPassword("");
+      } else {
+        setCredMessage(data.error || "Failed to update credentials.");
+      }
+    } catch (err) {
+      setCredMessage("Failed to update credentials.");
+    } finally {
+      setSavingControl(false);
+    }
+  };
+
+  const handleSavePaymentSettings = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSavingControl(true);
+    try {
+      const res = await fetch("/api/admin/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "update_control",
+          payload: { paymentSettings: adminPaymentData },
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setEventControl(data.control);
+        setControlSuccessMessage("Receiving UPI & Bank payment details saved in real-time!");
+        setTimeout(() => setControlSuccessMessage(null), 4000);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSavingControl(false);
+    }
+  };
+
+  const handleAddIncident = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newIncident.location.trim() || !newIncident.description.trim()) return;
+    try {
+      const res = await fetch("/api/admin/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "add_incident",
+          payload: {
+            ...newIncident,
+            timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+            status: "active",
+          },
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setEventControl(data.control);
+        setNewIncident({ location: "", severity: "low", unit: "", description: "" });
+        setControlSuccessMessage("Incident successfully dispatched and logged!");
+        setTimeout(() => setControlSuccessMessage(null), 3000);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleToggleIncident = async (id: string) => {
+    try {
+      const res = await fetch("/api/admin/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "toggle_incident", payload: { id } }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setEventControl(data.control);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   // Filtered runners
   const filteredRunners = useMemo(() => {
@@ -189,7 +580,7 @@ export default function AdminPage() {
           phone: "",
           gender: "male",
           dob: "1995-05-15",
-          city: "Patna",
+          city: "",
           emergencyContactName: "",
           emergencyContactPhone: "",
           categoryCode: "21k",
@@ -306,6 +697,123 @@ export default function AdminPage() {
     setExpoResult(found || null);
   };
 
+  // Auth checking screen
+  if (authChecking) {
+    return (
+      <div className="min-h-screen bg-[#070B12] text-ivory flex flex-col items-center justify-center font-body selection:bg-volt selection:text-black">
+        <div className="w-12 h-12 rounded-full border-2 border-volt/20 border-t-volt animate-spin mb-4" />
+        <p className="text-xs uppercase tracking-widest text-stone">Authenticating Race Control Session...</p>
+      </div>
+    );
+  }
+
+  // Login Gate Screen
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-[#070B12] text-ivory flex items-center justify-center p-4 relative overflow-hidden font-body selection:bg-volt selection:text-black">
+        {/* Glow ambient effects */}
+        <div className="absolute top-1/4 -left-40 w-96 h-96 bg-volt/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-40 w-96 h-96 bg-sky-500/10 rounded-full blur-[140px] pointer-events-none" />
+
+        <div className="relative w-full max-w-md bg-[#0A0F1A]/90 backdrop-blur-xl border border-white/[0.08] rounded-2xl p-6 sm:p-8 shadow-2xl">
+          {/* Header */}
+          <div className="flex flex-col items-center text-center mb-8">
+            <div className="w-14 h-14 rounded-2xl bg-volt/10 border border-volt/40 flex items-center justify-center text-volt mb-4 shadow-[0_0_20px_rgba(204,255,0,0.25)]">
+              <Lock className="w-7 h-7" />
+            </div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-volt/10 border border-volt/30 text-[10px] font-heading uppercase tracking-widest text-volt font-bold mb-2">
+              <ShieldCheck className="w-3.5 h-3.5" />
+              Restricted Area
+            </div>
+            <h1 className="font-heading text-2xl sm:text-3xl font-black uppercase tracking-wider text-ivory">
+              Race Director Portal
+            </h1>
+            <p className="text-stone text-xs mt-1.5 leading-relaxed">
+              Patna Marathon 2027 Official Control Dashboard. Only authorized race directors can access this console.
+            </p>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleLogin} className="space-y-4">
+            {loginError && (
+              <div className="p-3.5 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-2.5 animate-shake">
+                <AlertCircle className="w-4 h-4 shrink-0" />
+                <span>{loginError}</span>
+              </div>
+            )}
+
+            <div>
+              <label className="block text-xs uppercase tracking-wider text-stone mb-2 font-bold">
+                Director ID / Username
+              </label>
+              <input
+                type="text"
+                required
+                value={loginId}
+                onChange={(e) => setLoginId(e.target.value)}
+                placeholder="Enter Admin ID"
+                className="w-full px-4 py-3 rounded-lg bg-[#070B12] border border-white/10 text-white placeholder-stone/40 text-sm focus:outline-none focus:border-volt/70 focus:ring-1 focus:ring-volt transition-all"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs uppercase tracking-wider text-stone mb-2 font-bold">
+                Security Password
+              </label>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  required
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                  placeholder="Enter Password"
+                  className="w-full px-4 py-3 rounded-lg bg-[#070B12] border border-white/10 text-white placeholder-stone/40 text-sm focus:outline-none focus:border-volt/70 focus:ring-1 focus:ring-volt transition-all pr-11"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone hover:text-white transition-colors"
+                >
+                  {showPassword ? <Eye className="w-4 h-4 text-volt" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loggingIn}
+              className="w-full py-3.5 rounded-lg bg-volt hover:bg-[#b8e600] text-black font-heading font-black text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(204,255,0,0.3)] hover:scale-[1.01] transition-all disabled:opacity-50"
+            >
+              {loggingIn ? (
+                <>
+                  <RefreshCw className="w-4 h-4 animate-spin" />
+                  <span>Verifying Credentials...</span>
+                </>
+              ) : (
+                <>
+                  <Unlock className="w-4 h-4" />
+                  <span>Unlock Admin Console</span>
+                </>
+              )}
+            </button>
+          </form>
+
+          {/* Notice & Back */}
+          <div className="mt-6 pt-5 border-t border-white/[0.08] flex items-center justify-between text-xs text-stone">
+            <span className="text-[11px] text-stone/70">Public Sign-up Disabled</span>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-1 text-volt hover:underline font-medium text-xs"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              Back to Website
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#070B12] text-ivory flex flex-col font-body selection:bg-volt selection:text-black">
       {/* Top Admin Navbar */}
@@ -366,6 +874,16 @@ export default function AdminPage() {
             <ArrowLeft className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Back to Website</span>
           </Link>
+
+          <button
+            type="button"
+            onClick={handleLogout}
+            title="Logout of Admin"
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-md bg-red-500/10 border border-red-500/30 text-xs text-red-400 hover:bg-red-500/20 hover:text-red-300 transition-colors"
+          >
+            <Lock className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Logout</span>
+          </button>
         </div>
       </header>
 
@@ -435,7 +953,7 @@ export default function AdminPage() {
                 </span>
               </div>
               <div className="mt-2 text-xs text-stone flex items-center justify-between">
-                <span>Gandhi Maidan Expo</span>
+                <span>JP Ganga Path Expo</span>
                 <span className="text-blaze font-bold">
                   {metrics.collectionPercentage}% Collected
                 </span>
@@ -470,10 +988,11 @@ export default function AdminPage() {
         {/* Navigation Tabs */}
         <div className="flex items-center gap-2 border-b border-white/[0.08] pb-1 overflow-x-auto">
           {[
+            { id: "control", label: "Master Command & Controls", icon: Sliders },
             { id: "roster", label: "Runners Database", icon: Users },
             { id: "overview", label: "Analytics & Quotas", icon: Activity },
             { id: "expo", label: "Expo Kit Distribution Desk", icon: Package },
-            { id: "operations", label: "Course & Aid Station Ops", icon: MapPin },
+            { id: "operations", label: "Incident & Course Ops", icon: MapPin },
           ].map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -495,10 +1014,678 @@ export default function AdminPage() {
                     {runners.length}
                   </span>
                 )}
+                {tab.id === "control" && eventControl && (
+                  <span
+                    className={`w-2 h-2 rounded-full ${
+                      eventControl.registrationsOpen ? "bg-emerald-400" : "bg-rose-500"
+                    } animate-pulse`}
+                  />
+                )}
               </button>
             );
           })}
         </div>
+
+        {/* Global Feedback Banner */}
+        {controlSuccessMessage && (
+          <div className="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold flex items-center justify-between shadow-lg">
+            <div className="flex items-center gap-2.5">
+              <Check className="w-4 h-4 shrink-0" />
+              <span>{controlSuccessMessage}</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setControlSuccessMessage(null)}
+              className="text-stone hover:text-white"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+
+        {/* TAB 0: MASTER COMMAND & CONTROLS */}
+        {activeTab === "control" && (
+          <div className="space-y-8">
+            {/* Row 1: Primary Real-time Switches */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* 1. Registration Gate Control */}
+              <div className="p-6 rounded-lg bg-[#0A0F1A] border border-white/[0.08] relative overflow-hidden flex flex-col justify-between shadow-xl">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="label-subtle text-[10px] text-stone tracking-wider font-bold flex items-center gap-1.5">
+                      <Radio className="w-3.5 h-3.5 text-volt" />
+                      REGISTRATION GATE
+                    </span>
+                    <span
+                      className={`px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
+                        eventControl?.registrationsOpen
+                          ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                          : "bg-rose-500/20 text-rose-400 border border-rose-500/30"
+                      }`}
+                    >
+                      {eventControl?.registrationsOpen ? "● LIVE / OPEN" : "● PAUSED / CLOSED"}
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading text-lg font-black uppercase text-ivory tracking-wide mb-1">
+                    Public Athlete Bib Portal
+                  </h3>
+                  <p className="text-xs text-stone leading-relaxed mb-4">
+                    Master gate switch. When paused, the public registration form immediately stops accepting entries and displays an official notice.
+                  </p>
+
+                  <div className="space-y-2 mb-4">
+                    <label className="text-[10px] uppercase tracking-wider text-stone font-bold block">
+                      Custom Athlete Notice
+                    </label>
+                    <textarea
+                      rows={2}
+                      value={regNotice}
+                      onChange={(e) => setRegNotice(e.target.value)}
+                      placeholder="Enter notice shown to public runners..."
+                      className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory placeholder-stone/40 focus:outline-none focus:border-volt/60"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2 pt-2">
+                  <button
+                    type="button"
+                    disabled={savingControl}
+                    onClick={handleToggleRegistrations}
+                    className={`w-full py-3 px-4 rounded font-heading text-xs uppercase tracking-wider font-black flex items-center justify-center gap-2 transition-all shadow-md ${
+                      eventControl?.registrationsOpen
+                        ? "bg-rose-500/20 text-rose-300 border border-rose-500/40 hover:bg-rose-500/30"
+                        : "bg-volt text-black hover:bg-[#b8e600] shadow-[0_0_15px_rgba(204,255,0,0.3)]"
+                    }`}
+                  >
+                    <Sliders className="w-3.5 h-3.5" />
+                    <span>
+                      {eventControl?.registrationsOpen
+                        ? "Pause Public Registrations"
+                        : "Resume Public Registrations"}
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    disabled={savingControl}
+                    onClick={handleSaveRegistrationNotice}
+                    className="w-full py-2 px-3 rounded bg-white/[0.04] hover:bg-white/[0.08] text-xs text-stone hover:text-white border border-white/10 transition-colors"
+                  >
+                    Save Notice Text
+                  </button>
+                </div>
+              </div>
+
+              {/* 2. Live Website Alert Broadcast */}
+              <div className="p-6 rounded-lg bg-[#0A0F1A] border border-white/[0.08] relative overflow-hidden flex flex-col justify-between shadow-xl">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="label-subtle text-[10px] text-stone tracking-wider font-bold flex items-center gap-1.5">
+                      <Megaphone className="w-3.5 h-3.5 text-blaze" />
+                      WEBSITE LIVE ALERT BROADCAST
+                    </span>
+                    <span
+                      className={`px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
+                        alertActive
+                          ? "bg-volt text-black font-extrabold"
+                          : "bg-white/[0.05] text-stone border border-white/10"
+                      }`}
+                    >
+                      {alertActive ? "● BROADCASTING LIVE" : "OFFLINE"}
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading text-lg font-black uppercase text-ivory tracking-wide mb-1">
+                    Site-Wide Notification Banner
+                  </h3>
+                  <p className="text-xs text-stone leading-relaxed mb-4">
+                    Broadcast critical race updates, traffic cordons, or bib collection advisories to all visitors across every page header.
+                  </p>
+
+                  <div className="space-y-3 mb-4">
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                        Alert Priority Level
+                      </label>
+                      <select
+                        value={alertType}
+                        onChange={(e) => setAlertType(e.target.value as any)}
+                        className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory focus:outline-none focus:border-volt/60 font-semibold"
+                      >
+                        <option value="info">General Notice (Volt High-Energy)</option>
+                        <option value="warning">Course Advisory (Amber Warning)</option>
+                        <option value="alert">Emergency Bulletin (Red High-Alert)</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                        Broadcast Message
+                      </label>
+                      <textarea
+                        rows={2}
+                        value={alertMessage}
+                        onChange={(e) => setAlertMessage(e.target.value)}
+                        placeholder="Type urgent notification..."
+                        className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory placeholder-stone/40 focus:outline-none focus:border-volt/60"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-2 pt-2">
+                  <button
+                    type="button"
+                    disabled={savingControl}
+                    onClick={() => handleSaveAlertBroadcast(!alertActive)}
+                    className={`w-full py-3 px-4 rounded font-heading text-xs uppercase tracking-wider font-black flex items-center justify-center gap-2 transition-all ${
+                      alertActive
+                        ? "bg-rose-500/20 text-rose-300 border border-rose-500/40 hover:bg-rose-500/30"
+                        : "bg-volt text-black hover:bg-[#b8e600] shadow-[0_0_15px_rgba(204,255,0,0.3)]"
+                    }`}
+                  >
+                    <Megaphone className="w-3.5 h-3.5" />
+                    <span>{alertActive ? "Turn Off Live Broadcast" : "Broadcast Live on Website"}</span>
+                  </button>
+
+                  {alertActive && (
+                    <button
+                      type="button"
+                      disabled={savingControl}
+                      onClick={() => handleSaveAlertBroadcast(true)}
+                      className="w-full py-2 px-3 rounded bg-white/[0.04] hover:bg-white/[0.08] text-xs text-stone hover:text-white border border-white/10 transition-colors"
+                    >
+                      Update Broadcast Message
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* 3. Event Lifecycle Phase */}
+              <div className="p-6 rounded-lg bg-[#0A0F1A] border border-white/[0.08] relative overflow-hidden flex flex-col justify-between shadow-xl">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="label-subtle text-[10px] text-stone tracking-wider font-bold flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-sky-400" />
+                      EVENT LIFECYCLE
+                    </span>
+                    <span className="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-sky-400/20 text-sky-400 border border-sky-400/30">
+                      ACTIVE PHASE
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading text-lg font-black uppercase text-ivory tracking-wide mb-1">
+                    Operational Mode
+                  </h3>
+                  <p className="text-xs text-stone leading-relaxed mb-4">
+                    Switch marathon phases to automatically adapt dashboards and volunteer toolkits.
+                  </p>
+
+                  <div className="space-y-2">
+                    {[
+                      { id: "registration", label: "1. Athlete Registrations", desc: "Online registrations open" },
+                      { id: "expo", label: "2. Bib Expo Handout", desc: "Kit distribution desk active at JP Ganga Path" },
+                      { id: "race_day", label: "3. Live Race Day", desc: "Active timing mats & RFID gun flag-off" },
+                      { id: "post_race", label: "4. Official Results", desc: "Leaderboards & finishing certificates" },
+                    ].map((phase) => (
+                      <button
+                        key={phase.id}
+                        type="button"
+                        onClick={() => handleSaveRaceMode(phase.id)}
+                        className={`w-full p-2.5 rounded-md text-left transition-all border ${
+                          eventControl?.raceMode === phase.id
+                            ? "bg-sky-500/15 border-sky-400/60 text-ivory shadow-sm"
+                            : "bg-[#070B12] border-white/[0.06] text-stone hover:text-white hover:border-white/20"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-heading text-xs font-bold uppercase">
+                            {phase.label}
+                          </span>
+                          {eventControl?.raceMode === phase.id && (
+                            <span className="w-2 h-2 rounded-full bg-sky-400" />
+                          )}
+                        </div>
+                        <span className="text-[10px] text-stone/80 block mt-0.5">
+                          {phase.desc}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-4 text-center">
+                  <span className="text-[11px] text-stone">
+                    Mode changes apply across the entire central database.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Row 2: Event Schedule & Category Quotas */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Event Timetable Form */}
+              <div className="p-6 rounded-lg bg-[#0A0F1A] border border-white/[0.08] shadow-xl">
+                <div className="flex items-center justify-between mb-6 pb-3 border-b border-white/[0.06]">
+                  <div>
+                    <h3 className="font-heading text-lg font-black uppercase text-ivory tracking-wide flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-volt" />
+                      <span>Race Day Schedule &amp; Timings Master</span>
+                    </h3>
+                    <p className="text-xs text-stone mt-0.5">
+                      Central flag-off schedule and athlete reporting timeline
+                    </p>
+                  </div>
+                  <span className="px-2.5 py-1 rounded bg-[#070B12] border border-white/10 font-mono text-[11px] text-volt">
+                    {scheduleData.date}
+                  </span>
+                </div>
+
+                <form onSubmit={handleSaveSchedule} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                        Race Date
+                      </label>
+                      <input
+                        type="text"
+                        value={scheduleData.date}
+                        onChange={(e) =>
+                          setScheduleData({ ...scheduleData, date: e.target.value })
+                        }
+                        className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory font-mono focus:outline-none focus:border-volt/60"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                        Venue
+                      </label>
+                      <input
+                        type="text"
+                        value={scheduleData.venue}
+                        onChange={(e) =>
+                          setScheduleData({ ...scheduleData, venue: e.target.value })
+                        }
+                        className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory font-mono focus:outline-none focus:border-volt/60"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                        Reporting Time (Gates Open)
+                      </label>
+                      <input
+                        type="text"
+                        value={scheduleData.reportingTime}
+                        onChange={(e) =>
+                          setScheduleData({ ...scheduleData, reportingTime: e.target.value })
+                        }
+                        className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory font-mono focus:outline-none focus:border-volt/60"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                        21 KM Half Marathon Flag-off
+                      </label>
+                      <input
+                        type="text"
+                        value={scheduleData.flagOff21k}
+                        onChange={(e) =>
+                          setScheduleData({ ...scheduleData, flagOff21k: e.target.value })
+                        }
+                        className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory font-mono focus:outline-none focus:border-volt/60"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                        10 KM Urban Challenge Flag-off
+                      </label>
+                      <input
+                        type="text"
+                        value={scheduleData.flagOff10k}
+                        onChange={(e) =>
+                          setScheduleData({ ...scheduleData, flagOff10k: e.target.value })
+                        }
+                        className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory font-mono focus:outline-none focus:border-volt/60"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                        5 KM Family Fun Run Flag-off
+                      </label>
+                      <input
+                        type="text"
+                        value={scheduleData.flagOff5k}
+                        onChange={(e) =>
+                          setScheduleData({ ...scheduleData, flagOff5k: e.target.value })
+                        }
+                        className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory font-mono focus:outline-none focus:border-volt/60"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="pt-2 flex justify-end">
+                    <button
+                      type="submit"
+                      disabled={savingControl}
+                      className="px-5 py-2.5 rounded bg-volt text-black text-xs font-heading font-black uppercase tracking-wider hover:bg-[#b8e600] shadow-[0_0_15px_rgba(204,255,0,0.25)] transition-all"
+                    >
+                      Save Official Schedule
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              {/* Category Quotas & Capacity Caps */}
+              <div className="p-6 rounded-lg bg-[#0A0F1A] border border-white/[0.08] shadow-xl">
+                <div className="flex items-center justify-between mb-6 pb-3 border-b border-white/[0.06]">
+                  <div>
+                    <h3 className="font-heading text-lg font-black uppercase text-ivory tracking-wide flex items-center gap-2">
+                      <Layers className="w-4 h-4 text-emerald-400" />
+                      <span>Category Slot Quotas &amp; Limits</span>
+                    </h3>
+                    <p className="text-xs text-stone mt-0.5">
+                      Control maximum athlete bib capacity per distance
+                    </p>
+                  </div>
+                  <span className="font-numbers text-xs text-stone">
+                    Total: {quotaData["21k"] + quotaData["10k"] + quotaData["5k"]} Slots
+                  </span>
+                </div>
+
+                <form onSubmit={handleSaveQuotas} className="space-y-4">
+                  {/* 21KM */}
+                  <div className="p-3.5 rounded bg-[#070B12] border border-white/[0.06]">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-heading text-xs uppercase font-bold text-volt">
+                        21 KM Half Marathon
+                      </span>
+                      <span className="font-numbers text-xs text-stone">
+                        Enrolled: {metrics?.categoryCounts?.["21k"] || 0} / {quotaData["21k"]}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="number"
+                        min={100}
+                        max={10000}
+                        value={quotaData["21k"]}
+                        onChange={(e) =>
+                          setQuotaData({ ...quotaData, "21k": parseInt(e.target.value, 10) || 0 })
+                        }
+                        className="w-32 px-3 py-1.5 rounded bg-[#0A0F1A] border border-white/10 text-xs text-ivory font-mono focus:outline-none focus:border-volt/60"
+                      />
+                      <div className="flex-1 h-2 bg-white/[0.08] rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-volt"
+                          style={{
+                            width: `${Math.min(
+                              100,
+                              Math.max(5, ((metrics?.categoryCounts?.["21k"] || 0) / quotaData["21k"]) * 100)
+                            )}%`,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 10KM */}
+                  <div className="p-3.5 rounded bg-[#070B12] border border-white/[0.06]">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-heading text-xs uppercase font-bold text-sky-400">
+                        10 KM Urban Challenge
+                      </span>
+                      <span className="font-numbers text-xs text-stone">
+                        Enrolled: {metrics?.categoryCounts?.["10k"] || 0} / {quotaData["10k"]}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="number"
+                        min={100}
+                        max={10000}
+                        value={quotaData["10k"]}
+                        onChange={(e) =>
+                          setQuotaData({ ...quotaData, "10k": parseInt(e.target.value, 10) || 0 })
+                        }
+                        className="w-32 px-3 py-1.5 rounded bg-[#0A0F1A] border border-white/10 text-xs text-ivory font-mono focus:outline-none focus:border-volt/60"
+                      />
+                      <div className="flex-1 h-2 bg-white/[0.08] rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-sky-400"
+                          style={{
+                            width: `${Math.min(
+                              100,
+                              Math.max(5, ((metrics?.categoryCounts?.["10k"] || 0) / quotaData["10k"]) * 100)
+                            )}%`,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 5KM */}
+                  <div className="p-3.5 rounded bg-[#070B12] border border-white/[0.06]">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-heading text-xs uppercase font-bold text-emerald-400">
+                        5 KM Family Fun Run
+                      </span>
+                      <span className="font-numbers text-xs text-stone">
+                        Enrolled: {metrics?.categoryCounts?.["5k"] || 0} / {quotaData["5k"]}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="number"
+                        min={100}
+                        max={10000}
+                        value={quotaData["5k"]}
+                        onChange={(e) =>
+                          setQuotaData({ ...quotaData, "5k": parseInt(e.target.value, 10) || 0 })
+                        }
+                        className="w-32 px-3 py-1.5 rounded bg-[#0A0F1A] border border-white/10 text-xs text-ivory font-mono focus:outline-none focus:border-volt/60"
+                      />
+                      <div className="flex-1 h-2 bg-white/[0.08] rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-emerald-400"
+                          style={{
+                            width: `${Math.min(
+                              100,
+                              Math.max(5, ((metrics?.categoryCounts?.["5k"] || 0) / quotaData["5k"]) * 100)
+                            )}%`,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 flex justify-end">
+                    <button
+                      type="submit"
+                      disabled={savingControl}
+                      className="px-5 py-2.5 rounded bg-white/[0.06] hover:bg-white/[0.1] text-xs font-heading font-black uppercase tracking-wider text-white border border-white/10 transition-all"
+                    >
+                      Update Category Caps
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            {/* Row 3: Payment Gateway Receiving & Security Management */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Payment Receiving Setup */}
+              <div className="p-6 rounded-lg bg-[#0A0F1A] border border-emerald-500/30 shadow-xl">
+                <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/[0.06]">
+                  <div>
+                    <h3 className="font-heading text-lg font-black uppercase text-ivory tracking-wide flex items-center gap-2">
+                      <Wallet className="w-4 h-4 text-emerald-400" />
+                      <span>Payment Receiving Gateway &amp; UPI Setup</span>
+                    </h3>
+                    <p className="text-xs text-stone mt-0.5">
+                      Configure your official UPI ID and Bank Account where athletes transfer fees
+                    </p>
+                  </div>
+                  <span className="px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/30 text-[10px] font-mono text-emerald-400 font-bold">
+                    ACTIVE GATEWAY
+                  </span>
+                </div>
+
+                <form onSubmit={handleSavePaymentSettings} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                        Receiving Official UPI ID *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={adminPaymentData.upiId}
+                        onChange={(e) =>
+                          setAdminPaymentData({ ...adminPaymentData, upiId: e.target.value.trim() })
+                        }
+                        placeholder="e.g. marathon@upi"
+                        className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory font-mono focus:outline-none focus:border-volt/60"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                        Merchant / Payee Name *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={adminPaymentData.merchantName}
+                        onChange={(e) =>
+                          setAdminPaymentData({ ...adminPaymentData, merchantName: e.target.value })
+                        }
+                        placeholder="Pride Patna Marathon"
+                        className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory focus:outline-none focus:border-volt/60"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                        Beneficiary Account Number
+                      </label>
+                      <input
+                        type="text"
+                        value={adminPaymentData.accountNumber || ""}
+                        onChange={(e) =>
+                          setAdminPaymentData({ ...adminPaymentData, accountNumber: e.target.value })
+                        }
+                        placeholder="Bank Account Number"
+                        className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory font-mono focus:outline-none focus:border-volt/60"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                        Bank IFSC Code
+                      </label>
+                      <input
+                        type="text"
+                        value={adminPaymentData.ifscCode || ""}
+                        onChange={(e) =>
+                          setAdminPaymentData({ ...adminPaymentData, ifscCode: e.target.value.toUpperCase() })
+                        }
+                        placeholder="e.g. HDFC0001234"
+                        className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory font-mono uppercase focus:outline-none focus:border-volt/60"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2">
+                    <span className="text-[11px] text-stone">
+                      Dynamic UPI QR codes auto-generate with this ID.
+                    </span>
+                    <button
+                      type="submit"
+                      disabled={savingControl}
+                      className="px-5 py-2.5 rounded bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-heading font-black uppercase tracking-wider shadow-[0_0_15px_rgba(16,185,129,0.25)] transition-all"
+                    >
+                      Save Payment Receiving Details
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              {/* Security & Credentials Management */}
+              <div className="p-6 rounded-lg bg-[#0A0F1A] border border-volt/20 shadow-xl">
+                <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/[0.06]">
+                  <div>
+                    <h3 className="font-heading text-lg font-black uppercase text-ivory tracking-wide flex items-center gap-2">
+                      <KeyRound className="w-4 h-4 text-volt" />
+                      <span>Race Director Security Credentials</span>
+                    </h3>
+                    <p className="text-xs text-stone mt-0.5">
+                      Modify portal login ID &amp; password anytime. Public signup remains permanently disabled.
+                    </p>
+                  </div>
+                  <span className="px-2.5 py-1 rounded bg-volt/10 border border-volt/30 text-[10px] font-mono text-volt font-bold">
+                    SUPER ADMIN
+                  </span>
+                </div>
+
+                {credMessage && (
+                  <div className="mb-4 p-3 rounded bg-volt/10 border border-volt/30 text-volt text-xs font-medium">
+                    {credMessage}
+                  </div>
+                )}
+
+                <form onSubmit={handleUpdateCredentials} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                        Director ID / Username
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={credUsername}
+                        onChange={(e) => setCredUsername(e.target.value)}
+                        className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory font-mono focus:outline-none focus:border-volt/60"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                        New Password
+                      </label>
+                      <input
+                        type="password"
+                        placeholder="Enter new password"
+                        value={credPassword}
+                        onChange={(e) => setCredPassword(e.target.value)}
+                        className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory font-mono focus:outline-none focus:border-volt/60"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2">
+                    <span className="text-[11px] text-stone">
+                      Active: <strong className="text-white">{credUsername}</strong>
+                    </span>
+                    <button
+                      type="submit"
+                      disabled={savingControl}
+                      className="px-5 py-2.5 rounded bg-volt text-black text-xs font-heading font-black uppercase tracking-wider hover:bg-[#b8e600] shadow-[0_0_15px_rgba(204,255,0,0.25)] transition-all"
+                    >
+                      Update Security Credentials
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* TAB 1: RUNNERS ROSTER DATABASE */}
         {activeTab === "roster" && (
@@ -747,7 +1934,7 @@ export default function AdminPage() {
                 {[
                   {
                     code: "21k",
-                    name: "21.1K Half Marathon",
+                    name: "21K Half Marathon",
                     fee: 1299,
                     color: "text-volt",
                     bg: "bg-volt",
@@ -981,7 +2168,7 @@ export default function AdminPage() {
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h3 className="font-heading text-lg uppercase text-ivory font-bold">
-                    Official Course Corridor Status (21.1 KM)
+                    Official Course Corridor Status (21 KM)
                   </h3>
                   <p className="text-xs text-stone">
                     Live operational telemetry from JP Ganga Path to Digha Ghat
@@ -996,7 +2183,7 @@ export default function AdminPage() {
                 {[
                   {
                     title: "JP Ganga Path Hub",
-                    km: "0.0 KM / 21.1 KM",
+                    km: "0.0 KM / 21 KM",
                     type: "Corral Flag-Off & Finish Arch",
                     status: "Ready",
                     details: "AFI Timing Mats, Corrals A-D, Apollo ICU Base",
@@ -1017,7 +2204,7 @@ export default function AdminPage() {
                   },
                   {
                     title: "Digha Ghat Turnaround",
-                    km: "KM 13.5 / KM 21.1",
+                    km: "KM 13.5 / KM 21 KM",
                     type: "Riverfront 180° Timing Gantry",
                     status: "Ready",
                     details: "ChronoTrack mat, Apollo ICU, Mist Fans",
@@ -1044,6 +2231,187 @@ export default function AdminPage() {
                     </p>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* Field Incident Dispatcher & Telemetry Desk */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Form to Log New Incident */}
+              <div className="p-6 rounded-lg bg-[#0A0F1A] border border-white/[0.08] shadow-xl">
+                <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/[0.06]">
+                  <div>
+                    <h3 className="font-heading text-lg font-black uppercase text-ivory tracking-wide flex items-center gap-2">
+                      <AlertTriangle className="w-4 h-4 text-amber-400" />
+                      <span>Dispatch Field Alert</span>
+                    </h3>
+                    <p className="text-xs text-stone mt-0.5">
+                      Log live corridor, medical, or hydration incidents
+                    </p>
+                  </div>
+                </div>
+
+                <form onSubmit={handleAddIncident} className="space-y-3.5">
+                  <div>
+                    <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                      Corridor Location *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Atal Path KM 8, Digha Chute"
+                      value={newIncident.location}
+                      onChange={(e) =>
+                        setNewIncident({ ...newIncident, location: e.target.value })
+                      }
+                      className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory focus:outline-none focus:border-volt/60"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                      Assigned Field Unit
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Apollo Ambulance 2, PCR 14, Vol 3"
+                      value={newIncident.unit}
+                      onChange={(e) =>
+                        setNewIncident({ ...newIncident, unit: e.target.value })
+                      }
+                      className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory focus:outline-none focus:border-volt/60"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                      Severity Priority
+                    </label>
+                    <select
+                      value={newIncident.severity}
+                      onChange={(e) =>
+                        setNewIncident({ ...newIncident, severity: e.target.value as any })
+                      }
+                      className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory focus:outline-none focus:border-volt/60 font-semibold"
+                    >
+                      <option value="low">Low Priority (Hydration / Barricade)</option>
+                      <option value="medium">Medium Priority (Traffic / Equipment)</option>
+                      <option value="critical">Critical / Emergency (Apollo Medical Call)</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="text-[10px] uppercase tracking-wider text-stone font-bold block mb-1">
+                      Incident Summary *
+                    </label>
+                    <textarea
+                      rows={2}
+                      required
+                      placeholder="Describe the operational incident..."
+                      value={newIncident.description}
+                      onChange={(e) =>
+                        setNewIncident({ ...newIncident, description: e.target.value })
+                      }
+                      className="w-full px-3 py-2 rounded bg-[#070B12] border border-white/10 text-xs text-ivory focus:outline-none focus:border-volt/60"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full py-2.5 rounded bg-volt text-black text-xs font-heading font-black uppercase tracking-wider hover:bg-[#b8e600] shadow-[0_0_15px_rgba(204,255,0,0.25)] transition-all"
+                  >
+                    Log &amp; Dispatch Unit
+                  </button>
+                </form>
+              </div>
+
+              {/* Live Incident Log Table */}
+              <div className="lg:col-span-2 p-6 rounded-lg bg-[#0A0F1A] border border-white/[0.08] shadow-xl flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/[0.06]">
+                    <div>
+                      <h3 className="font-heading text-lg font-black uppercase text-ivory tracking-wide flex items-center gap-2">
+                        <Activity className="w-4 h-4 text-sky-400" />
+                        <span>Live Field Incident Queue</span>
+                      </h3>
+                      <p className="text-xs text-stone mt-0.5">
+                        Real-time log of active race-day radio dispatches
+                      </p>
+                    </div>
+                    <span className="px-2.5 py-1 rounded bg-[#070B12] border border-white/10 font-mono text-[10px] text-ivory">
+                      {eventControl?.incidents?.length || 0} Records
+                    </span>
+                  </div>
+
+                  <div className="space-y-2.5 max-h-[360px] overflow-y-auto pr-1">
+                    {(!eventControl?.incidents || eventControl.incidents.length === 0) ? (
+                      <div className="p-8 text-center text-stone text-xs">
+                        No field incidents logged. All corrdidors report green.
+                      </div>
+                    ) : (
+                      eventControl.incidents.map((inc: any) => (
+                        <div
+                          key={inc.id}
+                          className={`p-3.5 rounded-md border flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                            inc.status === "resolved"
+                              ? "bg-[#070B12]/60 border-white/[0.05] opacity-60"
+                              : inc.severity === "critical"
+                              ? "bg-rose-950/20 border-rose-500/40"
+                              : inc.severity === "medium"
+                              ? "bg-amber-950/20 border-amber-500/40"
+                              : "bg-[#070B12] border-white/10"
+                          }`}
+                        >
+                          <div className="space-y-1">
+                            <div className="flex items-center gap-2">
+                              <span className="font-mono text-[10px] font-bold text-stone">
+                                {inc.id} • {inc.timestamp}
+                              </span>
+                              <span
+                                className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider ${
+                                  inc.severity === "critical"
+                                    ? "bg-rose-500/20 text-rose-300 border border-rose-500/30"
+                                    : inc.severity === "medium"
+                                    ? "bg-amber-500/20 text-amber-300 border border-amber-500/30"
+                                    : "bg-sky-500/20 text-sky-300 border border-sky-500/30"
+                                }`}
+                              >
+                                {inc.severity}
+                              </span>
+                              <span className="text-[11px] font-bold text-white">
+                                {inc.location}
+                              </span>
+                            </div>
+                            <p className="text-xs text-stone">{inc.description}</p>
+                            {inc.unit && (
+                              <p className="text-[10px] font-mono text-volt">
+                                Unit Assigned: {inc.unit}
+                              </p>
+                            )}
+                          </div>
+
+                          <div className="sm:self-center shrink-0">
+                            <button
+                              type="button"
+                              onClick={() => handleToggleIncident(inc.id)}
+                              className={`px-3 py-1.5 rounded text-xs font-bold transition-all ${
+                                inc.status === "resolved"
+                                  ? "bg-white/[0.05] text-stone hover:text-white"
+                                  : "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 hover:bg-emerald-500/30"
+                              }`}
+                            >
+                              {inc.status === "resolved" ? "Re-open" : "Mark Resolved"}
+                            </button>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-stone">
+                  <span>Patna Police &amp; Apollo Hospital Radio Net</span>
+                  <span className="text-emerald-400 font-mono">Channel 4 Active</span>
+                </div>
               </div>
             </div>
           </div>
@@ -1330,11 +2698,12 @@ export default function AdminPage() {
                     </label>
                     <input
                       type="text"
+                      autoComplete="off"
                       value={newRunner.city}
                       onChange={(e) =>
                         setNewRunner({ ...newRunner, city: e.target.value })
                       }
-                      placeholder="Patna, Gaya, etc."
+                      placeholder="Enter city (e.g. Gaya, Delhi, etc.)"
                       className="w-full px-3 py-2.5 rounded bg-[#070B12] border border-white/10 text-xs text-ivory focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-volt"
                     />
                   </div>
