@@ -124,8 +124,24 @@ export default function RootLayout({
                 const savedTheme = localStorage.getItem('theme');
                 if (savedTheme === 'dark') {
                   document.documentElement.classList.add('dark');
-                } else {
+                } else if (savedTheme === 'light') {
                   document.documentElement.classList.remove('dark');
+                } else {
+                  // Automatic Theme based on Indian Standard Time (IST - Asia/Kolkata)
+                  const istHour = parseInt(
+                    new Intl.DateTimeFormat('en-US', {
+                      timeZone: 'Asia/Kolkata',
+                      hour: 'numeric',
+                      hourCycle: 'h23',
+                    }).format(new Date()),
+                    10
+                  );
+                  // 6:00 PM (18:00) to 6:00 AM (06:00) IST -> Dark Mode
+                  if (istHour >= 18 || istHour < 6) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
                 }
               } catch (_) {}
             `,

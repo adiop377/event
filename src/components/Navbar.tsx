@@ -89,25 +89,23 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-2">
           {/* Logo & Brand */}
-          <Link href="#hero" className="flex items-center gap-2 sm:gap-3 group min-w-0 flex-1">
-            <div className="relative w-8 h-8 xs:w-9 xs:h-9 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-slate-200 dark:border-white/20 p-1 bg-white dark:bg-[#111827] flex items-center justify-center shrink-0 shadow-sm group-hover:border-volt group-hover:shadow-[0_0_15px_rgba(204,255,0,0.4)] transition-all">
+          <Link href="#hero" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+            <div className="relative h-8 xs:h-9 sm:h-10 md:h-11 w-auto flex items-center shrink-0">
               <Image
                 src="/pride-patna-marathon-logo-cropped.png"
                 alt="Pride Patna Marathon Logo"
-                width={40}
-                height={40}
-                className="object-contain group-hover:scale-105 transition-transform"
+                width={170}
+                height={72}
+                className="h-8 xs:h-9 sm:h-10 md:h-11 w-auto object-contain drop-shadow-[0_2px_12px_rgba(204,255,0,0.22)] group-hover:scale-105 transition-transform"
                 priority
               />
             </div>
-            <div className="flex flex-col min-w-0 overflow-hidden">
-              <span className="font-heading text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl tracking-wider text-slate-900 dark:text-white group-hover:text-black dark:group-hover:text-volt transition-colors font-extrabold truncate">
-                PRIDE PATNA MARATHON
+            <div className="hidden sm:flex flex-col min-w-0 border-l border-slate-200 dark:border-white/15 pl-2.5">
+              <span className="font-heading text-[11px] sm:text-xs font-black tracking-wider text-slate-900 dark:text-white group-hover:text-volt transition-colors leading-tight whitespace-nowrap">
+                7 FEB 2027
               </span>
-              <span className="label-subtle text-[7px] xs:text-[7.5px] sm:text-[9px] tracking-[0.12em] sm:tracking-[0.22em] text-slate-600 dark:text-slate-400 font-bold flex items-center gap-1 sm:gap-1.5 truncate">
-                <span>7 FEB 2027</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-blaze shrink-0" />
-                <span>JP GANGA PATH</span>
+              <span className="label-subtle text-[8px] sm:text-[8.5px] tracking-[0.16em] text-slate-500 dark:text-slate-400 font-bold leading-tight whitespace-nowrap">
+                JP GANGA PATH
               </span>
             </div>
           </Link>

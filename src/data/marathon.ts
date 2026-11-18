@@ -131,9 +131,8 @@ export const CATEGORIES: MarathonCategory[] = [
       "An electric family-friendly riverfront loop celebrating community fitness and civic wellness.",
     inclusions: [
       "Technical Running Tee",
-      "Plantable Seed Bib",
+      "Plantable Seed",
       "Finisher Medal",
-      "Hot Breakfast",
       "Digital Certificate",
     ],
     routeHighlights: [
@@ -223,7 +222,7 @@ export const FEATURES: FeaturePillar[] = [
     id: "04",
     title: "Premium Race Kit",
     description:
-      "Technical moisture-wicking apparel, zero-waste plantable bibs, RFID chip timing, and commemorative keepsake.",
+      "Technical moisture-wicking apparel, zero-waste plantable seeds, RFID chip timing, and commemorative keepsake.",
   },
 ];
 
@@ -356,8 +355,8 @@ export const KIT_ITEMS: KitItem[] = [
     detail: "Recycled poly high-wicking fabric engineered for race-morning humidity.",
   },
   {
-    title: "Plantable Seed Bib",
-    detail: "Organic wildflower seeds embedded in biodegradable, water-resistant bib substrate.",
+    title: "Plantable Seed",
+    detail: "Organic wildflower seeds embedded in biodegradable, water-resistant substrate.",
   },
   {
     title: "ChronoTrack RFID Chip",

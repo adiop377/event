@@ -11,9 +11,29 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
   useEffect(() => {
     setMounted(true);
     const savedTheme = localStorage.getItem("theme");
-    const isDark =
-      savedTheme === "dark" ||
-      (!savedTheme && document.documentElement.classList.contains("dark"));
+    let isDark = false;
+
+    if (savedTheme === "dark") {
+      isDark = true;
+    } else if (savedTheme === "light") {
+      isDark = false;
+    } else {
+      // Automatic initial theme based on Indian Standard Time (IST - Asia/Kolkata)
+      try {
+        const istHour = parseInt(
+          new Intl.DateTimeFormat("en-US", {
+            timeZone: "Asia/Kolkata",
+            hour: "numeric",
+            hourCycle: "h23",
+          }).format(new Date()),
+          10
+        );
+        // 6:00 PM (18:00) to 6:00 AM (06:00) IST -> Dark Mode
+        isDark = istHour >= 18 || istHour < 6;
+      } catch {
+        isDark = document.documentElement.classList.contains("dark");
+      }
+    }
 
     if (isDark) {
       setTheme("dark");

@@ -216,7 +216,7 @@ export default function Countdown({ onSelectCategory }: CountdownProps) {
                         {cat.distance}
                       </span>
                       <h3 className="font-heading text-2xl uppercase text-slate-900 dark:text-white mt-1 font-black">
-                        {cat.name}
+                        {cat.name.replace(/^[0-9.]+\s*k\s*/i, "")}
                       </h3>
                     </div>
                     <span className="label-subtle text-[9px] bg-slate-100 dark:bg-white/10 px-2.5 py-1 rounded border border-slate-200 dark:border-white/15 text-slate-600 dark:text-slate-300 font-bold">

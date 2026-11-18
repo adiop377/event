@@ -50,25 +50,18 @@ export default function Footer() {
           {/* Brand info */}
           <div className="md:col-span-5 flex flex-col justify-between">
             <div>
-              <Link href="/" className="flex items-center gap-2.5 mb-2.5 group">
-                <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-slate-300 dark:border-white/20 p-1 bg-white dark:bg-[#111827] flex items-center justify-center shadow-sm shrink-0">
-                  <Image
-                    src="/pride-patna-marathon-logo-cropped.png"
-                    alt="Pride Patna Marathon Logo"
-                    width={36}
-                    height={36}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-heading text-base sm:text-lg tracking-wider text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-volt transition-colors font-black">
-                    PRIDE PATNA MARATHON
-                  </span>
-                  <span className="label-subtle text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-emerald-700 dark:text-volt font-extrabold">
-                    7 FEB 2027 • JP GANGA PATH, VENDING ZONE
-                  </span>
-                </div>
+              <Link href="/" className="inline-block mb-3 group">
+                <Image
+                  src="/pride-patna-marathon-logo-cropped.png"
+                  alt="Pride Patna Marathon Logo"
+                  width={200}
+                  height={85}
+                  className="h-10 sm:h-12 w-auto object-contain drop-shadow-[0_2px_12px_rgba(204,255,0,0.2)] group-hover:scale-105 transition-transform"
+                />
               </Link>
+              <div className="text-[10px] sm:text-xs font-heading font-extrabold uppercase tracking-widest text-emerald-700 dark:text-volt mb-2">
+                7 FEB 2027 • JP GANGA PATH, VENDING ZONE
+              </div>
               <p className="font-body text-slate-600 dark:text-slate-400 text-xs leading-relaxed max-w-sm mb-3 font-medium">
                 Bihar&apos;s premier community distance-running event uniting elite marathoners, civic pioneers, and families on the banks of the Ganges.
               </p>
